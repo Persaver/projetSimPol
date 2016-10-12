@@ -64,6 +64,7 @@ Il y a des possibilités d'actions et des informations.
 * Politique: Monter en grande
 * Infrastructures: permet le sabotage
 
+
 ## Avantages amenés par l'espionnage
 * Donner des informations sur l'établissement et le chef de l'établissement
 * Si des points faibles sont trouvés sur le chef d'établissement, cela permet la compromission
@@ -100,6 +101,22 @@ Il y a des possibilités d'actions et des informations.
 * sport: augmentation des dépenses de santé, baisse de l'attrait de la ville
 * culture: baisse de l'attrait de la ville
 * communication:baisse de l'attrait de la ville, mouvements sociaux, opposition de la population
-* infrastructures (eau, gaz, électricité..):risques d'accidents
-* politique (liens avec autres villes, régions, pays...):
+* infrastructures (eau, gaz, électricité..):risques d'accidents,risque
+* politique (liens avec autres villes, régions, pays...):manifestation
 * budget de l'état:effondrement du pays et fin de la partie
+
+## Evenements pouvant survenir
+* catastrophe naturelle de façon aléatoire(tremblement de terre, ouragan, innondation...)
+* vandalisme en fonction du batîment et du quartier
+* incendie en cas de manque d'entretien
+* accident dans un bâtiment en fonction des compétences du personnel et de l'entretien
+* découverte de caisses noires
+* maladies si manque de compétence médicale 
+
+
+
+
+
+
+
+
