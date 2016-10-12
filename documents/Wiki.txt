@@ -1,0 +1,105 @@
+Nom du jeu: ???
+
+Ce jeu se joue seul face à l'ordinateur.
+
+Le tutoriel du jeu: être responsable du quartier. 
+Mission=> établir x bâtiments afin de voir les différentes fenêtres de gestion.
+
+Il y a plusieurs thème de fenêtres de gestion:
+* éducation
+* sécurité
+* santé
+* recherche
+* sport
+* culture
+* communication
+* infrastructures (eau, gaz, électricité..)
+* politique (liens avec autres villes, régions, pays...)
+* budget de l'état
+
+Dans chaque fenêtre de gestion le joueur définit son budget alloué.
+
+Fonctionnalités des fenêtres de gestion:
+* Augmenter budget
+L'augmentation du budget influe sur tous les bâtiments du domaine. 
+* Diminuer budget
+La baisse du budget influe sur tous les bâtiments du domaine. 
+Attention il est possible de modifier le budget d'un bâtiment en particulier. En conséquence les budgets alloués aux autres bâtiments du domaine baissent ou augmentent.
+
+* Pour chaque domaine, définir à quoi correspond le domaine. 
+
+Il est nécessaire d'afficher une description pour chaque thème de gestion.
+
+En mode carte un clique droit sur un batîment affiche une fênetre relative à ce dernier.
+Il y a des possibilités d'actions et des informations.
+
+## Au clic sur les bâtiments
+### Actions
+* Augmenter le budget
+* Diminuer le budget
+* Espionner
+* + évolutions à venir
+### Informations
+* Ressenti des utilisateurs
+* Ressenti du personnel
+* Sécurité de l'infrastructure
+* Etat de l'infrastructure
+* Etat d'une éventuelle animation pour les bâtiments de type culturel ou sportif
+
+
+## Règles
+###Economie
+* Le budget général peut être en négatif. En fonction de la gravité de la situation il reçoit des avertissement ou est placé sous tutelle.
+* En plus du budget général, le joueur dispose de son propre fond personnel. Il a tous les droit dessus. Il lui permet de financer ses biens persos et actions illégales.
+* Quand le budget général est positif, le joueur reçoit des demandes plus fortes de sa population et de l'état.
+
+### Avantages amenés via corruption
+* Ecole: Augmente les chances d'avoir des contre-manifestants favorable au pouvoir
+* Police: Facilite les actions illégales (espionnage, corruption, détournement de fonds...)
+* Banque: Facilite la falsification des comptes
+* Hôpitaux: Affaibli les partis opposants
+* Recherche: Exclusivité du pouvoir sur les recherches
+* Sport: Faire gagner l'équipe choisie
+* Communication: Propagande
+* Politique: Monter en grande
+* Infrastructures: permet le sabotage
+
+## Avantages amenés par l'espionnage
+* Donner des informations sur l'établissement et le chef de l'établissement
+* Si des points faibles sont trouvés sur le chef d'établissement, cela permet la compromission
+* Si des points sont trouvés sur des activités, cela facilité la corruption
+
+##Villes
+###Population
+*A chaque début de partie, la population est fixée à 200 habitants.
+*Flux entrants dans la population:
+**immigrations=> directement lié à l'attrait de la ville
+**naissance, lié à la population
+*Flux sortants:
+**Décès
+**Emmigrations=>si désintérêt pour la ville
+
+*Actions possible de la population
+** Demande de bâtiments, de service 
+***Pour répondre aux demandes de bâtiments, le joueur ne va pas cliquer sur "ok" ou "refus" mais va construire le batiment.
+** Demandes d'animations sportives et culturelles
+***Le joueur répond en fonction des infos communiquées (prix, lieux, durée...) par oui ou non.
+** Manifestations de révolte
+***Le joueur peut ignorer, réprimer, accepter une déléguation.
+****Si déléguation, le joueur s'engage à répondre aux demandes.
+** Actions terroristes
+***Faire appel à l'armée avec le risque que l'état s'immisce dans les caisses noires
+***Bouton "ok" et agir en conséquence
+
+
+##Conséquences de mauvaise gestion 
+* éducation: baisse d'efficacité de la recherche, baisse de la qualité des soins, augmente le risque d'incidents sur les infrastructures de divers domaines.
+* sécurité:augmentation de la criminalité
+* santé:augmentation du taux de malades et décès des malades, baisse de l'espérance de vie
+* recherche:risque d'accidents plus élevés
+* sport: augmentation des dépenses de santé, baisse de l'attrait de la ville
+* culture: baisse de l'attrait de la ville
+* communication:baisse de l'attrait de la ville, mouvements sociaux, opposition de la population
+* infrastructures (eau, gaz, électricité..):risques d'accidents
+* politique (liens avec autres villes, régions, pays...):
+* budget de l'état:effondrement du pays et fin de la partie
