@@ -95,28 +95,51 @@ Il y a des possibilités d'actions et des informations.
 
 ##Conséquences de mauvaise gestion 
 * éducation: baisse d'efficacité de la recherche, baisse de la qualité des soins, augmente le risque d'incidents sur les infrastructures de divers domaines.
-* sécurité:augmentation de la criminalité
-* santé:augmentation du taux de malades et décès des malades, baisse de l'espérance de vie
+* sécurité:augmentation de la criminalité, incendies criminels
+* santé:augmentation du taux de malades et décès des malades,maladies baisse de l'espérance de vie
 * recherche:risque d'accidents plus élevés
 * sport: augmentation des dépenses de santé, baisse de l'attrait de la ville
 * culture: baisse de l'attrait de la ville
 * communication:baisse de l'attrait de la ville, mouvements sociaux, opposition de la population
-* infrastructures (eau, gaz, électricité..):risques d'accidents,risque
+* infrastructures (eau, gaz, électricité..):risques d'accidents,risque d'incendie
 * politique (liens avec autres villes, régions, pays...):manifestation
 * budget de l'état:effondrement du pays et fin de la partie
 
 ## Evenements pouvant survenir
 * catastrophe naturelle de façon aléatoire(tremblement de terre, ouragan, innondation...)
 * vandalisme en fonction du batîment et du quartier
-* incendie en cas de manque d'entretien
 * accident dans un bâtiment en fonction des compétences du personnel et de l'entretien
 * découverte de caisses noires
-* maladies si manque de compétence médicale 
+
+## liste des bâtiments
+
+##Hôtel de ville
+##Maison
+##Bureaux
+##Entreprises
+##Commissariat
+##Ecole
+##Hopitaux
+##Caserne Militaire
+##Complexe Sportif
+##Musée
+##Banque
+##Centre de recherche
+##Centrale électrique
+##Medias
+##Cinéma
+##Zone commerciale
+
+## La construction d'un bâtiment ne peut se faire qu'en réaction à une demande. Le joueur ne peut pas créer un bâtiment de sa propre initiative. Il doit toujours être sollicité. (sauf si cas particuliers)
+
+## La génération de maisons se fait soit automatiquement en fonction de l'augmentation de la population.Soit à l'aide d'un budget alloué. 
+
+## Indicateurs relatifs à chaques bâtiments
 
 
-
-
-
+## Au clic gauche sur chaque batiment une fenêtre avec les indicateurs va apparaître.
+Elle indique différents indicateurs propres à chaque bâtiment.
+Pour chaque indicateur il y a une jauge et un coût correspondant. Le joueur pourra à sa guise augmenter au baisser le budget lié à un indicateur. (Exemple: entretien pour une école, qualité de service pour un hopital)
 
 
 
