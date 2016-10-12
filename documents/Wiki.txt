@@ -1,11 +1,19 @@
-Nom du jeu: ???
+Nom du jeu: SimPol
 
-Ce jeu se joue seul face à l'ordinateur.
+Ce jeu se joue seul face à l'ordinateur. 
+C'est une application web. Elle n'est pas déclinée sous Androïd.
 
 Le tutoriel du jeu: être responsable du quartier. 
 Mission=> établir x bâtiments afin de voir les différentes fenêtres de gestion.
 
-Il y a plusieurs thème de fenêtres de gestion:
+C'est un jeu de type gestion/construction d'une ville. L'utilisateur voit donc à l'écran sa ville qui se développe.
+Le logiciel va envoyer des informations au joueur qui lui imposent de prendre des décisions. 
+Exemple: "Vos habitants se plaignent du vandalisme, pensez à agir en conséquence".
+Exemple:"La qualité des soins dans vos hopitaux ne satisfait pas les malades, faites attention."
+
+
+
+Lorsqu'il joue, l'utilisateur intéragit avec plusieurs de fenêtres de gestion de différents thèmes:
 * éducation
 * sécurité
 * santé
@@ -17,7 +25,10 @@ Il y a plusieurs thème de fenêtres de gestion:
 * politique (liens avec autres villes, régions, pays...)
 * budget de l'état
 
-Dans chaque fenêtre de gestion le joueur définit son budget alloué.
+Dans chaque fenêtre de gestion le joueur aperçoit différents indicateurs via un systeme de curseur.
+Ces indicateurs sont liés à la thèmatique de la fenêtre.
+DONNER UN EXEMPLE
+
 
 Fonctionnalités des fenêtres de gestion:
 * Augmenter budget
@@ -49,8 +60,8 @@ Il y a des possibilités d'actions et des informations.
 
 ## Règles
 ###Economie
-* Le budget général peut être en négatif. En fonction de la gravité de la situation il reçoit des avertissement ou est placé sous tutelle.
-* En plus du budget général, le joueur dispose de son propre fond personnel. Il a tous les droit dessus. Il lui permet de financer ses biens persos et actions illégales.
+* Le budget général peut être en négatif. En fonction de la gravité de la situation le joueur reçoit des avertissement où est placé sous tutelle.
+* En plus du budget général, le joueur dispose de son propre fond personnel. Il le crédite avec de l'argent issu du budget de la ville. Il a tous les droit dessus. Il lui permet de financer ses biens personnels et actions illégales. 
 * Quand le budget général est positif, le joueur reçoit des demandes plus fortes de sa population et de l'état.
 
 ### Avantages amenés via corruption
@@ -64,25 +75,24 @@ Il y a des possibilités d'actions et des informations.
 * Politique: Monter en grande
 * Infrastructures: permet le sabotage
 
-
-## Avantages amenés par l'espionnage
+### Avantages amenés par l'espionnage
 * Donner des informations sur l'établissement et le chef de l'établissement
 * Si des points faibles sont trouvés sur le chef d'établissement, cela permet la compromission
-* Si des points sont trouvés sur des activités, cela facilité la corruption
+* Si des points sont trouvés sur des activités, cela facilite la corruption
 
 ##Villes
 ###Population
 *A chaque début de partie, la population est fixée à 200 habitants.
 *Flux entrants dans la population:
 **immigrations=> directement lié à l'attrait de la ville
-**naissance, lié à la population
+**le nombre de naissance est lié au nombre d'habitants
 *Flux sortants:
 **Décès
 **Emmigrations=>si désintérêt pour la ville
 
-*Actions possible de la population
+##Actions possible de la population
 ** Demande de bâtiments, de service 
-***Pour répondre aux demandes de bâtiments, le joueur ne va pas cliquer sur "ok" ou "refus" mais va construire le batiment.
+***Pour répondre aux demandes de bâtiments, le joueur ne va pas cliquer sur "ok" ou "refus" mais va construire ou pas le batiment.
 ** Demandes d'animations sportives et culturelles
 ***Le joueur répond en fonction des infos communiquées (prix, lieux, durée...) par oui ou non.
 ** Manifestations de révolte
@@ -96,7 +106,7 @@ Il y a des possibilités d'actions et des informations.
 ##Conséquences de mauvaise gestion 
 * éducation: baisse d'efficacité de la recherche, baisse de la qualité des soins, augmente le risque d'incidents sur les infrastructures de divers domaines.
 * sécurité:augmentation de la criminalité, incendies criminels
-* santé:augmentation du taux de malades et décès des malades,maladies baisse de l'espérance de vie
+* santé:augmentation du taux de malades et décès des malades,maladies, baisse de l'espérance de vie
 * recherche:risque d'accidents plus élevés
 * sport: augmentation des dépenses de santé, baisse de l'attrait de la ville
 * culture: baisse de l'attrait de la ville
@@ -111,7 +121,7 @@ Il y a des possibilités d'actions et des informations.
 * accident dans un bâtiment en fonction des compétences du personnel et de l'entretien
 * découverte de caisses noires
 
-## liste des bâtiments
+## liste des bâtiments figurants dans le jeu
 
 ##Hôtel de ville
 ##Maison
@@ -132,7 +142,7 @@ Il y a des possibilités d'actions et des informations.
 
 ## La construction d'un bâtiment ne peut se faire qu'en réaction à une demande. Le joueur ne peut pas créer un bâtiment de sa propre initiative. Il doit toujours être sollicité. (sauf si cas particuliers)
 
-## La génération de maisons se fait soit automatiquement en fonction de l'augmentation de la population.Soit à l'aide d'un budget alloué. 
+## La génération de maisons se fait soit automatiquement en fonction de l'augmentation de la population. Soit à l'aide d'un budget alloué. 
 
 ## Indicateurs relatifs à chaques bâtiments
 
