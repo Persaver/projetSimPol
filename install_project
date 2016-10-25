@@ -1,0 +1,14 @@
+intall 
+  git
+  nodejs
+  Python 3xx
+
+npm install -g npm
+npm install -g yo gulp bower
+npm install -g generator-gulp-angular
+
+creer repertoire pour le projet
+
+dedans>yo gulp-angular
+       >bower install
+       gulp serve
