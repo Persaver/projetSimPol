@@ -1,0 +1,91 @@
+<html ng-app="projet">
+
+<head>
+    <meta charset=utf-8 />
+    <title>Projet</title>
+    <link rel="stylesheet" href="vendors/bower_components/angular-material/angular-material.css">
+    <link rel="stylesheet" href="app/angular/style.css">
+</head>
+
+<body ng-controller="MainCtrl" layout="column">
+    <div id="menu" ng-cloak>
+        <md-toolbar class="md-menu-toolbar">
+            <div>
+                <div layout="row">
+                    <md-menu-bar>
+                        <md-menu>
+                            <button ng-click="$mdOpenMenu()">
+                                Game
+                            </button>
+                            <md-menu-content>
+                                <md-menu-item>
+                                    <md-button>
+                                        Start
+                                    </md-button>
+                                </md-menu-item>
+                                <md-menu-item>
+                                    <md-button>
+                                        Load
+                                    </md-button>
+                                </md-menu-item>
+                                <md-menu-item>
+                                    <md-button>
+                                        Save
+                                    </md-button>
+                                </md-menu-item>
+                                <md-menu-item>
+                                    <md-button>
+                                        Exit
+                                    </md-button>
+                                </md-menu-item>
+                            </md-menu-content>
+                        </md-menu>
+                    </md-menu-bar>
+                    <md-menu-bar>
+                        <md-menu>
+                            <button ng-click="$mdOpenMenu()">
+                                About
+                            </button>
+                            <md-menu-content>
+                                <md-menu-item>
+                                    <md-button>
+                                        Version
+                                    </md-button>
+                                </md-menu-item>
+                                <md-menu-item>
+                                    <md-button>
+                                        Help
+                                    </md-button>
+                                </md-menu-item>
+                            </md-menu-content>
+                        </md-menu>
+                    </md-menu-bar>
+                </div>
+            </div>
+        </md-toolbar>
+    </div>
+    <div id="win"></div>
+    <div class="md-padding" id="popupContainer" layout="row" ng-cloak>
+        <div ng-repeat="x in categories" class="dialog-demo-content" flex="10">
+            <md-button class="md-fab md-mini md-primary"  ng-click="showAdvanced($event)">
+                <md-icon ng-if="x=='Sante'" md-svg-src="./app/angular/img/health.svg" aria-label="Health"></md-icon>
+                <md-icon ng-if="x=='Securite'" md-svg-src="./app/angular/img/security.svg" aria-label="Security"></md-icon>
+                <md-icon ng-if="x=='Mission'" md-svg-src="./app/angular/img/mission.svg" aria-label="Mission"></md-icon>
+                <md-icon ng-if="x=='All'" md-svg-src="./app/angular/img/all.svg" aria-label="All"></md-icon>
+                <md-icon ng-if="x=='Education'" md-svg-src="./app/angular/img/education.svg" aria-label="Education"></md-icon>
+            </md-button>
+        </div>
+    </div>
+    <script src="vendors/bower_components/angular/angular.js"></script>
+    <script src="vendors/bower_components/chart.js/dist/Chart.js"></script>
+    <script src="vendors/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="vendors/bower_components/angular-aria/angular-aria.js"></script>
+    <script src="vendors/bower_components/angular-messages/angular-messages.js"></script>
+    <script src="vendors/bower_components/angular-material/angular-material.js"></script>
+    <script src="vendors/bower_components/angular-chart.js/angular-chart.js"></script>
+
+    <!-- <script src="public/components/crafty/dist/crafty-min.js"></script> -->
+    <script src="app/angular/app.js"></script>
+</body>
+
+</html>
