@@ -4,6 +4,19 @@ var CraftyMap = (function() {
     Crafty.init(1000, 600, document.getElementById('scene'));
 		Crafty.background('url(img/damier.jpg)');
 
+
+    Crafty.load(obj, // preload assets
+        function() { //when loaded
+            Crafty.scene("main"); //go to main scene
+            Crafty.e('2D, DOM, lazycat'); // create entity with sprite
+        },
+        function(e) { //progress
+        },
+
+        function(e) { //uh oh, error loading
+        }
+    );
+
     Crafty.scene("game", function() {
         //construction de la map
         var craftyEntities = [];
@@ -72,59 +85,19 @@ var CraftyMap = (function() {
             }
         }];
         dataEntities = [{
-                type: 'house',
+                type: 'fixed',
                 name: 'house_1',
-                components: "2D,DOM,map,house1",
+                components: "2D, DOM, map, house1",
                 attr: {
                     x: 0,
                     y: 0,
                     w: 287,
                     h: 100
                 }
-            }, {
-                type: 'house',
-                name: 'house_2',
-                components: "2D,DOM,map,house1",
-                attr: {
-                    x: 287,
-                    y: 0,
-                    w: 80,
-                    h: 100
-                }
-            }, {
-                type: 'house',
-                name: 'house_3',
-                components: "2D,DOM,map,house2",
-                attr: {
-                    x: 830,
-                    y: 200,
-                    w: 128,
-                    h: 76
-                }
-            }, {
-                type: 'house',
-                name: 'house_4',
-                components: "2D,DOM,map,house2",
-                attr: {
-                    x: 830,
-                    y: 50,
-                    w: 128,
-                    h: 76
-                }
-            }, {
-                type: 'house',
-                name: 'house_6',
-                components: "2D,DOM,map,house3",
-                attr: {
-                    x: 700,
-                    y: 0,
-                    w: 128,
-                    h: 76
-                }
-            }, {
-                type: 'museum',
+            },  {
+                type: 'moveable',
                 name: 'museum',
-                components: "2D,DOM,map,museum,solid,Collision,Mouse,Draggable",
+                components: "2D,DOM,map,house1, Collision,Mouse, Draggable",
                 attr: {
                     x: 470,
                     y: 0,
@@ -132,9 +105,9 @@ var CraftyMap = (function() {
                     h: 400
                 }
             }, {
-                type: 'warehouse',
+                type: 'moveable',
                 name: 'warehouse',
-                components: "2D,DOM,map,warehouse,solid,Collision,Mouse,Draggable",
+                components: "2D,DOM,map,house1,solid,Collision,Mouse, Draggable",
                 attr: {
                     x: 0,
                     y: 150,
@@ -142,9 +115,9 @@ var CraftyMap = (function() {
                     h: 217
                 }
             }, {
-                type: 'desk',
+                type: 'moveable',
                 name: 'desk',
-                components: "2D,DOM,map,desk,solid,Collision,Mouse,Draggable",
+                components: "2D,DOM,map,desk,solid,Collision,Mouse, Draggable",
                 attr: {
                     x: 300,
                     y: 160,
@@ -162,38 +135,41 @@ var CraftyMap = (function() {
                     Crafty.sprite(sprit.src, sprit.type);
                 }
             };
+
+
+        // On gere l'echelle des entites crafty
+        var scaleEntity = function(obj, sc){
+            var att = {};
+            att.x = obj.x/10*sc;
+            att.y = obj.y/10*sc;
+            att.w = obj.w/10*sc;
+            att.h = obj.h/10*sc;
+            return att;
+        };
             //On cree les entites crafty
         var createEntity = function() {
             for (var entity in dataEntities) {
                 var entityC = dataEntities[entity];
-								console.log(entityC);
 
-                craftyEntities[entityC.name] = Crafty.e(entityC.components).attr(entityC.attr);
-                switch (entityC.type) {
-                    case "warehouse":
-                    case "desk":
-                    case "museum":
-										console.log(craftyEntities[entityC.name]);
-                        craftyEntities[entityC.name]
-														.bind("StartDrag", function() {
-                                console.log("START1" + this.x + " " + this.y);
-                            })
-                            .bind("StopDrag", function() {
-                                console.log("STOP1" + this.x + " " + this.y);
-                            })
-                            .checkHits('Solid') // check for collisions with entities that have the Solid component in each frame
-                            .bind("HitOn", function(hitData) {
-                                console.log("Collision with Solid entity occurred for the first time.");
-                            })
-                            .bind("HitOff", function(comp) {
-                                console.log("Collision with Solid entity ended.");
-                            });
-                        break;
-                    case "house":
-                        break;
-                    default:
-                        break;
-                }
+                craftyEntities[entityC.name] = Crafty.e(entityC.components).attr(scaleEntity(entityC.attr, 5));
+
+                // if(entityC.type == 'moveable') {
+                //     craftyEntities[entityC.name]
+                //         .bind("StartDrag", function() {
+                //             console.log("START1" + this.x + " " + this.y);
+                //         })
+                //         .bind("StopDrag", function() {
+                //             console.log("STOP1" + this.x + " " + this.y);
+                //         })
+                //         .bind("HitOn", function(hitData) {
+                //             console.log("Collision with Solid entity occurred for the first time.");
+                //         })
+                //         .bind("HitOff", function(comp) {
+                //             console.log("Collision with Solid entity ended.")
+                //         });
+                //         //.checkHits('Solid'); // check for collisions with entities that have the Solid component in each frame;
+                //
+                // }
             }
         };
 
