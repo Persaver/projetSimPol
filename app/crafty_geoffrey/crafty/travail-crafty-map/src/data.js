@@ -1,9 +1,13 @@
 var spl_debugJson = {
     "mapObjects": {
         "dataEntities": {
-            "house1": {
+            // crée des données comme celles que l'on devrait recuperer sur le serveur
+	    "house1": {
+		// type actuelement pas utile 
                 "type": "fixed",
-                "components": "House",
+		// les components pour l'entitée Crafty definit dans components.js
+                "components": "House",a
+		// position et taile en tuile sur la map
                 "attr": {
                     "x": 20,
                     "y": 20,
@@ -40,7 +44,19 @@ var spl_debugJson = {
                     "w": 2,
                     "h": 1
                 }
-            }
+            },
+	// tu rajoute un object ici avec des coords une taille en tuile et le components definit dans components.js
+	// ex pour Church
+	   "church" : {
+		"type" : "moveable",
+		"components" : "church",
+		"attr":{
+			"x":5,
+			"y":25,
+			"w":2,
+			"h":2
+		}
+	   }
         },
 
         "sprites": {

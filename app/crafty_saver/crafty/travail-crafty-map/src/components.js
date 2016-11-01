@@ -75,67 +75,82 @@ Crafty.c('Museum', {
   init: function() {
     this.requires('Moveable,spr_museum');
   },
-
+});
 Crafty.c('Church', {
     init: function() {
       this.requires('Moveable,spr_church');
 },
+});
 Crafty.c('Restaurant', {
     init: function() {
       this.requires('Moveable,spr_restaurant');
 },
+});
 Crafty.c('Night_Club', {
     init: function() {
       this.requires('Moveable,spr_night_club');
 },
+});
 Crafty.c('Temple', {
     init: function() {
       this.requires('Moveable,spr_temple');
 },
+});
 Crafty.c('Temple_Tower', {
     init: function() {
       this.requires('Moveable,spr_temple_tower');
 },
+});
 Crafty.c('Farm', {
     init: function() {
       this.requires('Moveable,spr_farm');
 },
+});
 Crafty.c('Rescue_Tower', {
     init: function() {
       this.requires('Moveable,spr_rescue_tower');
 },
+});
 Crafty.c('Circus', {
     init: function() {
       this.requires('Moveable,spr_circus');
 },
+});
 Crafty.c('Television', {
     init: function() {
       this.requires('Moveable,spr_television');
 },
+});
 Crafty.c('Entertainment_Hall', {
     init: function() {
       this.requires('Moveable,spr_entertainment_hall');
 },
+});
 Crafty.c('Military_Place', {
     init: function() {
       this.requires('Moveable,spr_military_place');
 },
+});
 Crafty.c('Military_Tower', {
     init: function() {
       this.requires('Moveable,spr_military_tower');
 },
+});
 Crafty.c('Factory', {
     init: function() {
       this.requires('Moveable,spr_factory');
 },
+});
 Crafty.c('Hospital', {
     init: function() {
       this.requires('Moveable,spr_hospital');
 },
+});
 Crafty.c('Police_Dpt', {
     init: function() {
       this.requires('Moveable,spr_police_dpt');
 },
+});
 Crafty.c('University', {
     init: function() {
       this.requires('Moveable,spr_university');

@@ -93,6 +93,7 @@ Crafty.scene('Town', function(){
 
   	        	var entityC = dataEntities[entity];
 			// on crée l'entité
+			console.log(entityC);
            		craftyEntities[entityC.name] = Crafty.e(entityC.components).at(entityC.attr.x,entityC.attr.y,entityC.attr.h,entityC.attr.w);
 		
 		// si de type moveable on lui ajout le drag and drop
