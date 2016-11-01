@@ -1,0 +1,209 @@
+
+
+Sommaire
+1 Déroulement du jeu
+2 Fonctionnalités des fenêtres de gestion
+3 Fonctionnalités du mode carte
+4 Règles d’économie et de gestion
+5 La population
+5.1 La taille de la population
+5.2 Actions autonomes de la population
+6 Autres évènements pouvant survenir dans le jeu
+7 Liste des bâtiments figurants dans le jeu
+8 Développements et scénario du jeu
+9 Premier développement
+
+
+SimPol
+Ce jeu se joue seul face à l'ordinateur. C'est une application web. Elle n'est pas déclinée sous Androïd.
+1. Déroulement du jeu
+
+But du jeu : réussir son ascension politique.
+Le joueur commence Maire. L’objectif est d’arriver chef d’Etat en passant par des grades intermédiaires.
+On gagne lorsque  le joueur se voit attribuer le grade de chef d’état à vie. Il y a différentes stratégies pour atteindre ce grade :
+Népotisme : obtention par la force
+Gourou : asservissement des masses
+Monarque : stratégie politique
+Démocrate : stratégie politique
+Il n’y a qu’un seul type de partie.
+C'est un jeu de type gestion/construction d'une ville. L'utilisateur voit donc à l'écran sa ville qui se développe. A chaque début de partie, la population est fixée à 200 habitants. On considère que la population de la ville va évoluer dynamiquement. 
+Le joueur peut quitter et sauvegarder sa partie. 
+Le logiciel va envoyer des informations au joueur qui lui imposent de prendre des décisions.  Le joueur peut aussi prendre des décisions et agir de sa propre initiative.
+Exemple: "Vos habitants se plaignent du vandalisme, pensez à agir en conséquence".
+Action attendue-> Construction de nouveaux commissariats
+Exemple:"La qualité des soins dans vos hôpitaux ne satisfait pas les malades, faites attention."
+Action attendue -> Augmentation du budget de la santé
+Lorsqu'il joue, l'utilisateur interagit avec plusieurs de fenêtres de gestion de différents thèmes:
+éducation
+sécurité/défense
+santé
+recherche
+sport
+culture
+communication
+infrastructures (eau, gaz, électricité..)
+politique (liens avec autres villes, régions, pays...)
+budget de l'état
+religieux
+
+Dans chaque fenêtre de gestion le joueur aperçoit différents indicateurs. Ces indicateurs sont liés à la thématique de la fenêtre. 
+Exemples d’indicateur :
+Budget
+Nombres de bâtiments alloués à ce domaine
+Nombre d’employés alloués à ce domaine
+Cout/jour ou coût/mois cout/année
+Etat des lieux rapide du domaine de gestion
+Exemple : « Les habitants sont satisfaits des soins dispensés dans la commune »
+Exemple : « Attention, les habitants se plaignent du manque d’animations culturelles »
+
+
+2. Fonctionnalités des fenêtres de gestion
+
+•	Augmentation du budget et diminution du budget
+L'augmentation et la diminution du budget influe sur tous les bâtiments du domaine de gestion. 
+Attention il est aussi possible de modifier le budget d'un bâtiment en particulier. Via un système de vases communicants les budgets alloués aux autres bâtiments du domaine de gestion baissent ou augmentent.
+Via un clique sur icone il est nécessaire d'afficher une description pour chaque thème de gestion.
+Dans chaque fenêtre de gestion, il y a aura des fonctionnalités propre à la thématique
+Exemple : En fenêtre de gestion sécurité, le joueur peut déterminer la souplesse des forces de l’ordre
+
+3. Fonctionnalités du mode carte 
+
+En mode carte un clique droit sur un bâtiment affiche une fenêtre relative à ce dernier.
+Il y a des possibilités d'actions et des informations.
+Au clic sur les bâtiments :
+Actions
+Augmenter le budget
+Diminuer le budget
+ Espionner
+Détruire le bâtiment
+Le faire évoluer 
+ Autre actions en fonction du bâtiment
+
+Informations
+Ressenti des utilisateurs
+ Ressenti du personnel
+ Sécurité de l'infrastructure
+ Etat de l'infrastructure
+Etat d'une éventuelle animation pour les bâtiments de type culturel ou sportif
+
+4. Règles d’économie et de gestion
+
+Quand le budget général est positif, le joueur reçoit des demandes plus fortes de sa population et de l'état.
+Le budget général peut être en négatif.  En fonction de la gravité de la situation le joueur reçoit des avertissement où est placé sous tutelle.
+En plus du budget général, le joueur dispose de son propre fond personnel appelé aussi « caisse noire ». Il le crédite avec de l'argent issu du budget de la ville. Il a tous les droit dessus. Il lui permet de financer ses biens personnels et actions illégales. 
+Avantages amenés via corruption :
+ École: Augmente les chances d'avoir des contre-manifestants favorable au pouvoir
+ Police: Facilite les actions illégales (espionnage, corruption, détournement de fonds...)
+ Banque: Facilite la falsification des comptes
+Hôpitaux: Affaibli les partis opposants
+ Recherche: Exclusivité du pouvoir sur les recherches
+Sport: Faire gagner l'équipe choisie
+ Communication: Propagande
+ Politique: Monter en grande
+ Infrastructures: permet le sabotage
+
+Avantages amenés par l'espionnage :
+* Donner des informations sur l'établissement et le chef de l'établissement
+* Si des points faibles sont trouvés sur le chef d'établissement, cela permet la compromission
+* Si des points sont trouvés sur des activités, cela facilite la corruption
+Conséquences de mauvaise gestion 
+Voici les risques auxquels le joueur s’expose si il ne gère pas bien les postes de dépenses suivants.
+Éducation: baisse d'efficacité de la recherche, baisse de la qualité des soins, augmente le risque d'incidents sur les infrastructures de divers domaines.
+Sécurité: augmentation de la criminalité, incendies criminels
+Santé:augmentation du taux de malades et décès des malades, maladies, baisse de l'espérance de vie
+Recherche:risque d'accidents plus élevés
+Sport: augmentation des dépenses de santé, baisse de l'attrait de la ville
+Culture: baisse de l'attrait de la ville
+Communication:baisse de l'attrait de la ville, mouvements sociaux, opposition de la population
+Infrastructures (eau, gaz, électricité..):risques d'accidents,risque d'incendie
+Politique (liens avec autres villes, régions, pays...):manifestation
+Budget de l'état: effondrement du pays et fin de la partie
+
+
+
+5. La population
+
+5.1 La taille de la population
+
+En fonction de l’attrait de la ville, des familles arrivent ou partent. Cela est fait de façon automatique. 
+Quand le joueur gère bien sa ville, l’intérêt du jeu est renforcé du fait que la population augmente et de nouvelles difficultés arrivent.
+ Pour les arrivants de nouvelles maisons sont construites. En cas de départs , les maisons s’affichent sur la carte en grisées ou abandonnées.
+
+5.2 Actions autonome  de la population
+
+Demande de bâtiments, de service : pour répondre aux demandes de bâtiments, le joueur ne va pas cliquer sur "ok" ou "refus" mais va construire ou pas le bâtiment.
+Demandes d'animations sportives et culturelles : le joueur répond en fonction des infos communiquées (prix, lieux, durée...) par oui ou non.
+Manifestations de révolte : Le joueur peut ignorer, réprimer, accepter une déléguation. Si déléguation, le joueur s'engage à répondre aux demandes.
+Actions terroristes : Faire appel à l'armée avec le risque que l'état s'immisce dans les caisses noires
+Bouton "ok" et agir en conséquence
+6 Autres événements pouvant survenir dans le jeu 
+catastrophe naturelle de façon aléatoire(tremblement de terre, ouragan, inondation...)
+vandalisme en fonction des indicateurs du bâtiment et du quartier
+accident dans un bâtiment en fonction des compétences du personnel et de l'entretien
+découverte de caisses noires
+
+7 Liste des bâtiments figurants dans le jeu
+
+Hôtel de ville : un seul par partie qui est crée dès le début du jeu et ne bouge pas
+Maison : Les maisons vont se créer par groupe en fonction de l’arrivée de la population. 
+Bureaux : A l’initiative du joueur
+Entreprises : A l’initiative du joueur
+Commissariat : Un commissariat se créer automatiquement dans chaque quartier
+Ecole : cf. commissariat
+Hôpitaux : A l’initiative du joueur
+Caserne Militaire : A l’initiative du joueur
+Complexe Sportif : A l’initiative du joueur
+Musée :  A l’initiative du joueur
+Banque : cf. commissariat
+Centre de recherche :  A l’initiative du joueur
+Centrale électrique : A la création de la partie
+Médias :  :A la création de la partie
+Cinéma : A l’initiative du joueur
+Zone commerciale : A l’initiative du joueur
+Bâtiment religieux : A l’initiative du joueur
+Indicateurs relatifs à chaques bâtiments :
+La zone d’influence  d’un  bâtiment dépend de son type ainsi que de l’effectif de son personnel .
+La taille/niveau définit le potentiel du bâtiment (quantité de personnel/types d’activités).
+La quantité de personnel qui est définie par la taille/niveau/budget.
+La quantité d’usagers liée à la taille du bâtiment et aux besoins de la populations.
+
+
+
+
+Pour chaque indicateur il y a une jauge et un coût correspondant. Le joueur pourra à sa guise augmenter au baisser le budget lié à un indicateur. (Exemple: entretien pour une école, qualité de service pour un hôpital)
+
+8 Développement et scénario du jeu
+
+Dans ce jeu le joueur aura à sa disposition de nombreux indicateurs sur l’état de sa ville. Le changement de différents paramètre influe sur ces indicateurs selon l’algorithme codé.  Ces paramètres seront utilisés dans le code source du jeu. 
+De nombreuses méthodes vont être implémentées. Chacune d’entre elles va recevoir les indicateurs comme paramètres. Ensuite la méthode effectue  un traitement et fournit un résultat qui se matérialise sous différentes formes :
+modification d’un ou plusieurs indicateurs
+nouvel événement sur la carte 
+message envoyé au joueur
+Lorsque le joueur joue sa partie, les méthodes sont sollicités en temps réels pour l’actualisation du jeu.
+
+9  Premiers développement
+
+
+TO DO LIST
+Règle de gestion du jeu
+Programmation du jeu
+Base de données
+Mise en place d’un serveur
+Développement graphique 
+Tests
+Mise en ligne
+
+35 jours ouvrables  de disponibles
+1ère échéance – livrer une version beta du jeu pour le 02 Novembre 2016
+4 Développeurs
+Geoffrey : 	- CDC,
+Robin :		- CDC
+Ludovic :	- BDD
+Saverio : 	- Chef de projet, BDD
+
+A venir : Simulation d'une évolution démographique réaliste avec 
+	incidence de l'age des individus
+	possibilité de suivre l'évolution démographique 
+	Implémentation possible d'événements perturbateurs 	(accidents, immigration / émigration, changement d'espérance de vie, etc...)
+	Aperçu d'une fenêtre de gestion 1ere Version
+
