@@ -2,7 +2,7 @@ Crafty.scene('Town', function(){
 	// varibale pour tester sans serveur
 	var ISDEBUG = true;
 
-
+	var currentScene = this;	
 	// A 2D array to keep track of all occupied tiles
 	this.occupied = [Game.map_grid.width];
 	// initialise la grille a false partout
@@ -15,16 +15,33 @@ Crafty.scene('Town', function(){
 	// test si une case est occupée 
 	// params x,y coord ; facultatif w,h nombre de case a tester =>  this.isOccupied(15,15) == this.isOccupied(15,15,1,1) 
 	// return true si une case au moins est occupé
-
-	this.isOccupied = function(x, y, w, h){
-		if( h === undefined && w == undefined){
+	// mofifer pour params ArrayOrObject
+	this.isOccupied = function(ArrayOrObject){
+		var x,y,w,h;
+		
+		if (!Array.isArray(ArrayOrObject)){
+			x =  ArrayOrObject.x;
+			y =  ArrayOrObject.y;
+			w =  ArrayOrObject.h;
+			h =  ArrayOrObject.h;
+		}
+		else {
+			x = ArrayOrObject[0];
+			y = ArrayOrObject[1];
+			if (ArrayOrObject.lenght = 4){
+				w =  ArrayOrObject[2];
+				h =  ArrayOrObject[3];
+			}
+		}
+	
+		if( h === undefined || w === undefined){
 			return this.occupied[x][y];
 		} else{
 			var isOccupied = false;
 			var i=0,j;
-			while (!isOccupied && i < h && ((x+i) < this.occupied.length )){
+			while (!isOccupied && i < w && ((x+i) < this.occupied.length )){
 				j=0;
-				while ( !isOccupied && j < w && ((y+j) < this.occupied[i].length) ){
+				while ( !isOccupied && j < h && ((y+j) < this.occupied[i].length) ){
 					isOccupied |= this.occupied[x+i][y+j];
 					console.log(this.occupied[x+i][y+j]);
 					j++;
@@ -37,26 +54,43 @@ Crafty.scene('Town', function(){
 	
 	// passe a occupé les cases concernées
 	// params x,y les coord de la tuile Facultatif w,h nombre de case en largeur et hauteur
-	this.setOccupied = function(x, y, w, h){
+	this.setOccupied = function(ArrayOrObject,unOccupied = true){
+		var x,y,w,h;
+
+		if (!Array.isArray(ArrayOrObject)){
+			x =  ArrayOrObject.x;
+			y =  ArrayOrObject.y;
+			w =  ArrayOrObject.h;
+			h =  ArrayOrObject.h;
+		}
+		else {
+			x = ArrayOrObject[0];
+			y = ArrayOrObject[1];
+			if (ArrayOrObject.lenght = 4){
+				w =  ArrayOrObject[2];
+				h =  ArrayOrObject[3];
+			}
+		}
+
 		if( h === undefined && w == undefined){
-			this.occupied[x][y] = true;
+			this.occupied[x][y] = unOccupied;
 		} else{
 			var i=0,j;
-			while (!isOccupied && i < h && ((x+i) < this.occupied.length )){
+			while (i < w && ((x+i) < this.occupied.length )){
 				j=0;
-				while ( !isOccupied && j < w && ((y+j) < this.occupied[i].length) ){
-					this.occupied[x+i][y+j] = true;
+				while (j < h && ((y+j) < this.occupied[i].length) ){
+					this.occupied[x+i][y+j] = unOccupied;
 					console.log(this.occupied[x+i][y+j]);
 					j++;
 				}
 				i++;
 			}
-			return !!isOccupied;		
+				
 		}
 	}
 
 	// Place a tree at every edge square on our grid of 16x16 tiles
-	var currentGame = this;	
+
 	this.generateMap = function(){
 		for (var x = 0; x < Game.map_grid.width; x++) {
 			for (var y = 0; y < Game.map_grid.height; y++) {
@@ -65,13 +99,13 @@ Crafty.scene('Town', function(){
 				if (at_edge) {
 					// Place a tree entity at the current tile
 					Crafty.e('Tree').at(x, y);
-					currentGame.occupied[x][y] = true;
+					currentScene.occupied[x][y] = true;
 				}
-				 else if (Math.random() < 0.06 && !currentGame.occupied[x][y]) {
+				 else if (Math.random() < 0.06 && !currentScene.occupied[x][y]) {
 					// Place a bush entity at the current tile
 					var grass_or_rock = (Math.random() > 0.3) ? 'Grass' : 'Rock'
 					Crafty.e(grass_or_rock).at(x, y);
-					currentGame.occupied[x][y] = true;
+					currentScene.occupied[x][y] = true;
 				}
 			}
 		}
@@ -94,20 +128,35 @@ Crafty.scene('Town', function(){
   	        	var entityC = dataEntities[entity];
 			// on crée l'entité
 			console.log(entityC);
-           		craftyEntities[entityC.name] = Crafty.e(entityC.components).at(entityC.attr.x,entityC.attr.y,entityC.attr.h,entityC.attr.w);
-		
+           		craftyEntities[entityC.name] = Crafty.e(entityC.components).at([entityC.attr.x,entityC.attr.y,entityC.attr.h,entityC.attr.w]);
+			// on les ajoute à la map
+			currentScene.setOccupied(entityC.attr);
 		// si de type moveable on lui ajout le drag and drop
 			if(entityC.type == "moveable"){
-		
+				craftyEntities[entityC.name].oldPos = craftyEntities[entityC.name].at();
 				craftyEntities[entityC.name]
 				    .bind("StartDrag", function() {
 					//ici on fera le test pour savoir si on peut poser
                         	        console.log("START1" + this.x + " " + this.y + " at " + this.at().x+ " " + this.at().y);
+					currentScene.setOccupied(this.oldPos,false);
+					console.log(this.oldPos);
+					console.log(Crafty.rectManager.overlap(this,this));
+				console.log(this);
                             })
                             .bind("StopDrag", function() {
 				//ici on fera le test pour savoir si on peut poser
 				// si oui on enregistrera ca dans Game.gameDatas
                                 console.log("STOP1" + this.x + " " + this.y);
+					// ON LE PLACE GRACE AUX LONGEURS DE TUILE DE LA GRILLE
+					console.log(currentScene.isOccupied(this.at()));
+					if(currentScene.isOccupied(this.at())){
+						this.at(this.oldPos);	
+					}
+					else{
+						this.at(this.at())
+						this.oldPos = this.at();
+					};	
+			//	console.log(this);
                             })
                             .bind("HitOn", function(hitData) {
                                 console.log("Collision with Solid entity occurred for the first time.");
@@ -125,7 +174,8 @@ console.log(comp);
     };
 	console.log(Game);
 	this.generateMap();
-	if(!this.isOccupied(10,10)){
+	console.log(typeof [10,10]);
+	if(!this.isOccupied([10,10])){
 		Crafty.e('House').at(10,10);
 	}  
 	createEntities();

@@ -10,10 +10,26 @@ Crafty.c('Grid', {
   },
 
   // Locate this entity at the given position on the grid
-  at: function(x, y, w ,h) {
+  at: function(ArrayOrObject) {
+		var x,y,w,h;
+
+		if (!Array.isArray(ArrayOrObject)){
+			x =  ArrayOrObject.x;
+			y =  ArrayOrObject.y;
+			w =  ArrayOrObject.h;
+			h =  ArrayOrObject.h;
+		}
+		else {
+			x = ArrayOrObject[0];
+			y = ArrayOrObject[1];
+			if (ArrayOrObject.lenght = 4){
+				w =  ArrayOrObject[2];
+				h =  ArrayOrObject[3];
+			}
+		}
 	// si on ne passe pas de parametre rnvois la position et la taille
-    if (x === undefined && y === undefined) {
-      return { x: this.x/Game.map_grid.tile.width, y: this.y/Game.map_grid.tile.height, h: this.h/Game.map_grid.tile.height, w: this.w/Game.map_grid.tile.width}
+    if (x === undefined || y === undefined) {
+      return { x: Math.floor(this.x/Game.map_grid.tile.width), y: Math.floor(this.y/Game.map_grid.tile.height), h: Math.floor(this.h/Game.map_grid.tile.height), w: Math.floor(this.w/Game.map_grid.tile.width)}
     } else if (w === undefined && h === undefined)  { //si on passe que x et y fixe la position et met la taille a h=une tuille et w=une tuille
       this.attr({ x: x * Game.map_grid.tile.width, y: y * Game.map_grid.tile.height,w:Game.map_grid.tile.width, h:Game.map_grid.tile.height});
       return this;
