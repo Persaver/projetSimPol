@@ -55,7 +55,7 @@ Crafty.scene('Town', function(){
 	// passe a occupé les cases concernées
 	// params x,y les coord de la tuile Facultatif w,h nombre de case en largeur et hauteur
 	// Occupied metr
-	this.setOccupied = function(ArrayOrObject,occupied = false){
+	this.setOccupied = function(ArrayOrObject,occupied){
 		var x,y,w,h;
 
 		if (!Array.isArray(ArrayOrObject)){
@@ -139,7 +139,7 @@ Crafty.scene('Town', function(){
 				    .bind("StartDrag", function() {
 					//ici on fera le test pour savoir si on peut poser
                         	        console.log("START1" + this.x + " " + this.y + " at " + this.at().x+ " " + this.at().y);
-					currentScene.setOccupied(this.oldPos,true);
+					currentScene.setOccupied(this.oldPos,false);
 					console.log(this.oldPos);
 				//	console.log(Crafty.rectManager.overlap(this,this));
 				console.log(this);
@@ -156,8 +156,9 @@ Crafty.scene('Town', function(){
 					else{
 						this.at(this.at());
 						this.oldPos = this.at();
-						currentScene.setOccupied(this.at());
-					};	
+					}
+		
+					currentScene.setOccupied(this.at(),true);
 			//	console.log(this);
                             })
                             .bind("HitOn", function(hitData) {

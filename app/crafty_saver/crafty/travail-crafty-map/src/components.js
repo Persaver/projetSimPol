@@ -66,7 +66,7 @@ Crafty.c('Grass', {
 
 Crafty.c('Rock', {
   init: function() {
-    this.requires('Actor, spr_grass');
+    this.requires('Actor, spr_rock');
   },
 });
 Crafty.c('Tree', {
