@@ -33,7 +33,7 @@ Crafty.scene('Town', function(){
 				h =  ArrayOrObject[3];
 			}
 		}
-	
+		if(x>=0 && y>=0){
 		if( h === undefined || w === undefined){
 			return this.occupied[x][y];
 		} else{
@@ -50,12 +50,13 @@ Crafty.scene('Town', function(){
 			}
 			return !!isOccupied;		
 		}
+		}else{	return true;	}
 	}
 	
 	// passe a occupé les cases concernées
 	// params x,y les coord de la tuile Facultatif w,h nombre de case en largeur et hauteur
 	// Occupied metr
-	this.setOccupied = function(ArrayOrObject,occupied){
+	this.setOccupied = function(ArrayOrObject,occupied = true){
 		var x,y,w,h;
 
 		if (!Array.isArray(ArrayOrObject)){
@@ -72,7 +73,7 @@ Crafty.scene('Town', function(){
 				h =  ArrayOrObject[3];
 			}
 		}
-
+		if(x>=0 && y>=0){ 
 		if( h === undefined && w == undefined){
 			this.occupied[x][y] = occupied;
 		} else{
@@ -88,6 +89,7 @@ Crafty.scene('Town', function(){
 			}
 				
 		}
+		}else{	return false;	}
 	}
 
 	// Place a tree at every edge square on our grid of 16x16 tiles
@@ -99,14 +101,28 @@ Crafty.scene('Town', function(){
 
 				if (at_edge) {
 					// Place a tree entity at the current tile
-					Crafty.e('Tree').at([x, y]);
-					currentScene.occupied[x][y] = true;
+					Crafty.e('Rock').at([x, y]);
+
+					currentScene.setOccupied([x, y],true);
 				}
-				 else if (Math.random() < 0.06 && !currentScene.occupied[x][y]) {
-					// Place a bush entity at the current tile
-					var grass_or_rock = (Math.random() > 0.3) ? 'Grass' : 'Rock'
+				if(x==Math.floor(Game.map_grid.width/2) || x==Math.floor(Game.map_grid.width/2) +1 || y==Math.floor(Game.map_grid.height/2) || y==Math.floor(Game.map_grid.height/2) +1){
+					Crafty.e('Stone_Road').at([x,y]);
+					currentScene.setOccupied([x, y],true);
+
+				} 
+
+
+			}
+		}
+	}
+	var generateRandomEntities = function(){
+		for (var x = 0; x < Game.map_grid.width; x++) {
+			for (var y = 0; y < Game.map_grid.height; y++) {
+					  if (Math.random() < 0.06 && !currentScene.isOccupied([x, y])) {
+					var grass_or_rock = (Math.random() > 0.3) ? 'Grass' : 'Rock';
 					Crafty.e(grass_or_rock).at([x, y]);
-					currentScene.occupied[x][y] = true;
+
+					currentScene.setOccupied([x, y],true);
 				}
 			}
 		}
@@ -118,20 +134,20 @@ Crafty.scene('Town', function(){
 			console.log(Game.gameDatas.mapObjects.dataEntities);
 			return Game.gameDatas.mapObjects.dataEntities;
 		}
-	};
+	};	
 	
-	var dataEntities = getEntities();
-
-	var createEntities = function() {
+	
+	var createEntities = function(dataEntities) {
 		// pour chaque entité dans les data
   	   	for (var entity in dataEntities) {
 
   	        	var entityC = dataEntities[entity];
 			// on crée l'entité
 			console.log(entityC);
-           		craftyEntities[entityC.name] = Crafty.e(entityC.components).at([entityC.attr.x,entityC.attr.y,entityC.attr.h,entityC.attr.w]);
+           		craftyEntities[entityC.name] = Crafty.e(entityC.components).at([entityC.attr.x,entityC.attr.y,entityC.attr.w,entityC.attr.h]);
 			// on les ajoute à la map
-			currentScene.setOccupied(entityC.attr);
+			console.log(craftyEntities[entityC.name].at());
+			currentScene.setOccupied(craftyEntities[entityC.name].at(),true);
 		// si de type moveable on lui ajout le drag and drop
 			if(entityC.type == "moveable"){
 				craftyEntities[entityC.name].oldPos = craftyEntities[entityC.name].at();
@@ -176,13 +192,15 @@ console.log(comp);
 	}
     };
 	console.log(Game);
-	this.generateMap();
 	console.log(typeof [10,10]);
-	if(!this.isOccupied([10,10])){
-		Crafty.e('House').at(10,10);
-	}  
-	createEntities();
-	
+//	if(!this.isOccupied([10,10])){
+//		Crafty.e('House').at(10,10);
+//	}
+  
+	this.generateMap();
+	var dataEntities = getEntities();
+	createEntities(dataEntities);
+	generateRandomEntities();
 });
 
 Crafty.scene('Loading', function(){
