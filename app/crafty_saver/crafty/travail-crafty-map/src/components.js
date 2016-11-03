@@ -13,6 +13,12 @@ Crafty.c('Grid', {
   at: function(ArrayOrObject) {
 		var x,y,w,h;
 
+	if(ArrayOrObject == undefined){
+		// si on ne passe pas de parametre rnvois la position et la taille
+		return { 
+x: Math.floor(this.x/Game.map_grid.tile.width), y: Math.floor(this.y/Game.map_grid.tile.height), h: Math.floor(this.h/Game.map_grid.tile.height), w: Math.floor(this.w/Game.map_grid.tile.width)
+};
+	}else{
 		if (!Array.isArray(ArrayOrObject)){
 			x =  ArrayOrObject.x;
 			y =  ArrayOrObject.y;
@@ -27,10 +33,7 @@ Crafty.c('Grid', {
 				h =  ArrayOrObject[3];
 			}
 		}
-	// si on ne passe pas de parametre rnvois la position et la taille
-    if (x === undefined || y === undefined) {
-      return { x: Math.floor(this.x/Game.map_grid.tile.width), y: Math.floor(this.y/Game.map_grid.tile.height), h: Math.floor(this.h/Game.map_grid.tile.height), w: Math.floor(this.w/Game.map_grid.tile.width)}
-    } else if (w === undefined && h === undefined)  { //si on passe que x et y fixe la position et met la taille a h=une tuille et w=une tuille
+	if (w === undefined && h === undefined)  { //si on passe que x et y fixe la position et met la taille a h=une tuille et w=une tuille
       this.attr({ x: x * Game.map_grid.tile.width, y: y * Game.map_grid.tile.height,w:Game.map_grid.tile.width, h:Game.map_grid.tile.height});
       return this;
     } else { // fixe la position et la taille
@@ -38,6 +41,7 @@ Crafty.c('Grid', {
       return this;
     }
   }
+}
 });
 
 // An "Actor" is an entity that is drawn in 2D on canvas
@@ -65,7 +69,11 @@ Crafty.c('Rock', {
     this.requires('Actor, spr_grass');
   },
 });
-
+Crafty.c('Tree', {
+  init: function() {
+    this.requires('Actor, spr_grass');
+  },
+});
 Crafty.c('Moveable', {
   init: function() {
 	this.requires('Actor,Collision,Mouse,Draggable');

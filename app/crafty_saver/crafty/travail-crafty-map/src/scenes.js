@@ -54,7 +54,8 @@ Crafty.scene('Town', function(){
 	
 	// passe a occupé les cases concernées
 	// params x,y les coord de la tuile Facultatif w,h nombre de case en largeur et hauteur
-	this.setOccupied = function(ArrayOrObject,unOccupied = true){
+	// Occupied metr
+	this.setOccupied = function(ArrayOrObject,occupied = false){
 		var x,y,w,h;
 
 		if (!Array.isArray(ArrayOrObject)){
@@ -73,13 +74,13 @@ Crafty.scene('Town', function(){
 		}
 
 		if( h === undefined && w == undefined){
-			this.occupied[x][y] = unOccupied;
+			this.occupied[x][y] = occupied;
 		} else{
 			var i=0,j;
 			while (i < w && ((x+i) < this.occupied.length )){
 				j=0;
 				while (j < h && ((y+j) < this.occupied[i].length) ){
-					this.occupied[x+i][y+j] = unOccupied;
+					this.occupied[x+i][y+j] = occupied;
 					console.log(this.occupied[x+i][y+j]);
 					j++;
 				}
@@ -98,13 +99,13 @@ Crafty.scene('Town', function(){
 
 				if (at_edge) {
 					// Place a tree entity at the current tile
-					Crafty.e('Tree').at(x, y);
+					Crafty.e('Tree').at([x, y]);
 					currentScene.occupied[x][y] = true;
 				}
 				 else if (Math.random() < 0.06 && !currentScene.occupied[x][y]) {
 					// Place a bush entity at the current tile
 					var grass_or_rock = (Math.random() > 0.3) ? 'Grass' : 'Rock'
-					Crafty.e(grass_or_rock).at(x, y);
+					Crafty.e(grass_or_rock).at([x, y]);
 					currentScene.occupied[x][y] = true;
 				}
 			}
@@ -138,9 +139,9 @@ Crafty.scene('Town', function(){
 				    .bind("StartDrag", function() {
 					//ici on fera le test pour savoir si on peut poser
                         	        console.log("START1" + this.x + " " + this.y + " at " + this.at().x+ " " + this.at().y);
-					currentScene.setOccupied(this.oldPos,false);
+					currentScene.setOccupied(this.oldPos,true);
 					console.log(this.oldPos);
-					console.log(Crafty.rectManager.overlap(this,this));
+				//	console.log(Crafty.rectManager.overlap(this,this));
 				console.log(this);
                             })
                             .bind("StopDrag", function() {
@@ -153,8 +154,9 @@ Crafty.scene('Town', function(){
 						this.at(this.oldPos);	
 					}
 					else{
-						this.at(this.at())
+						this.at(this.at());
 						this.oldPos = this.at();
+						currentScene.setOccupied(this.at());
 					};	
 			//	console.log(this);
                             })
