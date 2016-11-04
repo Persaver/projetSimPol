@@ -3,7 +3,7 @@ var spl_debugJson = {
         "dataEntities": {
             // crée des données comme celles que l'on devrait recuperer sur le serveur
 	    "house1": {
-		// type actuelement pas utile 
+		// type actuelement pas utile
                 "type": "fixed",
 		// les components pour l'entitée Crafty definit dans components.js
                 "components": "House",
@@ -89,7 +89,9 @@ var spl_debugJson = {
                 "tile": 1,
                 "tileh": 1,
                 "map": {
-                    "spr_grass": [0, 125, 60, 60]
+                    "spr_grass": [0, 125, 60, 60],
+                    "spr_stone_road": [0, 0, 60, 60],
+                    "spr_stone_block": [500, 0, 60, 60]
                 }
             },
 
