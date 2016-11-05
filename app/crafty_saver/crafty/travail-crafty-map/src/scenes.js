@@ -28,7 +28,7 @@ Crafty.scene('Town', function(){
 		else {
 			x = ArrayOrObject[0];
 			y = ArrayOrObject[1];
-			if (ArrayOrObject.lenght = 4){
+			if (ArrayOrObject.length == 4){
 				w =  ArrayOrObject[2];
 				h =  ArrayOrObject[3];
 			}
@@ -68,7 +68,7 @@ Crafty.scene('Town', function(){
 		else {
 			x = ArrayOrObject[0];
 			y = ArrayOrObject[1];
-			if (ArrayOrObject.lenght = 4){
+			if (ArrayOrObject.length == 4){
 				w =  ArrayOrObject[2];
 				h =  ArrayOrObject[3];
 			}
@@ -109,7 +109,10 @@ Crafty.scene('Town', function(){
 					Crafty.e('Stone_Road').at([x,y]);
 					currentScene.setOccupied([x, y],true);
 
-				} 
+				}else if(x==Math.floor(Game.map_grid.width/4) || x==Math.floor(Game.map_grid.width/4) * 3 || y==Math.floor(Game.map_grid.height/4) || y==Math.floor(Game.map_grid.height/4)* 3){
+					Crafty.e('Stone_Road').at([x,y]);
+					currentScene.setOccupied([x, y],true);
+				}
 
 
 			}
@@ -159,7 +162,7 @@ Crafty.scene('Town', function(){
 					console.log(this.oldPos);
 				//	console.log(Crafty.rectManager.overlap(this,this));
 				console.log(this);
-                            })
+                            	})
                             .bind("StopDrag", function() {
 				//ici on fera le test pour savoir si on peut poser
 				// si oui on enregistrera ca dans Game.gameDatas
@@ -186,7 +189,8 @@ console.log(hitData);
                                 console.log("Collision with Solid entity ended.");
 
 console.log(comp);
-                            });
+                            })
+			    .bind("Click",function(){ this.toggleClick();	console.log(""+this.isClick());	});
 
        		 }
 	}

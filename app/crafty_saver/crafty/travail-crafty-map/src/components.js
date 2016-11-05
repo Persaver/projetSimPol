@@ -28,7 +28,7 @@ x: Math.floor(this.x/Game.map_grid.tile.width), y: Math.floor(this.y/Game.map_gr
 		else {
 			x = ArrayOrObject[0];
 			y = ArrayOrObject[1];
-			if (ArrayOrObject.lenght = 4){
+			if (ArrayOrObject.length == 4){
 				w =  ArrayOrObject[2];
 				h =  ArrayOrObject[3];
 			}
@@ -46,11 +46,23 @@ x: Math.floor(this.x/Game.map_grid.tile.width), y: Math.floor(this.y/Game.map_gr
 }
 });
 
+Crafty.c("Area",{
+  init: function() {
+    this.requires('2D,Canvas, Grid');
+  },
+});
+Crafty.c("Area_influence",{
+  init: function() {
+    this.requires('Area');
+  },
+  show: function() {Crafty.background(rgba(100,100,100,0.5));	}
+});
+
 // An "Actor" is an entity that is drawn in 2D on canvas
 //  via our logical coordinate grid
 Crafty.c('Actor', {
   init: function() {
-    this.requires('2D,Solid, Canvas, Grid');
+    this.requires('Area,DOM,Solid');
   },
 });
 
@@ -81,15 +93,32 @@ Crafty.c('Rock', {
     this.requires('Actor, spr_stone_block');
   },
 });
+Crafty.c('Clickable', {
+  _isClick : false,
+  init: function() {
+	this.requires('Actor,Mouse');
+  },
+  isClick : function(){
+	return this._isClick; 	
+  },
+  setClick : function(click = true){
+  	this._isClick = !!click;
+  },
+  toggleClick : function(){
+	this._isClick = !this._isClick;
+  }
+
+});
+
 Crafty.c('Moveable', {
   init: function() {
-	this.requires('Actor,Collision,Mouse,Draggable');
+	this.requires('Clickable,Collision,Draggable');
   },
 });
 
 Crafty.c('House', {
   init: function() {
-    this.requires('Actor, spr_house_1');
+    this.requires('Clickable, spr_house_1');
   },
 });
 Crafty.c('Warehouse', {
