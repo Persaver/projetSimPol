@@ -200,6 +200,15 @@ console.log(comp);
        		 }
 	}
     };
+
+	this.createExternalEntity= function(){
+		Crafty.bind("CreateEntity",function(data){
+			console.log("createEntitié scene");
+			createEntities(data);		
+		});	
+	}
+
+
 	console.log(Game);
 	console.log(typeof [10,10]);
 //	if(!this.isOccupied([10,10])){
@@ -210,6 +219,8 @@ console.log(comp);
 	var dataEntities = getEntities();
 	createEntities(dataEntities);
 	generateRandomEntities();
+	this.createExternalEntity();
+	Game.addCraftyEntity();
 
 	//Game.displayContextual();
 

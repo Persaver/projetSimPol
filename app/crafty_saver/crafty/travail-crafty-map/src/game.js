@@ -69,6 +69,51 @@ Game = {
 		}
 			container.innerHTML = data.message;
 		
+	},
+	
+	//creation d'un element + ajout à crafty
+	//params type dataEntite
+/*
+           "house1": {
+                // type actuelement pas utile
+                "type": "fixed",
+                // les components pour l'entitée Crafty definit dans components.js
+                "components": "House",
+                // position et taile en tuile sur la map
+                "attr": {
+                    "x": 1,
+                    "y": 1,
+                    "w": 6,
+                    "h": 2
+                }
+*/
+
+	addCraftyEntity:function(dataEntite){
+		console.log("create entite Game");
+		Crafty.trigger("CreateEntity",{  "house1": {
+                // type actuelement pas utile
+                "type": "fixed",
+                // les components pour l'entitée Crafty definit dans components.js
+                "components": "House",
+                // position et taile en tuile sur la map
+                "attr": {
+                    "x": 10,
+                    "y": 10,
+                    "w": 6,
+                    "h": 4
+                }
+		
+	}})},
+
+	//ajout des trigger
+	addTrigger:function(){
+		// ajout du trigger sur les div class constrution	
+		document.getElementById("crafty-construction-liste").querySelector(".construction").onclick = function(){
+			console.log("selected");
+
+		};
+
 	}
+	// ajout du trigger sur les div class constrution
 	
 }
