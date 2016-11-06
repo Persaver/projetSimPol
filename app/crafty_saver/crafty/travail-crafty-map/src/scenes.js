@@ -191,7 +191,11 @@ console.log(hitData);
 
 console.log(comp);
                             })
-			    .bind("Click",function(){ this.toggleClick();	console.log(""+this.isClick());	});
+			    .bind("Click",function(){ 
+				this.toggleClick();
+				console.log(""+this.isClick());	
+				this.display();
+				});
 
        		 }
 	}
@@ -206,13 +210,16 @@ console.log(comp);
 	var dataEntities = getEntities();
 	createEntities(dataEntities);
 	generateRandomEntities();
+
+	//Game.displayContextual();
+
 });
 
 Crafty.scene('Loading', function(){
 	// Draw some text for the player to see in case the file
 	//  takes a noticeable amount of time to load
 	Crafty.e('2D, DOM, Text')
-		.text('Loading; please wait...')
+		.text('Chargement en cours...')
 		.attr({ x: 0, y: Game.height()/2 - 24, w: Game.width() })
 		.textFont({});
 

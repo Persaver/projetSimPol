@@ -57,5 +57,18 @@ Game = {
 		}
 
 
+	},
+	
+	//affichage des information contextuelles
+	//params object minimum   data: { message:"le message" }
+
+	displayContextual:function(data,container){
+
+		if(typeof container == "undefined"){
+			container = document.getElementById("crafty-contex-content"); 
+		}
+			container.innerHTML = data.message;
+		
 	}
+	
 }

@@ -109,10 +109,19 @@ Crafty.c('Clickable', {
   }
 
 });
-
+Crafty.c('Contextual' ,{
+  _display:{message:"contextual"},
+  init:function(){
+	this.requires('Clickable');
+  },
+  display:function(){
+	_message = {message:this.attr};
+	Game.displayContextual(_message);
+  }
+});
 Crafty.c('Moveable', {
   init: function() {
-	this.requires('Clickable,Collision,Draggable');
+	this.requires('Contextual,Collision,Draggable');
   },
 });
 

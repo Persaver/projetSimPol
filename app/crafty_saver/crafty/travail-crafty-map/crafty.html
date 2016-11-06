@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="pragma" content="no-cache" />
   <title>craftmap</title>
-<!--  <link rel="stylesheet" href="css/crafty.css" type="text/css" /> -->
+  <link rel="stylesheet" href="css/crafty.css" type="text/css" />
   <script src="./crafty.js"></script>
   <!-- les données pour le debug -->
   <script src="src/data.js"></script>
@@ -39,13 +39,37 @@
   </style>
 </head>
 <body>
-  <h2>Crafty's Adventure</h2>
+ <h2>A SIMPOL MAP</h2>
 
-  <p>Help Crafty visit her friends in each village.</p>
+  <p>Déplacer les batimentts</p>
 
-  <p class="controls">Controls: Use W, A, S, and D or arrow keys to move around.</p>
+  <p class="controls">Cliquer sur les batiments</p>
 
-  <div id="cr-stage"></div>
+  <div id="container"><section id="cr-stage"></section></div>
+  <aside id="crafty-aside">
+  <header>
+    <h4>Info context</h4>
+  </header>
+  <div id="crafty-construction">
+    <header>
+      <h4>Construction</h4>
+    </header>
+    <div id="crafty-construction-liste">
+      <ul>
+        <li><div><h6>construction</h6><div><img src="" alt="construction" ></div></div></li>
+        <li><div><h6>construction</h6><div><img src="" alt="construction" ></div></div></li>
+        <li><div><h6>construction</h6><div><img src="" alt="construction" ></div></div></li>
+        <li><div><h6>construction</h6><div><img src="" alt="construction" ></div></div></li>
+      </ul>
+    </div>
+   </div>
+   <div id="crafty-contex">
+     <header>titre info</header>  
+     <div id="crafty-contex-content">
+       
+     </div> 
+   </div>
+  </aside>
 
   <p class="bottom">Created for the "Introduction to Crafty Game Engine" tutorial on <a href="http://buildnewgames.com" target="_blank">Build New Games</a>.
 </body>
