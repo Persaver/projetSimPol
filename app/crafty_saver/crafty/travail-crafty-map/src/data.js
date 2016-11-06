@@ -2,25 +2,25 @@ var spl_debugJson = {
     "mapObjects": {
         "dataEntities": {
             // crée des données comme celles que l'on devrait recuperer sur le serveur
-	    "house1": {
-		// type actuelement pas utile
+            "house1": {
+                // type actuelement pas utile
                 "type": "fixed",
-		// les components pour l'entitée Crafty definit dans components.js
+                // les components pour l'entitée Crafty definit dans components.js
                 "components": "House",
-		// position et taile en tuile sur la map
+                // position et taile en tuile sur la map
                 "attr": {
-                    "x": 20,
-                    "y": 20,
-                    "w": 2,
-                    "h": 1
+                    "x": 1,
+                    "y": 1,
+                    "w": 6,
+                    "h": 2
                 }
             },
             "museum": {
                 "type": "moveable",
                 "components": "Museum",
                 "attr": {
-                    "x": "4",
-                    "y": "10",
+                    "x": "6",
+                    "y": "11",
                     "w": "4",
                     "h": "4"
                 }
@@ -29,34 +29,187 @@ var spl_debugJson = {
                 "type": "moveable",
                 "components": "Warehouse",
                 "attr": {
-                    "x": 30,
-                    "y": 5,
+                    "x": 31,
+                    "y": 7,
+                    "w": 3,
+                    "h": 3
+                }
+            },
+            "police_Dpt": {
+                "type": "moveable",
+                "components": "Police_Dpt",
+                "attr": {
+                    "x": 8,
+                    "y": 21,
                     "w": 2,
                     "h": 2
                 }
             },
-            "desk": {
+            //Sprite mal découpe
+            "restaurant": {
                 "type": "moveable",
-                "components": "Desk",
+                "components": "Restaurant",
                 "attr": {
-                    "x": 30,
-                    "y": 16,
+                    "x": 27,
+                    "y": 11,
                     "w": 2,
-                    "h": 1
+                    "h": 2
                 }
             },
-	// tu rajoute un object ici avec des coords une taille en tuile et le components definit dans components.js
-	// ex pour Church
-	   "church" : {
-		"type" : "moveable",
-		"components" : "Church",
-		"attr":{
-			"x":5,
-			"y":25,
-			"w":2,
-			"h":2
-		}
-	   }
+            "Night_Club": {
+                "type": "moveable",
+                "components": "Night_Club",
+                "attr": {
+                    "x": 18,
+                    "y": 11,
+                    "w": 2,
+                    "h": 2
+                }
+            },
+            "Temple": {
+                "type": "moveable",
+                "components": "Temple",
+                "attr": {
+                    "x": 18,
+                    "y": 22,
+                    "w": 2,
+                    "h": 2
+                }
+            },
+          "Temple_Tower": {
+              "type": "moveable",
+              "components": "Temple_Tower",
+              "attr": {
+                  "x": 18,
+                  "y": 28,
+                  "w": 2,
+                  "h": 2
+              }
+          },
+          "Farm": {
+              "type": "moveable",
+              "components": "Farm",
+              "attr": {
+                  "x": 15,
+                  "y": 28,
+                  "w": 3,
+                  "h": 2
+              }
+          },
+          "Rescue_Tower": {
+              "type": "moveable",
+              "components": "Rescue_Tower",
+              "attr": {
+                  "x": 25,
+                  "y": 25,
+                  "w": 3,
+                  "h": 3
+              }
+          },
+          "Circus": {
+              "type": "moveable",
+              "components": "Circus",
+              "attr": {
+                  "x": 25,
+                  "y": 35,
+                  "w": 3,
+                  "h": 3
+              }
+          },
+          "Entertainment_Hall": {
+              "type": "moveable",
+              "components": "Entertainment_Hall",
+              "attr": {
+                  "x": 1,
+                  "y": 27,
+                  "w": 3,
+                  "h": 3
+              }
+          },
+          "Military_Place": {
+              "type": "moveable",
+              "components": "Military_Place",
+              "attr": {
+                  "x": 32,
+                  "y": 27,
+                  "w": 3,
+                  "h": 3
+              }
+          },
+          "Military_Tower": {
+              "type": "moveable",
+              "components": "Military_Tower",
+              "attr": {
+                  "x": 27,
+                  "y": 15,
+                  "w": 3,
+                  "h": 5
+              }
+          },
+          "Factory": {
+              "type": "moveable",
+              "components": "Factory",
+              "attr": {
+                  "x": 27,
+                  "y": 6,
+                  "w": 3,
+                  "h": 4
+              }
+          },
+          "Hospital": {
+              "type": "moveable",
+              "components": "Hospital",
+              "attr": {
+                  "x": 22,
+                  "y": 0,
+                  "w": 3,
+                  "h": 4
+              }
+          },
+          "University": {
+              "type": "moveable",
+              "components": "University",
+              "attr": {
+                  "x": 31,
+                  "y": 16,
+                  "w": 3,
+                  "h": 4
+              }
+          },
+          //Ne se positonne pas
+          // "Television": {
+          //     "type": "moveable",
+          //     "components": "Television",
+          //     "attr": {
+          //         "x": 26,
+          //         "y": 35,
+          //         "w": 1,
+          //         "h": 1
+          //     }
+          // },
+            // ATTENTION SPRITE MAL DECOUPE
+            // "desk": {
+            //     "type": "moveable",
+            //     "components": "Desk",
+            //     "attr": {
+            //         "x": 1.,
+            //         "y": 16,
+            //         "w": 4,
+            //         "h": 4
+            //     }
+            // },
+            // tu rajoute un object ici avec des coords une taille en tuile et le components definit dans components.js
+            // ex pour Church
+            "church": {
+                "type": "moveable",
+                "components": "Church",
+                "attr": {
+                    "x": 5,
+                    "y": 25,
+                    "w": 2,
+                    "h": 2
+                }
+            }
         },
 
         "sprites": {
@@ -101,7 +254,7 @@ var spl_debugJson = {
                 "map": {
                     "spr_military_place": [0, 495, 194, 225],
                     "spr_military_tower": [0, 223, 114, 261],
-                    "spr_factory":[80, 91, 175, 118],
+                    "spr_factory": [80, 91, 175, 118],
                 }
             },
 

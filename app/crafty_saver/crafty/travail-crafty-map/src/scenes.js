@@ -1,8 +1,9 @@
 Crafty.scene('Town', function(){
 	// varibale pour tester sans serveur
+	//Rapport avec le crafty.scene de game.js ?????
 	var ISDEBUG = true;
 
-	var currentScene = this;	
+	var currentScene = this;
 	// A 2D array to keep track of all occupied tiles
 	this.occupied = [Game.map_grid.width];
 	// initialise la grille a false partout
@@ -12,13 +13,13 @@ Crafty.scene('Town', function(){
 			this.occupied[i][y] = false;
 		}
 	}
-	// test si une case est occupée 
-	// params x,y coord ; facultatif w,h nombre de case a tester =>  this.isOccupied(15,15) == this.isOccupied(15,15,1,1) 
+	// test si une case est occupée
+	// params x,y coord ; facultatif w,h nombre de case a tester =>  this.isOccupied(15,15) == this.isOccupied(15,15,1,1)
 	// return true si une case au moins est occupé
 	// mofifer pour params ArrayOrObject
 	this.isOccupied = function(ArrayOrObject){
 		var x,y,w,h;
-		
+
 		if (!Array.isArray(ArrayOrObject)){
 			x =  ArrayOrObject.x;
 			y =  ArrayOrObject.y;
@@ -48,11 +49,11 @@ Crafty.scene('Town', function(){
 				}
 				i++;
 			}
-			return !!isOccupied;		
+			return !!isOccupied;
 		}
 		}else{	return true;	}
 	}
-	
+
 	// passe a occupé les cases concernées
 	// params x,y les coord de la tuile Facultatif w,h nombre de case en largeur et hauteur
 	// Occupied metr
@@ -73,7 +74,7 @@ Crafty.scene('Town', function(){
 				h =  ArrayOrObject[3];
 			}
 		}
-		if(x>=0 && y>=0){ 
+		if(x>=0 && y>=0){
 		if( h === undefined && w == undefined){
 			this.occupied[x][y] = occupied;
 		} else{
@@ -87,7 +88,7 @@ Crafty.scene('Town', function(){
 				}
 				i++;
 			}
-				
+
 		}
 		}else{	return false;	}
 	}
@@ -131,15 +132,15 @@ Crafty.scene('Town', function(){
 		}
 	}
 	var craftyEntities =[];
-	//on recupere les Entities  
+	//on recupere les Entities
 	var getEntities = function(){
 		if(ISDEBUG){
 			console.log(Game.gameDatas.mapObjects.dataEntities);
 			return Game.gameDatas.mapObjects.dataEntities;
 		}
-	};	
-	
-	
+	};
+
+
 	var createEntities = function(dataEntities) {
 		// pour chaque entité dans les data
   	   	for (var entity in dataEntities) {
@@ -170,19 +171,19 @@ Crafty.scene('Town', function(){
 					// ON LE PLACE GRACE AUX LONGEURS DE TUILE DE LA GRILLE
 					console.log(currentScene.isOccupied(this.at()));
 					if(currentScene.isOccupied(this.at())){
-						this.at(this.oldPos);	
+						this.at(this.oldPos);
 					}
 					else{
 						this.at(this.at());
 						this.oldPos = this.at();
 					}
-		
+
 					currentScene.setOccupied(this.at(),true);
 			//	console.log(this);
                             })
                             .bind("HitOn", function(hitData) {
                                 console.log("Collision with Solid entity occurred for the first time.");
-				
+
 console.log(hitData);
                             })
                             .bind("HitOff", function(comp) {
@@ -200,7 +201,7 @@ console.log(comp);
 //	if(!this.isOccupied([10,10])){
 //		Crafty.e('House').at(10,10);
 //	}
-  
+
 	this.generateMap();
 	var dataEntities = getEntities();
 	createEntities(dataEntities);
@@ -224,4 +225,3 @@ Crafty.scene('Loading', function(){
 		Crafty.scene('Town');
 	});
 });
-

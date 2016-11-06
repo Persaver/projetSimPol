@@ -14,8 +14,8 @@ Crafty.c('Grid', {
 		var x,y,w,h;
 
 	if(ArrayOrObject == undefined){
-		// si on ne passe pas de parametre rnvois la position et la taille
-		return { 
+		// si on ne passe pas de parametre renvois la position et la taille
+		return {
 x: Math.floor(this.x/Game.map_grid.tile.width), y: Math.floor(this.y/Game.map_grid.tile.height),  w: Math.floor(this.w/Game.map_grid.tile.width), h: Math.floor(this.h/Game.map_grid.tile.height)
 };
 	}else{
@@ -99,7 +99,7 @@ Crafty.c('Clickable', {
 	this.requires('Actor,Mouse');
   },
   isClick : function(){
-	return this._isClick; 	
+	return this._isClick;
   },
   setClick : function(click = true){
   	this._isClick = !!click;
