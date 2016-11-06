@@ -4,8 +4,16 @@
 }
 
 #container{
-  height: 600px;
-  width: 1200px;
+  width:70%;
+  display:inline-block;
+  min-height: 600px;
+  min-width: 800px;
   border: solid 5px black;
   margin:auto;
+}
+#crafty-aside{
+  position:relative;
+  float:left;
+  width:20%;
+  margin-left:5%;  
 }
