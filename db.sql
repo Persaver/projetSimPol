@@ -32,19 +32,13 @@ CREATE TABLE construction (
   categorie INT(3) NOT NULL
 )ENGINE=InnoDB;
 
-DROP TABLE IF EXISTS position;
-CREATE TABLE position (
-  id INT(4) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  width INT(5) NOT NULL,
-  height INT(5) NOT NULL
-)ENGINE=InnoDB;
-
-DROP TABLE IF EXISTS backup_construction_position;
-CREATE TABLE backup_construction_position (
+DROP TABLE IF EXISTS backup_construction;
+CREATE TABLE backup_construction(
   backup INT(4) NOT NULL,
   construction INT(3) NOT NULL,
-  position INT(4) NOT NULL,
-  PRIMARY KEY (backup, construction, position)
+  width INT(5) NOT NULL,
+  height INT(5) NOT NULL,
+  PRIMARY KEY (backup, construction)
 )ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS backup_categorie;
@@ -58,12 +52,10 @@ ALTER TABLE backup
 ADD FOREIGN KEY(user) REFERENCES user (id);
 ALTER TABLE construction
 ADD FOREIGN KEY(categorie) REFERENCES categorie (id);
-ALTER TABLE backup_construction_position
+ALTER TABLE backup_construction
 ADD FOREIGN KEY(backup) REFERENCES backup (id);
-ALTER TABLE backup_construction_position
+ALTER TABLE backup_construction
 ADD FOREIGN KEY(construction) REFERENCES construction (id);
-ALTER TABLE backup_construction_position
-ADD FOREIGN KEY(position) REFERENCES position (id);
 ALTER TABLE backup_categorie
 ADD FOREIGN KEY(categorie) REFERENCES categorie (id);
 ALTER TABLE backup_categorie
