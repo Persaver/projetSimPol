@@ -1,96 +1,96 @@
 Game = {
-	// variable pour tester sans serveur
-	ISDEBUG : true,
-	// enembles des données du jeu a sauvegarder
-	gameDatas :{
-		// ensembles des objets sur la carte
-		mapObjects : {}
-	},
+    // variable pour tester sans serveur
+    ISDEBUG: true,
+    // enembles des données du jeu a sauvegarder
+    gameDatas: {
+        // ensembles des objets sur la carte
+        mapObjects: {}
+    },
 
 
-	//On définit ici la taille de la grille en unité tuile
- 	map_grid: {
-	 	width:  40,
-	 	height: 40,
-		//On définit ici en Px la taille d'une tuile
-		tile: {
-			width:  16,
-			height: 16
-		}
-	},
+    //On définit ici la taille de la grille en unité tuile
+    map_grid: {
+        width: 40,
+        height: 40,
+        //On définit ici en Px la taille d'une tuile
+        tile: {
+            width: 16,
+            height: 16
+        }
+    },
 
-  //La longueur de la grille est ici calculée
-  width: function() {
-    return this.map_grid.width * this.map_grid.tile.width;
-  },
+    //La longueur de la grille est ici calculée
+    width: function() {
+        return this.map_grid.width * this.map_grid.tile.width;
+    },
 
-  //la hauteur de la grille est ici calculée
-  height: function() {
-    return this.map_grid.height * this.map_grid.tile.height;
-  },
+    //la hauteur de la grille est ici calculée
+    height: function() {
+        return this.map_grid.height * this.map_grid.tile.height;
+    },
 
-  //On initialise et lance le jeu
-  start: function() {
-    //On initialise la première fenêtre sa taille et son background.
-		//Attention, selon la documention, il est necessaire de passer une fonction
-		//en plus du nom de la scène
-    Crafty.init(Game.width(), Game.height());
-    Crafty.background('rgb(249, 223, 125)');
-    Crafty.scene('Loading');
-	// on recupere les données
+    //On initialise et lance le jeu
+    start: function() {
+        //On initialise la première fenêtre sa taille et son background.
+        //Attention, selon la documention, il est necessaire de passer une fonction
+        //en plus du nom de la scène
+        Crafty.init(Game.width(), Game.height());
+        Crafty.background('rgb(249, 223, 125)');
+        Crafty.scene('Loading');
+        // on recupere les données
 
-  },
-  // recuperation des données
-  // si ISDEBUG on prend les données du data.json
-  // params Le nom des objets à recuperer si vide revoye tt les infos
+    },
+    // recuperation des données
+    // si ISDEBUG on prend les données du data.json
+    // params Le nom des objets à recuperer si vide revoye tt les infos
 
-	getData:function(){
-		var data = {};
-		if(this.ISDEBUG){
-			var dataJson = spl_debugJson;
-			for (key in dataJson){
-				this.gameDatas[key] = dataJson[key];
-			}
-		}
-		else{
-			// ici on fera l'appel a Ajax pour recuperer depuis le serveur
-		}
+    getData: function() {
+        var data = {};
+        if (this.ISDEBUG) {
+            var dataJson = spl_debugJson;
+            for (key in dataJson) {
+                this.gameDatas[key] = dataJson[key];
+            }
+        } else {
+            // ici on fera l'appel a Ajax pour recuperer depuis le serveur
+        }
 
 
-	},
-	
-	//affichage des information contextuelles
-	//params object minimum   data: { message:"le message" }
+    },
 
-	displayContextual:function(data,container){
+    //affichage des information contextuelles
+    //params object minimum   data: { message:"le message" }
 
-		if(typeof container == "undefined"){
-			container = document.getElementById("crafty-contex-content"); 
-		}
-			container.innerHTML = data.message;
-		
-	},
-	
-	//creation d'un element + ajout à crafty
-	//params type dataEntite
-/*
-           "house1": {
-                // type actuelement pas utile
-                "type": "fixed",
-                // les components pour l'entitée Crafty definit dans components.js
-                "components": "House",
-                // position et taile en tuile sur la map
-                "attr": {
-                    "x": 1,
-                    "y": 1,
-                    "w": 6,
-                    "h": 2
-                }
-*/
+    displayContextual: function(data, container) {
 
-	addCraftyEntity:function(dataEntite){
-		console.log("create entite Game");
-		Crafty.trigger("CreateEntity",{  "house1": {
+        if (typeof container == "undefined") {
+            container = document.getElementById("crafty-contex-content");
+        }
+        container.innerHTML = data.message;
+
+    },
+
+    //creation d'un element + ajout à crafty
+    //params type dataEntite
+    /*
+               "house1": {
+                    // type actuelement pas utile
+                    "type": "fixed",
+                    // les components pour l'entitée Crafty definit dans components.js
+                    "components": "House",
+                    // position et taile en tuile sur la map
+                    "attr": {
+                        "x": 1,
+                        "y": 1,
+                        "w": 6,
+                        "h": 2
+                    }
+    */
+
+    addCraftyEntity: function(dataEntite) {
+        console.log("create entite Game");
+        Crafty.trigger("CreateEntity", {
+            "house1": {
                 // type actuelement pas utile
                 "type": "fixed",
                 // les components pour l'entitée Crafty definit dans components.js
@@ -102,18 +102,19 @@ Game = {
                     "w": 6,
                     "h": 4
                 }
-		
-	}})},
 
-	//ajout des trigger
-	addTrigger:function(){
-		// ajout du trigger sur les div class constrution	
-		document.getElementById("crafty-construction-liste").querySelector(".construction").onclick = function(){
-			console.log("selected");
+            }
+        })
+    },
 
-		};
+    //ajout des trigger
+    addTrigger: function() {
+            // ajout du trigger sur les div class constrution
+            document.getElementById("crafty-construction-liste").querySelector(".construction").onclick = function() {
+                console.log("selected");
+            };
 
-	}
-	// ajout du trigger sur les div class constrution
-	
+        }
+        // ajout du trigger sur les div class constrution
+
 }
