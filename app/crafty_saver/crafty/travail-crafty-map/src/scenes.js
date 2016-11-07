@@ -200,14 +200,45 @@ console.log(comp);
        		 }
 	}
     };
-
+	// bind sur les Create Enty venu depuis l'esterieur de crafty
+	// data type dataEntity
 	this.createExternalEntity= function(){
 		Crafty.bind("CreateEntity",function(data){
-			console.log("createEntitié scene");
-			createEntities(data);		
+			var attr = this.getFirstPlace(data[0]);
+			if(attr){		
+				data[0].attr=attr;
+				createEntities(data);		
+			} 	
 		});	
+	};
+	// trouve la premiere place disponible
+	// params dataiEntity 
+	this.getFirstPlace= function(dataEntity){
+		var attr = {
+			x:0,
+			y:0},
+			isPlace=false;	
+		// si pas de param on met la taille est la hauteur à 1
+		if(dataEntity == undefined){
+			attr.w=1;
+			attr.h=1;
+		}else{
+			attr.w=dataEntity.attr.w;
+			attr.h=dataEntity.attr.h;		
+		}
+		// des qu'on trouve on sort
+		while(!isPlace && (attr.x+attr.w) <= this.occupied.length){
+			while(!isPlace && (attr.y+attr.h) <= this.occupied[attr.x].length){
+				isplace = this.isOccupied({x:attr.x,y:attr.y,w:attr.w,h:attr.h});	
+				attr.y++;
+			}
+			attr.x++;
+		}
+		if(isPlace){
+			return this.attr;
+		}else {	return false;	}
+		
 	}
-
 
 	console.log(Game);
 	console.log(typeof [10,10]);
