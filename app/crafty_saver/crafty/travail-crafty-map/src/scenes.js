@@ -19,11 +19,11 @@ Crafty.scene('Town', function(){
 	// mofifer pour params ArrayOrObject
 	this.isOccupied = function(ArrayOrObject){
 		var x,y,w,h;
-
+		//console.log(ArrayOrObject);
 		if (!Array.isArray(ArrayOrObject)){
 			x =  ArrayOrObject.x;
 			y =  ArrayOrObject.y;
-			w =  ArrayOrObject.h;
+			w =  ArrayOrObject.w;
 			h =  ArrayOrObject.h;
 		}
 		else {
@@ -35,6 +35,7 @@ Crafty.scene('Town', function(){
 			}
 		}
 		if(x>=0 && y>=0){
+			console.log(x + " " +y+ " "+" "+w+" " +h )
 		if( h === undefined || w === undefined){
 			return this.occupied[x][y];
 		} else{
@@ -44,7 +45,7 @@ Crafty.scene('Town', function(){
 				j=0;
 				while ( !isOccupied && j < h && ((y+j) < this.occupied[i].length) ){
 					isOccupied |= this.occupied[x+i][y+j];
-					console.log(this.occupied[x+i][y+j]);
+			//		console.log(this.occupied[x+i][y+j]);
 					j++;
 				}
 				i++;
@@ -63,7 +64,7 @@ Crafty.scene('Town', function(){
 		if (!Array.isArray(ArrayOrObject)){
 			x =  ArrayOrObject.x;
 			y =  ArrayOrObject.y;
-			w =  ArrayOrObject.h;
+			w =  ArrayOrObject.w;
 			h =  ArrayOrObject.h;
 		}
 		else {
@@ -191,9 +192,9 @@ console.log(hitData);
 
 console.log(comp);
                             })
-			    .bind("Click",function(){ 
+			    .bind("Click",function(){
 				this.toggleClick();
-				console.log(""+this.isClick());	
+				console.log(""+this.isClick());
 				this.display();
 				});
 
@@ -204,40 +205,53 @@ console.log(comp);
 	// data type dataEntity
 	this.createExternalEntity= function(){
 		Crafty.bind("CreateEntity",function(data){
+			console.log(data);
 			var attr = this.getFirstPlace(data[0]);
-			if(attr){		
+			if(attr){
+				console.log(attr);
 				data[0].attr=attr;
-				createEntities(data);		
-			} 	
-		});	
+				createEntities(data);
+			}
+		});
 	};
 	// trouve la premiere place disponible
-	// params dataiEntity 
+	// params dataiEntity
 	this.getFirstPlace= function(dataEntity){
 		var attr = {
 			x:0,
 			y:0},
-			isPlace=false;	
+			isPlace=false;
 		// si pas de param on met la taille est la hauteur à 1
 		if(dataEntity == undefined){
 			attr.w=1;
 			attr.h=1;
 		}else{
 			attr.w=dataEntity.attr.w;
-			attr.h=dataEntity.attr.h;		
+			attr.h=dataEntity.attr.h;
 		}
+		console.log("attr"+attr);
 		// des qu'on trouve on sort
-		while(!isPlace && (attr.x+attr.w) <= this.occupied.length){
-			while(!isPlace && (attr.y+attr.h) <= this.occupied[attr.x].length){
-				isplace = this.isOccupied({x:attr.x,y:attr.y,w:attr.w,h:attr.h});	
+		console.log(this.occupied.length);
+		while(!isPlace && (attr.x+attr.w) < this.occupied.length){
+			console.log(isPlace + " " + attr.x+ " " +attr.y);
+			while(!isPlace && (attr.y+attr.h) < this.occupied[attr.x].length){
+				console.log("attr while"+	attr.x +" " +attr.y + " " + attr.w + " " +attr.h);
+				//console.log(this.isOccupied({x:attr.x,y:attr.y,w:attr.w,h:attr.h}))
+				isPlace = !this.isOccupied({x:attr.x,y:attr.y,w:attr.w,h:attr.h});
 				attr.y++;
 			}
+			//console.log((attr.x+attr.w) < this.occupied.length);
+			console.log(isPlace + " " + attr.x+ " " +attr.y);
 			attr.x++;
 		}
+		console.log("attr "+	attr.x +" " +attr.y + " " + attr.w + " " +attr.h);
 		if(isPlace){
+			console.log("attr "+	attr.x +" " +attr.y + " " + attr.w + " " +attr.h);
+
 			return this.attr;
-		}else {	return false;	}
-		
+		}else {				console.log("attr " + isPlace +" "+	attr.x +" " +attr.y + " " + attr.w + " " +attr.h);
+return false;	}
+
 	}
 
 	console.log(Game);
