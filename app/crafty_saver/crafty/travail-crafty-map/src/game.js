@@ -95,10 +95,8 @@ Game = {
                 "type": "fixed",
                 // les components pour l'entitée Crafty definit dans components.js
                 "components": "House",
-                // position et taile en tuile sur la map
+                // taile en tuile sur la map
                 "attr": {
-                    "x": 10,
-                    "y": 10,
                     "w": 6,
                     "h": 4
                 }
@@ -108,13 +106,17 @@ Game = {
     },
 
     //ajout des trigger
-    addTrigger: function() {
-            // ajout du trigger sur les div class constrution
-            document.getElementById("crafty-construction-liste").querySelector(".construction").onclick = function() {
-                console.log("selected");
-            };
+    startTriggers: function() {
+    	    // ajout du trigger sur les div class constrution
+       	    var constructions = document.getElementById("crafty-construction-liste").querySelectorAll(".construction");
+		console.log(constructions);
+		for(var key in constructions){
+			constructions[key].onclick = function(e) {
+				console.log("click");
+				Game.addCraftyEntity();
+			}
+            	};
 
         }
         // ajout du trigger sur les div class constrution
-
 }

@@ -206,12 +206,16 @@ console.log(comp);
 	this.createExternalEntity= function(){
 		Crafty.bind("CreateEntity",function(data){
 			console.log(data);
-			var attr = this.getFirstPlace(data[0]);
-			if(attr){
-				console.log(attr);
-				data[0].attr=attr;
-				createEntities(data);
+			for(var key in data){
+				var attr = this.getFirstPlace(data[key]);
+				if(attr){
+					console.log(data[key]);
+					console.log(attr);
+					data[key].attr=attr;
+					createEntities(data);
+				}	
 			}
+			
 		});
 	};
 	// trouve la premiere place disponible
@@ -229,27 +233,30 @@ console.log(comp);
 			attr.w=dataEntity.attr.w;
 			attr.h=dataEntity.attr.h;
 		}
-		console.log("attr"+attr);
+		//console.log("attr"+attr);
 		// des qu'on trouve on sort
-		console.log(this.occupied.length);
+		//console.log(this.occupied.length);
 		while(!isPlace && (attr.x+attr.w) < this.occupied.length){
 			console.log(isPlace + " " + attr.x+ " " +attr.y);
+			attr.y=0;
 			while(!isPlace && (attr.y+attr.h) < this.occupied[attr.x].length){
-				console.log("attr while"+	attr.x +" " +attr.y + " " + attr.w + " " +attr.h);
+				//console.log("attr while"+	attr.x +" " +attr.y + " " + attr.w + " " +attr.h);
 				//console.log(this.isOccupied({x:attr.x,y:attr.y,w:attr.w,h:attr.h}))
 				isPlace = !this.isOccupied({x:attr.x,y:attr.y,w:attr.w,h:attr.h});
 				attr.y++;
 			}
 			//console.log((attr.x+attr.w) < this.occupied.length);
-			console.log(isPlace + " " + attr.x+ " " +attr.y);
+			//console.log(isPlace + " " + attr.x+ " " +attr.y);
 			attr.x++;
 		}
-		console.log("attr "+	attr.x +" " +attr.y + " " + attr.w + " " +attr.h);
+		
+		//console.log("attr "+	attr.x +" " +attr.y + " " + attr.w + " " +attr.h);
 		if(isPlace){
-			console.log("attr "+	attr.x +" " +attr.y + " " + attr.w + " " +attr.h);
-
-			return this.attr;
-		}else {				console.log("attr " + isPlace +" "+	attr.x +" " +attr.y + " " + attr.w + " " +attr.h);
+			//console.log("attr "+	attr.x +" " +attr.y + " " + attr.w + " " +attr.h);
+			attr.x--;
+			attr.y--;
+			return attr;
+		}else {				//console.log("attr " + isPlace +" "+	attr.x +" " +attr.y + " " + attr.w + " " +attr.h);
 return false;	}
 
 	}
@@ -265,8 +272,7 @@ return false;	}
 	createEntities(dataEntities);
 	generateRandomEntities();
 	this.createExternalEntity();
-	Game.addCraftyEntity();
-
+	Game.startTriggers();
 	//Game.displayContextual();
 
 });
