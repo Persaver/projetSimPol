@@ -1,5 +1,7 @@
 package fr.entities;
 
-public class Construction {
+import java.io.Serializable;
+
+public class Construction implements Serializable{
 
 }

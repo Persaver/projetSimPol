@@ -1,6 +1,8 @@
 package fr.entities;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable{
 	private int id;
 	private String pseudo;
 	private String password;

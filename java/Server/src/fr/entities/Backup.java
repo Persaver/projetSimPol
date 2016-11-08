@@ -1,5 +1,7 @@
 package fr.entities;
 
-public class Backup {
+import java.io.Serializable;
+
+public class Backup implements Serializable{
 
 }

@@ -1,5 +1,7 @@
 package fr.entities;
 
-public class Mission {
+import java.io.Serializable;
+
+public class Mission implements Serializable{
 
 }

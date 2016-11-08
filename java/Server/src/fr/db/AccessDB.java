@@ -7,6 +7,7 @@ public class AccessDB {
 	private static AccessDB adb;
 	private static final int MAXCNX = 10;
 	private ArrayList<Connection> cnx= new ArrayList<>();
+	
 	private AccessDB(){
 
 	}
