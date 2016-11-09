@@ -32,7 +32,7 @@ CREATE TABLE construction (
   w INT(3) NOT NULL,
   h INT(3) NOT NULL,
   price DECIMAL(7,2) NOT NULL,
-  categorie INT(3) NOT NULL,
+  categorie INT(3) NOT NULL
 )ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS backup_construction;
