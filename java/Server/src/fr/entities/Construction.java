@@ -3,6 +3,10 @@ package fr.entities;
 import java.io.Serializable;
 
 public class Construction implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private String designation;
 	private int h;
@@ -10,6 +14,25 @@ public class Construction implements Serializable{
 	
 	private Categorie categorie;
 
+	public Construction() {
+	}
+	
+	public Construction(String designation, int h, int w, Categorie categorie) {
+		super();
+		this.designation = designation;
+		this.h = h;
+		this.w = w;
+		this.categorie = categorie;
+	}
+	
+	public Construction(int id, String designation, int h, int w) {
+		super();
+		this.id = id;
+		this.designation = designation;
+		this.h = h;
+		this.w = w;
+	}
+	
 	public Construction(int id, String designation, int h, int w, Categorie categorie) {
 		super();
 		this.id = id;
