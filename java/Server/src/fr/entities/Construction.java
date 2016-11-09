@@ -1,6 +1,7 @@
 package fr.entities;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class Construction implements Serializable{
 	/**
@@ -11,37 +12,51 @@ public class Construction implements Serializable{
 	private String designation;
 	private int h;
 	private int w;
+	private String url;
+	private int[] coordonnées;
+	
 	
 	private Categorie categorie;
 
 	public Construction() {
 	}
 	
-	public Construction(String designation, int h, int w, Categorie categorie) {
-		super();
+	public Construction(String designation, int h, int w, String url, int[] coordonnées, Categorie categorie) {
 		this.designation = designation;
 		this.h = h;
 		this.w = w;
+		this.url = url;
+		this.coordonnées = coordonnées;
 		this.categorie = categorie;
 	}
 	
-	public Construction(int id, String designation, int h, int w) {
-		super();
+	public Construction(int id, String designation, int h, int w, String url, int[] coordonnées, Categorie categorie) {
 		this.id = id;
 		this.designation = designation;
 		this.h = h;
 		this.w = w;
-	}
-	
-	public Construction(int id, String designation, int h, int w, Categorie categorie) {
-		super();
-		this.id = id;
-		this.designation = designation;
-		this.h = h;
-		this.w = w;
+		this.url = url;
+		this.coordonnées = coordonnées;
 		this.categorie = categorie;
 	}
 
+	public Construction(String designation, int h, int w, String url, int[] coordonnées) {
+		this.designation = designation;
+		this.h = h;
+		this.w = w;
+		this.url = url;
+		this.coordonnées = coordonnées;
+	}
+
+	public Construction(int id, String designation, int h, int w, String url, int[] coordonnées) {
+		this.id = id;
+		this.designation = designation;
+		this.h = h;
+		this.w = w;
+		this.url = url;
+		this.coordonnées = coordonnées;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -82,6 +97,22 @@ public class Construction implements Serializable{
 		this.categorie = categorie;
 	}
 
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public int[] getCoordonnées() {
+		return coordonnées;
+	}
+
+	public void setCoordonnées(int[] coordonnées) {
+		this.coordonnées = coordonnées;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -93,6 +124,10 @@ public class Construction implements Serializable{
 		builder.append(h);
 		builder.append(", w=");
 		builder.append(w);
+		builder.append(", url=");
+		builder.append(url);
+		builder.append(", coordonnées=");
+		builder.append(Arrays.toString(coordonnées));
 		builder.append(", categorie=");
 		builder.append(categorie);
 		builder.append("]");

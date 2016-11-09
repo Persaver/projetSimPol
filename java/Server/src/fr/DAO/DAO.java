@@ -2,8 +2,10 @@ package fr.DAO;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import fr.db.AccessDB;
+import fr.entities.Construction;
 
 public abstract class DAO<T>{
 	public Connection connect = null;
@@ -21,4 +23,5 @@ public abstract class DAO<T>{
 	public abstract void save(T element);
 	public abstract void delete(int id);
 	public abstract void update(T element);
+	public abstract List<T> getAll();
 }

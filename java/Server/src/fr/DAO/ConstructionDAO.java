@@ -21,7 +21,7 @@ public class ConstructionDAO extends DAO<Construction>{
 			result = prepare.executeQuery();
 			if(result != null){
 				result.first();
-				Construction construction = new Construction(result.getInt("id"), result.getString("designation"), result.getInt("h"), result.getInt("w"));
+				Construction construction = new Construction(result.getInt("id"), result.getString("designation"), result.getInt("h"), result.getInt("w"), result.getString("url"),result.getArray("coordonnées"));
 				return construction;
 			}
 		} catch (SQLException e) {
@@ -55,7 +55,7 @@ public class ConstructionDAO extends DAO<Construction>{
 		try {
 			result = this.connect.createStatement().executeQuery("Select * from construction inner join categorie on construction.categorie = categorie.id ");
 			while(result.next()){
-				Categorie categorie = new Categorie(result.getInt("categorie.id"), result.getString("libeele"));
+				Categorie categorie = new Categorie(result.getInt("categorie.id"), result.getString("libelle"));
 				Construction construction = new Construction(result.getInt("id"), result.getString("designation"), result.getInt("h"), result.getInt("w"), categorie);
 				constructions.add(construction);
 			}
