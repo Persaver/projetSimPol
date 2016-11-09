@@ -49,6 +49,7 @@ Game = {
         if (this.ISDEBUG) {
             var dataJson = spl_debugJson;
             for (key in dataJson) {
+                console.log(dataJson[key]);
                 this.gameDatas[key] = dataJson[key];
             }
         } else {

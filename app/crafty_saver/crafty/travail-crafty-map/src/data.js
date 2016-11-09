@@ -276,8 +276,25 @@ var spl_debugJson = {
             }
 
         },
-
-        "menu_icons": {
+        //data de construction
+        "menuConstruction": {
+          //exemple de data renvoyer par le serveur
+          // le type du data
+          "church": {
+              "type": "moveable",
+              "components": "Church",
+              //la hauteur et la largeur
+              "attr": {
+                  "w": 2,
+                  "h": 2
+              },
+              //la src + la position du sprit dans la feuille
+              "img" :{
+                "src":"./img/menu-icon.png",
+                "position":[595, 50, 50, 50]
+              }
+          }
+          /*
             "sprite_sheet_icons": "./img/menu-icon.png",
             "ico_house": [595, 50, 50, 50],
             "ico_museum": [270, 420, 50, 50],
@@ -299,6 +316,7 @@ var spl_debugJson = {
             "ico_hospital": [647, 46, 50, 50],
             "ico_police_dpt": [265, 611, 50, 50],
             "ico_university": [128, 562, 50, 50]
+            */
         }
     }
 };
