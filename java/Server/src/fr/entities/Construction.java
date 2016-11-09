@@ -13,7 +13,7 @@ public class Construction implements Serializable{
 	private int h;
 	private int w;
 	private String url;
-	private int[] coordonnées;
+	private int[] coordonnees;
 	
 	
 	private Categorie categorie;
@@ -21,22 +21,22 @@ public class Construction implements Serializable{
 	public Construction() {
 	}
 	
-	public Construction(String designation, int h, int w, String url, int[] coordonnées, Categorie categorie) {
+	public Construction(String designation, int h, int w, String url, int[] coordonnees, Categorie categorie) {
 		this.designation = designation;
 		this.h = h;
 		this.w = w;
 		this.url = url;
-		this.coordonnées = coordonnées;
+		this.coordonnees = coordonnees;
 		this.categorie = categorie;
 	}
 	
-	public Construction(int id, String designation, int h, int w, String url, int[] coordonnées, Categorie categorie) {
+	public Construction(int id, String designation, int h, int w, String url, int[] coordonnees, Categorie categorie) {
 		this.id = id;
 		this.designation = designation;
 		this.h = h;
 		this.w = w;
 		this.url = url;
-		this.coordonnées = coordonnées;
+		this.coordonnees = coordonnees;
 		this.categorie = categorie;
 	}
 
@@ -45,7 +45,7 @@ public class Construction implements Serializable{
 		this.h = h;
 		this.w = w;
 		this.url = url;
-		this.coordonnées = coordonnées;
+		this.coordonnees = coordonnees;
 	}
 
 	public Construction(int id, String designation, int h, int w, String url, int[] coordonnées) {
@@ -54,7 +54,7 @@ public class Construction implements Serializable{
 		this.h = h;
 		this.w = w;
 		this.url = url;
-		this.coordonnées = coordonnées;
+		this.coordonnees = coordonnees;
 	}
 	
 	public int getId() {
@@ -106,11 +106,11 @@ public class Construction implements Serializable{
 	}
 
 	public int[] getCoordonnées() {
-		return coordonnées;
+		return coordonnees;
 	}
 
-	public void setCoordonnées(int[] coordonnées) {
-		this.coordonnées = coordonnées;
+	public void setCoordonnées(int[] coordonnees) {
+		this.coordonnees = coordonnees;
 	}
 
 	@Override
@@ -127,7 +127,7 @@ public class Construction implements Serializable{
 		builder.append(", url=");
 		builder.append(url);
 		builder.append(", coordonnées=");
-		builder.append(Arrays.toString(coordonnées));
+		builder.append(Arrays.toString(coordonnees));
 		builder.append(", categorie=");
 		builder.append(categorie);
 		builder.append("]");
