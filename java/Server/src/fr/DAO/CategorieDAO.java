@@ -18,7 +18,6 @@ public class CategorieDAO extends DAO<Categorie> {
 			prepare.setInt(1, id);
 			result = prepare.executeQuery();
 			if(result != null){
-				result.first();
 				Categorie categorie = new Categorie(result.getInt("id"), result.getString("libelle"));
 				return categorie;
 			}
