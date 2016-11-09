@@ -76,7 +76,7 @@ Game = {
                 // element = data[key];
               }
             }
-        }
+        },
         //affichage des information contextuelles
         //params object minimum   data: { message:"le message" }
 
