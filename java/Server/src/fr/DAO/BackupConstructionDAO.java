@@ -16,19 +16,19 @@ public class BackupConstructionDAO extends DAO<BackupConstruction> {
 	@Override
 	public void delete(int id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void save(BackupConstruction element) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void update(BackupConstruction element) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
