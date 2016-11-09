@@ -17,8 +17,8 @@ public class UserDAO extends DAO<User>{
 			prepare.setInt(1, id);
 			result = prepare.executeQuery();
 			if(result!= null){
-				
-				
+				User user = new User(result.getInt("id"), result.getString("pseudo"), result.getString("password"));
+				return user;
 			}
 		}catch (SQLException e){
 			e.printStackTrace();

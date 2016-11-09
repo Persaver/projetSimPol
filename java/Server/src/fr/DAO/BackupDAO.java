@@ -1,5 +1,7 @@
 package fr.DAO;
 
+import java.util.List;
+
 import fr.entities.Backup;
 
 public class BackupDAO extends DAO<Backup>{
@@ -26,6 +28,12 @@ public class BackupDAO extends DAO<Backup>{
 	public void update(Backup element) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<Backup> getAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
