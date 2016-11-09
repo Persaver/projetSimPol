@@ -44,14 +44,19 @@ Game = {
     // si ISDEBUG on prend les données du data.json
     // params Le nom des objets à recuperer si vide revoye tt les infos
 
-    getData: function() {
+    getData: function(keyObject) {
         var data = {};
         if (this.ISDEBUG) {
             var dataJson = spl_debugJson;
-            for (key in dataJson) {
-                console.log(dataJson[key]);
-                this.gameDatas[key] = dataJson[key];
+            if (keyObject == undefined) {
+                for (key in dataJson) {
+                    console.log(dataJson[key]);
+                    this.gameDatas[key] = dataJson[key];
+                }
+            }else {
+
             }
+
         } else {
             // ici on fera l'appel a Ajax pour recuperer depuis le serveur
         }
@@ -59,10 +64,23 @@ Game = {
 
     },
 
-    //affichage des information contextuelles
-    //params object minimum   data: { message:"le message" }
+    addMenuConstruction: function() {
+            var data = {};
+            data = this.gameDatas["menuConstruction"];
+            if(data != undefined){
+              // On passe sur tout les elements
+              //ici tu met ton js pour inserer les object dans le menuConstruction
+              for(var key in data){
+                //ici tu met ton js pour inserer les object dans le menuConstruction
+                // pour acceder à un element
+                // element = data[key];
+              }
+            }
+        }
+        //affichage des information contextuelles
+        //params object minimum   data: { message:"le message" }
 
-    displayContextual: function(data, container) {
+        displayContextual: function(data, container) {
 
         if (typeof container == "undefined") {
             container = document.getElementById("crafty-contex-content");
@@ -108,15 +126,15 @@ Game = {
 
     //ajout des trigger
     startTriggers: function() {
-    	    // ajout du trigger sur les div class constrution
-       	    var constructions = document.getElementById("crafty-construction-liste").querySelectorAll(".construction");
-		console.log(constructions);
-		for(var key in constructions){
-			constructions[key].onclick = function(e) {
-				console.log("click");
-				Game.addCraftyEntity();
-			}
-            	};
+            // ajout du trigger sur les div class constrution
+            var constructions = document.getElementById("crafty-construction-liste").querySelectorAll(".construction");
+            console.log(constructions);
+            for (var key in constructions) {
+                constructions[key].onclick = function(e) {
+                    console.log("click");
+                    Game.addCraftyEntity();
+                }
+            };
 
         }
         // ajout du trigger sur les div class constrution
