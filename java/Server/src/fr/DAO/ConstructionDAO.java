@@ -22,9 +22,7 @@ public class ConstructionDAO extends DAO<Construction>{
 			result = prepare.executeQuery();
 			if(result != null){
 				result.first();
-				Array c = result.getArray("coordonnees");
-				int[] coordonnees = (int[]) c.getArray(); 
-				Construction construction = new Construction(result.getInt("id"), result.getString("designation"), result.getInt("h"), result.getInt("w"), result.getString("url"), coordonnees);
+				Construction construction = new Construction(result.getInt("id"), result.getString("designation"), result.getInt("h"), result.getInt("w"), result.getString("url"));
 				return construction;
 			}
 		} catch (SQLException e) {
@@ -56,12 +54,10 @@ public class ConstructionDAO extends DAO<Construction>{
 		ResultSet result;
 		List<Construction> constructions = new ArrayList<Construction>();
 		try {
-			result = this.connect.createStatement().executeQuery("Select * from construction inner join categorie on construction.categorie = categorie.id ");
+			result = this.connect.createStatement().executeQuery("Select * from construction inner join categorie on construction.categorie = categorie.id");
 			while(result.next()){
 				Categorie categorie = new Categorie(result.getInt("categorie.id"), result.getString("libelle"));
-				Array c = result.getArray("coordonnees");
-				int[] coordonnees = (int[]) c.getArray(); 
-				Construction construction = new Construction(result.getInt("id"), result.getString("designation"), result.getInt("h"), result.getInt("w"), result.getString("url"), coordonnees, categorie);
+				Construction construction = new Construction(result.getInt("id"), result.getString("designation"), result.getInt("h"), result.getInt("w"), result.getString("url"), categorie);
 				constructions.add(construction);
 			}
 		}catch (SQLException e) {

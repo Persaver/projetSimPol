@@ -1,8 +1,14 @@
 package fr.DAO;
 
+import java.sql.Array;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.entities.Backup;
+import fr.entities.Categorie;
+import fr.entities.Construction;
 
 public class BackupDAO extends DAO<Backup>{
 
@@ -15,19 +21,19 @@ public class BackupDAO extends DAO<Backup>{
 	@Override
 	public void save(Backup element) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void delete(int id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void update(Backup element) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -36,4 +42,11 @@ public class BackupDAO extends DAO<Backup>{
 		return null;
 	}
 
+	public List<Backup> getByUser(int id){
+		return null;
+		// TODO Auto-generated method stub
+
+	}
 }
+
+

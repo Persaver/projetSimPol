@@ -6,32 +6,22 @@ public class Sprite {
 	private int id;
 	private String url;
 	private String name;
-	private int[] coordonnées;
+	private int x, y, w, h;
 	
-	private Construction construction;
-	
-	public Sprite(String url, String name, int[] coordonnées) {	
-		this.url = url;
-		this.name = name;
-		this.coordonnées = coordonnées;
+	public Sprite() {
 	}
-	
-	public Sprite(int id, String url, String name, int[] coordonnées) {
+
+
+	public Sprite(int id, String url, String name, int x, int y, int w, int h) {
 		this.id = id;
 		this.url = url;
 		this.name = name;
-		this.coordonnées = coordonnées;
+		this.x = x;
+		this.y = y;
+		this.w = w;
+		this.h = h;
 	}
-	
-	
-	public Sprite(int id, String url, String name, int[] coordonnées, Construction construction) {
-		this.id = id;
-		this.url = url;
-		this.name = name;
-		this.coordonnées = coordonnées;
-		this.construction = construction;
-	}
-	
+		
 	public int getId() {
 		return id;
 	}
@@ -56,20 +46,44 @@ public class Sprite {
 		this.name = name;
 	}
 
-	public int[] getCoordonnées() {
-		return coordonnées;
+	
+	public int getX() {
+		return x;
 	}
 
-	public void setCoordonnées(int[] coordonnées) {
-		this.coordonnées = coordonnées;
+
+	public void setX(int x) {
+		this.x = x;
 	}
 
-	public Construction getConstruction() {
-		return construction;
+
+	public int getY() {
+		return y;
 	}
 
-	public void setConstruction(Construction construction) {
-		this.construction = construction;
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+
+	public int getW() {
+		return w;
+	}
+
+
+	public void setW(int w) {
+		this.w = w;
+	}
+
+
+	public int getH() {
+		return h;
+	}
+
+
+	public void setH(int h) {
+		this.h = h;
 	}
 
 	@Override
@@ -81,10 +95,6 @@ public class Sprite {
 		builder.append(url);
 		builder.append(", name=");
 		builder.append(name);
-		builder.append(", coordonnées=");
-		builder.append(Arrays.toString(coordonnées));
-		builder.append(", construction=");
-		builder.append(construction);
 		builder.append("]");
 		return builder.toString();
 	}

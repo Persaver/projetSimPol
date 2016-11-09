@@ -10,53 +10,46 @@ public class Construction implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private int id;
 	private String designation;
+	private String url;
 	private int h;
 	private int w;
-	private String url;
-	private int[] coordonnees;
-	
-	
 	private Categorie categorie;
 
 	public Construction() {
 	}
-	
-	public Construction(String designation, int h, int w, String url, int[] coordonnees, Categorie categorie) {
+
+	public Construction(String designation, int h, int w, String url, Categorie categorie) {
 		this.designation = designation;
 		this.h = h;
 		this.w = w;
 		this.url = url;
-		this.coordonnees = coordonnees;
 		this.categorie = categorie;
 	}
 	
-	public Construction(int id, String designation, int h, int w, String url, int[] coordonnees, Categorie categorie) {
+	public Construction(int id, String designation, int h, int w, String url, Categorie categorie) {
 		this.id = id;
 		this.designation = designation;
 		this.h = h;
 		this.w = w;
 		this.url = url;
-		this.coordonnees = coordonnees;
 		this.categorie = categorie;
 	}
 
-	public Construction(String designation, int h, int w, String url, int[] coordonnées) {
+	public Construction(String designation, int h, int w, String url) {
 		this.designation = designation;
 		this.h = h;
 		this.w = w;
 		this.url = url;
-		this.coordonnees = coordonnees;
 	}
 
-	public Construction(int id, String designation, int h, int w, String url, int[] coordonnées) {
+	public Construction(int id, String designation, int h, int w, String url) {
 		this.id = id;
 		this.designation = designation;
 		this.h = h;
 		this.w = w;
 		this.url = url;
-		this.coordonnees = coordonnees;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -104,15 +97,7 @@ public class Construction implements Serializable{
 	public void setUrl(String url) {
 		this.url = url;
 	}
-
-	public int[] getCoordonnées() {
-		return coordonnees;
-	}
-
-	public void setCoordonnées(int[] coordonnees) {
-		this.coordonnees = coordonnees;
-	}
-
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -126,12 +111,10 @@ public class Construction implements Serializable{
 		builder.append(w);
 		builder.append(", url=");
 		builder.append(url);
-		builder.append(", coordonnées=");
-		builder.append(Arrays.toString(coordonnees));
 		builder.append(", categorie=");
 		builder.append(categorie);
 		builder.append("]");
 		return builder.toString();
 	}
-	
+
 }
