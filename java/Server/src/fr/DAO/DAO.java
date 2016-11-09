@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import fr.db.AccessDB;
-import fr.entities.Construction;
 
 public abstract class DAO<T>{
 	public Connection connect = null;
