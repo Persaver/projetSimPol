@@ -1,22 +1,53 @@
 package fr.entities;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class Construction implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private String designation;
+	private String url;
 	private int h;
 	private int w;
-	
 	private Categorie categorie;
 
-	public Construction(int id, String designation, int h, int w, Categorie categorie) {
-		super();
+	public Construction() {
+	}
+
+	public Construction(String designation, int h, int w, String url, Categorie categorie) {
+		this.designation = designation;
+		this.h = h;
+		this.w = w;
+		this.url = url;
+		this.categorie = categorie;
+	}
+	
+	public Construction(int id, String designation, int h, int w, String url, Categorie categorie) {
 		this.id = id;
 		this.designation = designation;
 		this.h = h;
 		this.w = w;
+		this.url = url;
 		this.categorie = categorie;
+	}
+
+	public Construction(String designation, int h, int w, String url) {
+		this.designation = designation;
+		this.h = h;
+		this.w = w;
+		this.url = url;
+	}
+
+	public Construction(int id, String designation, int h, int w, String url) {
+		this.id = id;
+		this.designation = designation;
+		this.h = h;
+		this.w = w;
+		this.url = url;
 	}
 
 	public int getId() {
@@ -59,6 +90,14 @@ public class Construction implements Serializable{
 		this.categorie = categorie;
 	}
 
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -70,10 +109,12 @@ public class Construction implements Serializable{
 		builder.append(h);
 		builder.append(", w=");
 		builder.append(w);
+		builder.append(", url=");
+		builder.append(url);
 		builder.append(", categorie=");
 		builder.append(categorie);
 		builder.append("]");
 		return builder.toString();
 	}
-	
+
 }

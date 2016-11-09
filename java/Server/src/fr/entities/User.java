@@ -6,21 +6,18 @@ public class User implements Serializable{
 	private int id;
 	private String pseudo;
 	private String password;
-	
-	private Backup backup;
-	
+		
 	public User(String pseudo, String password) {
 		super();
 		this.pseudo = pseudo;
 		this.password = password;
 	}
 
-	public User(int id, String pseudo, String password, Backup backup) {
+	public User(int id, String pseudo, String password) {
 		super();
 		this.id = id;
 		this.pseudo = pseudo;
 		this.password = password;
-		this.backup = backup;
 	}
 
 	public int getId() {
@@ -47,14 +44,6 @@ public class User implements Serializable{
 		this.password = password;
 	}
 
-	public Backup getBackup() {
-		return backup;
-	}
-
-	public void setBackup(Backup backup) {
-		this.backup = backup;
-	}
-
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -64,8 +53,6 @@ public class User implements Serializable{
 		builder.append(pseudo);
 		builder.append(", password=");
 		builder.append(password);
-		builder.append(", backup=");
-		builder.append(backup);
 		builder.append("]");
 		return builder.toString();
 	}
