@@ -44,11 +44,12 @@ public class SpriteDAO extends DAO<Sprite>{
 					sprites.add(sprite);
 				}
 			}
-		}catch (SQLException e){
-			
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		// TODO Auto-generated method stub
-		return null;
+		return sprites;
 	}
 
 }
