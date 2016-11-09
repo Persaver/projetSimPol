@@ -15,5 +15,17 @@
   position:relative;
   float:left;
   width:20%;
-  margin-left:5%;  
+  margin-left:5%;
+}
+
+#ul_construction li{
+list-style-type:none;
+width: 50px;
+height: 50px;
+margin-bottom:10px;
+background: url("../img/menu_icon.png") no-repeat;
+}
+
+#menu_chu{
+background-position: right top;
 }

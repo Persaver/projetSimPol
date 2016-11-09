@@ -66,17 +66,29 @@ Game = {
 
     addMenuConstruction: function() {
             var data = {};
-            data = this.gameDatas["menuConstruction"];
+            data = Game.gameDatas["menuConstruction"];
+            console.log(data);
+            var div=document.getElementById("crafty-construction-liste");
+            var newListPuce = document.createElement('ul');
+            newListPuce.id='ul_construction';
+            div.appendChild(newListPuce);
+            //var ul=document.getElementById("crafty-construction-liste");
+
             if(data != undefined){
-              // On passe sur tout les elements
-              //ici tu met ton js pour inserer les object dans le menuConstruction
-              for(var key in data){
-                //ici tu met ton js pour inserer les object dans le menuConstruction
-                // pour acceder à un element
-                // element = data[key];
+              // On passe sur tout les element
+
+               for(var key in data){
+              //for(var i=0;i<10;i++){
+                  var newPuce=document.createElement('li');
+                  newPuce.id="menu_"+key;
+                  //newPuce.value="";
+                  document.getElementById('ul_construction').appendChild(newPuce);
+                  console.log(data[key]);
               }
             }
         },
+
+
         //affichage des information contextuelles
         //params object minimum   data: { message:"le message" }
 
@@ -128,7 +140,7 @@ Game = {
     startTriggers: function() {
             // ajout du trigger sur les div class constrution
             var constructions = document.getElementById("crafty-construction-liste").querySelectorAll(".construction");
-            console.log(constructions);
+
             for (var key in constructions) {
                 constructions[key].onclick = function(e) {
                     console.log("click");

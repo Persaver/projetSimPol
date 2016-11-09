@@ -35,7 +35,7 @@ Crafty.scene('Town', function(){
 			}
 		}
 		if(x>=0 && y>=0){
-			console.log(x + " " +y+ " "+" "+w+" " +h )
+			//console.log(x + " " +y+ " "+" "+w+" " +h )
 		if( h === undefined || w === undefined){
 			return this.occupied[x][y];
 		} else{
@@ -205,12 +205,12 @@ console.log(comp);
 	// data type dataEntity
 	this.createExternalEntity= function(){
 		Crafty.bind("CreateEntity",function(data){
-			console.log(data);
+			//console.log(data);
 			for(var key in data){
 				var attr = this.getFirstPlace(data[key]);
 				if(attr){
-					console.log(data[key]);
-					console.log(attr);
+				//	console.log(data[key]);
+				//	console.log(attr);
 					data[key].attr=attr;
 					createEntities(data);
 				}
@@ -235,7 +235,7 @@ console.log(comp);
 		}
 		// des qu'on trouve on sort
 		while(!isPlace && (attr.x+attr.w) < this.occupied.length){
-			console.log(isPlace + " " + attr.x+ " " +attr.y);
+			//console.log(isPlace + " " + attr.x+ " " +attr.y);
 			attr.y=0;
 			while(!isPlace && (attr.y+attr.h) < this.occupied[attr.x].length){
 				isPlace = !this.isOccupied({x:attr.x,y:attr.y,w:attr.w,h:attr.h});
@@ -261,6 +261,7 @@ console.log(comp);
 	createEntities(dataEntities);
 	generateRandomEntities();
 	this.createExternalEntity();
+	Game.addMenuConstruction();
 	Game.startTriggers();
 
 });
