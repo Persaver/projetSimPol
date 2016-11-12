@@ -15,5 +15,13 @@
   position:relative;
   float:left;
   width:20%;
-  margin-left:5%;  
+  margin-left:5%;
+}
+
+#crafty-construction-liste{
+border: solid 5px white;
+height:600px;
+width: 200px;
+
+
 }
