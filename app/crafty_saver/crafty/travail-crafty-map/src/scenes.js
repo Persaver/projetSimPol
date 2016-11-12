@@ -84,7 +84,7 @@ Crafty.scene('Town', function(){
 				j=0;
 				while (j < h && ((y+j) < this.occupied[i].length) ){
 					this.occupied[x+i][y+j] = occupied;
-					console.log(this.occupied[x+i][y+j]);
+					// console.log(this.occupied[x+i][y+j]);
 					j++;
 				}
 				i++;
@@ -136,7 +136,7 @@ Crafty.scene('Town', function(){
 	//on recupere les Entities
 	var getEntities = function(){
 		if(ISDEBUG){
-			console.log(Game.gameDatas.mapObjects.dataEntities);
+			// console.log(Game.gameDatas.mapObjects.dataEntities);
 			return Game.gameDatas.mapObjects.dataEntities;
 		}
 	};
@@ -148,7 +148,7 @@ Crafty.scene('Town', function(){
 
   	        	var entityC = dataEntities[entity];
 			// on crée l'entité
-			console.log(entityC);
+			// console.log(entityC);
            		craftyEntities[entityC.name] = Crafty.e(entityC.components).at([entityC.attr.x,entityC.attr.y,entityC.attr.w,entityC.attr.h]);
 			// on les ajoute à la map
 			console.log(craftyEntities[entityC.name].at());
@@ -275,9 +275,9 @@ Crafty.scene('Loading', function(){
 		.textFont({});
 
 	// Load our sprite map image
-	console.log(Game.gameDatas);
+	// console.log(Game.gameDatas);
 	Game.getData();
-	console.log(Game.gameDatas.mapObjects.sprites);
+	// console.log(Game.gameDatas.mapObjects.sprites);
 	Crafty.load({sprites:Game.gameDatas.mapObjects.sprites}, function(){
 		// Once the images are loaded...
 		Crafty.scene('Town');

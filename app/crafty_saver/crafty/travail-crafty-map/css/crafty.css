@@ -18,23 +18,71 @@
   margin-left:5%;
 }
 
-<<<<<<< HEAD
+
 #crafty-construction-liste{
 border: solid 5px white;
 height:600px;
 width: 200px;
-
-
-=======
-#ul_construction li{
-list-style-type:none;
-width: 50px;
-height: 50px;
-margin-bottom:10px;
-background: url("../img/menu_icon.png") no-repeat;
 }
 
-#menu_chu{
-background-position: right top;
->>>>>>> eff7997c681ad1e177d347366469ce4a76fb3a36
+#crafty-construction{
+/*background: url("../img/menu_icon.png") no-repeat;*/
+}
+
+#ul_construction{
+/*list-style-type:none;*/
+/*width: 50px;
+height: 50px;
+margin-bottom:10px;*/
+
+}
+
+
+
+#board_icons td{
+  height:50px;
+  width: 50px;
+  border: solid 1px blue;
+}
+
+
+
+#ul_construction li{
+  list-style-type:none;
+  width: 50px;
+  height: 50px;
+	background: url("../img/menu_icon.png") no-repeat;
+  border: solid 1px black;
+}
+
+
+#ul_construction #menu_church{
+background-position: 85% 48%;
+}
+#ul_construction #menu_museum{
+background-position: 20% 10%;
+}
+
+#ul_construction #menu_warehouse{
+background-position: 47% 26%;
+}
+
+#ul_construction #menu_desk{
+background-position: 58% 26%;
+}
+#ul_construction #menu_restaurant{
+background-position: 4% 79%;
+}
+#ul_construction #menu_night_club{
+background-position: 20% 79%;
+}
+#ul_construction #menu_temple{
+background-position: 91% 79%;
+}
+#ul_construction #menu_temple_tower{
+background-position: 20% 74%;
+}
+#ul_construction #menu_farm{
+background-position: 58% 90%;
+}
 }
