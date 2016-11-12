@@ -18,10 +18,23 @@
   margin-left:5%;
 }
 
+<<<<<<< HEAD
 #crafty-construction-liste{
 border: solid 5px white;
 height:600px;
 width: 200px;
 
 
+=======
+#ul_construction li{
+list-style-type:none;
+width: 50px;
+height: 50px;
+margin-bottom:10px;
+background: url("../img/menu_icon.png") no-repeat;
+}
+
+#menu_chu{
+background-position: right top;
+>>>>>>> eff7997c681ad1e177d347366469ce4a76fb3a36
 }

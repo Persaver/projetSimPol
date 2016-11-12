@@ -44,13 +44,19 @@ Game = {
     // si ISDEBUG on prend les données du data.json
     // params Le nom des objets à recuperer si vide revoye tt les infos
 
-    getData: function() {
+    getData: function(keyObject) {
         var data = {};
         if (this.ISDEBUG) {
             var dataJson = spl_debugJson;
-            for (key in dataJson) {
-                this.gameDatas[key] = dataJson[key];
+            if (keyObject == undefined) {
+                for (key in dataJson) {
+                    console.log(dataJson[key]);
+                    this.gameDatas[key] = dataJson[key];
+                }
+            }else {
+
             }
+
         } else {
             // ici on fera l'appel a Ajax pour recuperer depuis le serveur
         }
@@ -58,10 +64,35 @@ Game = {
 
     },
 
-    //affichage des information contextuelles
-    //params object minimum   data: { message:"le message" }
+    addMenuConstruction: function() {
+            var data = {};
+            data = Game.gameDatas["menuConstruction"];
+            console.log(data);
+            var div=document.getElementById("crafty-construction-liste");
+            var newListPuce = document.createElement('ul');
+            newListPuce.id='ul_construction';
+            div.appendChild(newListPuce);
+            //var ul=document.getElementById("crafty-construction-liste");
 
-    displayContextual: function(data, container) {
+            if(data != undefined){
+              // On passe sur tout les element
+
+               for(var key in data){
+              //for(var i=0;i<10;i++){
+                  var newPuce=document.createElement('li');
+                  newPuce.id="menu_"+key;
+                  //newPuce.value="";
+                  document.getElementById('ul_construction').appendChild(newPuce);
+                  console.log(data[key]);
+              }
+            }
+        },
+
+
+        //affichage des information contextuelles
+        //params object minimum   data: { message:"le message" }
+
+        displayContextual: function(data, container) {
 
         if (typeof container == "undefined") {
             container = document.getElementById("crafty-contex-content");
@@ -107,15 +138,15 @@ Game = {
 
     //ajout des trigger
     startTriggers: function() {
-    	    // ajout du trigger sur les div class constrution
-       	    var constructions = document.getElementById("crafty-construction-liste").querySelectorAll(".construction");
-		console.log(constructions);
-		for(var key in constructions){
-			constructions[key].onclick = function(e) {
-				console.log("click");
-				Game.addCraftyEntity();
-			}
-            	};
+            // ajout du trigger sur les div class constrution
+            var constructions = document.getElementById("crafty-construction-liste").querySelectorAll(".construction");
+
+            for (var key in constructions) {
+                constructions[key].onclick = function(e) {
+                    console.log("click");
+                    Game.addCraftyEntity();
+                }
+            };
 
         }
         // ajout du trigger sur les div class constrution

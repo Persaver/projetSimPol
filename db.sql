@@ -29,6 +29,9 @@ DROP TABLE IF EXISTS construction;
 CREATE TABLE construction (
   id INT(3) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   nom VARCHAR(30) NOT NULL,
+  w INT(3) NOT NULL,
+  h INT(3) NOT NULL,
+  price DECIMAL(7,2) NOT NULL,
   categorie INT(3) NOT NULL
 )ENGINE=InnoDB;
 
@@ -36,8 +39,8 @@ DROP TABLE IF EXISTS backup_construction;
 CREATE TABLE backup_construction(
   backup INT(4) NOT NULL,
   construction INT(3) NOT NULL,
-  width INT(5) NOT NULL,
-  height INT(5) NOT NULL,
+  x INT(5) NOT NULL,
+  y INT(5) NOT NULL,
   PRIMARY KEY (backup, construction)
 )ENGINE=InnoDB;
 
@@ -46,6 +49,17 @@ CREATE TABLE backup_categorie(
   backup INT(4) NOT NULL,
   categorie INT(3) NOT NULL,
   PRIMARY KEY (backup, categorie)
+)ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS sprite;
+CREATE TABLE sprite (
+  id INT(4) NOT NULL,
+  url VARCHAR(50) NOT NULL,
+  name VARCHAR(30) NOT NULL,
+  x INT(5) NOT NULL,
+  y INT(5) NOT NULL,
+  w INT(5) NOT NULL,
+  h INT(5) NOT NULL
 )ENGINE=InnoDB;
 
 ALTER TABLE backup
