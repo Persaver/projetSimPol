@@ -66,48 +66,27 @@ Game = {
 
     addMenuConstruction: function() {
         var data = {};
+	var nb_case = 0;
         data = Game.gameDatas["menuConstruction"];
         console.log(data);
         var div = document.getElementById("crafty-construction-liste");
-        var board = document.createElement('table');
+        var board = document.createElement('ul');
         board.id = 'board_icons';
         div.appendChild(board);
-        var ul = document.getElementById("crafty-construction-liste");
 
         if (data != undefined) {
             // On passe sur tout les element
             //
-            var nb_case = 0;
             for (var key in data) {
                 nb_case = nb_case + 1;
+		var newCase = document.createElement('li');
+		var newDiv = document.createElement('DIV');
+		newDiv.className += 'construction_icons';
+		newCase.appendChild(newDiv);
+                board.appendChild(newCase);
+                newCase.id="menu_"+key;
             }
         }
-
-        var x=0;
-        for (var i = 0; i < (nb_case/2); i++) {
-            var newLigne = document.createElement('tr');
-            document.getElementById('board_icons').appendChild(newLigne);
-
-            for (var z = 0; z <2; z++) {
-                x++;
-                var newCase = document.createElement('td');
-                newLigne.appendChild(newCase);
-                newCase.id=x;
-      
-            }
-
-
-        }
-
-        //   for(var key in data){
-        // //     //for(var i=0;i<10;i++){
-        // //         var newCase=document.createElement('td');
-        // //         newPuce.id="menu_"+key;
-        // //         //newPuce.value="";
-        // //         document.getElementById('ul_construction').appendChild(newPuce);
-        // //         console.log(data[key]);
-        //     }
-        //   }
     },
 
 
