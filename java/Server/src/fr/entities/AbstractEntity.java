@@ -4,9 +4,10 @@ import java.io.Serializable;
 
 import com.google.gson.Gson;
 
+import fr.interfaces.IEntity;
 import fr.interfaces.IJsonEntity;
 
-public class AbstractEntity<T> implements Serializable,IJsonEntity{
+public class AbstractEntity<T> implements Serializable,IJsonEntity,IEntity{
 	protected T id;
 	
 	public AbstractEntity(){

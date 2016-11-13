@@ -1,15 +1,15 @@
-package fr.batiment;
+package fr.gameEntities.batiment;
 
 import fr.entities.BackupConstruction;
+import fr.gameEntities.AbstractGameEntity;
 import fr.indicateur.Budget;
 import fr.interfaces.IBatiment;
 import fr.interfaces.IEntity;
 
-public abstract class Batiment<T> implements IBatiment{
+public abstract class Batiment<T> extends AbstractGameEntity<T> implements IBatiment{
 	
 	// class de l'entities
-	protected T entity = null;
-	protected boolean isModify = false;
+
 	protected int nbCadre;				// Pour leur permettre d'evoluer, les nombres de poste seront multiplies par 10
 	protected int nbSalarie;
 //	protected int prixBatiment;
@@ -41,19 +41,6 @@ public abstract class Batiment<T> implements IBatiment{
 	public int getNbSalarie() {
 		return nbSalarie/10;
 	}
-	@Override
-	public void setEntity(IEntity entity) {
-		this.entity = (T) entity;
-	}
-	@Override
-	public boolean isModify() {
-		// TODO Auto-generated method stub
-		return this.isModify;
-	}
 
-	@Override
-	public void setModify() {
-		this.isModify = true;
-		
-	}
+
 }

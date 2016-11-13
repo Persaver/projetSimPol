@@ -2,7 +2,7 @@ package fr.entities;
 
 import java.io.Serializable;
 
-public class BackupConstruction extends AbstractEntity<Integer>{
+public class BackupConstruction extends AbstractEntity<Integer> {
 	private int x;
 	private int y;
 	
