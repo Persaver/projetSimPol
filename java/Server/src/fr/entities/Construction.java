@@ -3,12 +3,11 @@ package fr.entities;
 import java.io.Serializable;
 import java.util.Arrays;
 
-public class Construction implements Serializable{
+public class Construction extends AbstractEntity<Integer>{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int id;
 	private String designation;
 	private String url;
 	private int h;
@@ -16,9 +15,12 @@ public class Construction implements Serializable{
 	private Categorie categorie;
 
 	public Construction() {
+		super();
+
 	}
 
 	public Construction(String designation, int h, int w, String url, Categorie categorie) {
+		this();
 		this.designation = designation;
 		this.h = h;
 		this.w = w;
@@ -26,8 +28,8 @@ public class Construction implements Serializable{
 		this.categorie = categorie;
 	}
 	
-	public Construction(int id, String designation, int h, int w, String url, Categorie categorie) {
-		this.id = id;
+	public Construction(Integer id, String designation, int h, int w, String url, Categorie categorie) {
+		super(id);
 		this.designation = designation;
 		this.h = h;
 		this.w = w;
@@ -36,6 +38,7 @@ public class Construction implements Serializable{
 	}
 
 	public Construction(String designation, int h, int w, String url) {
+		this();
 		this.designation = designation;
 		this.h = h;
 		this.w = w;
@@ -43,15 +46,15 @@ public class Construction implements Serializable{
 	}
 
 	public Construction(int id, String designation, int h, int w, String url) {
-		this.id = id;
+		super(id);
 		this.designation = designation;
 		this.h = h;
 		this.w = w;
 		this.url = url;
 	}
 
-	public int getId() {
-		return id;
+	public Integer getId() {
+		return this.id;
 	}
 
 	public void setId(int id) {

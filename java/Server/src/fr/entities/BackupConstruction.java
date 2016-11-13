@@ -2,15 +2,15 @@ package fr.entities;
 
 import java.io.Serializable;
 
-public class BackupConstruction implements Serializable{
+public class BackupConstruction extends AbstractEntity<Integer>{
 	private int x;
 	private int y;
 	
 	private Construction construction;
 	private Backup backup;
 		
-	public BackupConstruction(int x, int y, Construction construction, Backup backup) {
-		super();
+	public BackupConstruction(Integer id,int x, int y, Construction construction, Backup backup) {
+		super(id);
 		this.x = x;
 		this.y = y;
 		this.construction = construction;

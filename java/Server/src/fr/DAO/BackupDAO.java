@@ -10,10 +10,10 @@ import fr.entities.Backup;
 import fr.entities.Categorie;
 import fr.entities.Construction;
 
-public class BackupDAO extends DAO<Backup>{
+public class BackupDAO extends DAO<Backup,Integer>{
 
 	@Override
-	public Backup get(int id) {
+	public Backup get(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -25,7 +25,7 @@ public class BackupDAO extends DAO<Backup>{
 	}
 
 	@Override
-	public void delete(int id) {
+	public void delete(Integer id) {
 		// TODO Auto-generated method stub
 
 	}

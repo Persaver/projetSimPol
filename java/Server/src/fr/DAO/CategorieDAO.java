@@ -8,10 +8,10 @@ import java.util.List;
 
 import fr.entities.Categorie;
 
-public class CategorieDAO extends DAO<Categorie> {
+public class CategorieDAO extends DAO<Categorie,Integer> {
 
 	@Override
-	public Categorie get(int id) {
+	public Categorie get(Integer id) {
 		ResultSet result;
 		try {
 			PreparedStatement prepare = this.connect.prepareStatement("Select * From categorie where id = ?");
@@ -35,7 +35,7 @@ public class CategorieDAO extends DAO<Categorie> {
 	}
 
 	@Override
-	public void delete(int id) {
+	public void delete(Integer id) {
 		// TODO Auto-generated method stub
 
 	}

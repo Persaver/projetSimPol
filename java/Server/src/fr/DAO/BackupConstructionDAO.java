@@ -4,17 +4,17 @@ import java.util.List;
 
 import fr.entities.BackupConstruction;
 
-public class BackupConstructionDAO extends DAO<BackupConstruction> {
+public class BackupConstructionDAO extends DAO<BackupConstruction,Integer> {
 
 	@Override
-	public BackupConstruction get(int id) {
+	public BackupConstruction get(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 
 	@Override
-	public void delete(int id) {
+	public void delete(Integer id) {
 		// TODO Auto-generated method stub
 
 	}

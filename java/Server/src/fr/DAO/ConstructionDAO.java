@@ -10,10 +10,10 @@ import java.util.List;
 import fr.entities.Categorie;
 import fr.entities.Construction;
 
-public class ConstructionDAO extends DAO<Construction>{
+public class ConstructionDAO extends DAO<Construction,Integer>{
 
 	@Override
-	public Construction get(int id) {
+	public Construction get(Integer id) {
 		ResultSet result;
 		try 
 		{
@@ -39,7 +39,7 @@ public class ConstructionDAO extends DAO<Construction>{
 	}
 
 	@Override
-	public void delete(int id) {
+	public void delete(Integer id) {
 		// TODO Auto-generated method stub
 		
 	}

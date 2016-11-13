@@ -6,10 +6,10 @@ import java.util.List;
 
 import fr.entities.Sprite;
 
-public class SpriteDAO extends DAO<Sprite>{
+public class SpriteDAO extends DAO<Sprite,Integer>{
 
 	@Override
-	public Sprite get(int id) {
+	public Sprite get(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -21,7 +21,7 @@ public class SpriteDAO extends DAO<Sprite>{
 	}
 
 	@Override
-	public void delete(int id) {
+	public void delete(Integer id) {
 		// TODO Auto-generated method stub
 		
 	}

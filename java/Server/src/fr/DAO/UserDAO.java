@@ -7,10 +7,10 @@ import java.util.List;
 
 import fr.entities.User;
 
-public class UserDAO extends DAO<User>{
+public class UserDAO extends DAO<User,Integer>{
 
 	@Override
-	public User get(int id) {
+	public User get(Integer id) {
 		ResultSet result;
 		try {
 			PreparedStatement prepare = this.connect.prepareStatement("SELECT * FROM user WHERE id =?");
@@ -23,27 +23,49 @@ public class UserDAO extends DAO<User>{
 		}catch (SQLException e){
 			e.printStackTrace();
 		}
-		
+
 		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public User checklogin(String login, String password){
+		ResultSet results = null;
+
+		try {
+			PreparedStatement prepare = this.connect.prepareStatement("SELECT * FROM user WHERE login = ? and password = ?");
+			prepare.setString(1, login);
+			prepare.setString(2, password);
+
+			results = prepare.executeQuery();
+			if(results.next()){
+
+				User user = new User(results.getInt("id"), results.getString("pseudo"), results.getString("password"));
+				return user;
+			}
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+
+		// a modifier
 		return null;
 	}
 
 	@Override
 	public void save(User element) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void delete(int id) {
+	public void delete(Integer id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void update(User element) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -51,6 +73,6 @@ public class UserDAO extends DAO<User>{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 
 }

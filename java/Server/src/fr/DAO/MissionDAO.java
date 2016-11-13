@@ -4,10 +4,10 @@ import java.util.List;
 
 import fr.entities.Mission;
 
-public class MissionDAO extends DAO<Mission>{
+public class MissionDAO extends DAO<Mission,Integer>{
 
 	@Override
-	public Mission get(int id) {
+	public Mission get(Integer id) {
 		
 		// TODO Auto-generated method stub
 		return null;
@@ -20,7 +20,7 @@ public class MissionDAO extends DAO<Mission>{
 	}
 
 	@Override
-	public void delete(int id) {
+	public void delete(Integer id) {
 		// TODO Auto-generated method stub
 		
 	}
