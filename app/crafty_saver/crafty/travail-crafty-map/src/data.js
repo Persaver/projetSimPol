@@ -361,6 +361,7 @@ var spl_debugJson = {
                 "position": [450, 227, 50, 50]
             }
         },
+        //L'image est prise à la source sur "../img/menu_icon.png" et les coordonnées de chaque logo sont fixées en CSS
         "restaurant": {},
         "night_club": {},
         "temple": {},
