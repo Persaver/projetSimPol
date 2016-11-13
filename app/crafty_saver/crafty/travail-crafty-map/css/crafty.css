@@ -47,8 +47,9 @@ padding-right:10px;
 
 #board_icons li{
   float:left;
-  border: solid 1px blue;
+  border: solid 1px black;
   width: 50%;
+
 }
 
 #board_icons li div.construction_icons{
@@ -60,7 +61,7 @@ padding-right:10px;
 
 
 #board_icons #menu_church div.construction_icons{
-background-position: 85% 48%;
+background-position: 64%  79%;
 }
 #board_icons #menu_museum div.construction_icons{
 background-position: 20% 10%;
@@ -88,4 +89,40 @@ background-position: 20% 74%;
 #board_icons #menu_farm div.construction_icons{
 background-position: 58% 90%;
 }
+#board_icons #menu_rescue_tower div.construction_icons{
+background-position: 69% 0%;
+}
 
+#board_icons #menu_circus div.construction_icons{
+background-position: 42% 95%;
+}
+
+#board_icons #menu_television div.construction_icons{
+background-position: 58% 58%;
+}
+
+#board_icons #menu_entertainment_hall div.construction_icons{
+background-position: 42% 69%;
+}
+
+#board_icons #menu_military_place div.construction_icons{
+background-position: 31% 69%;
+}
+
+#board_icons #menu_military_tower div.construction_icons{
+background-position: 85% 74%;
+}
+
+#board_icons #menu_factory div.construction_icons{
+background-position: 91% 42%;
+}
+
+#board_icons #menu_hospital div.construction_icons{
+background-position: 37% 37%;
+}
+#board_icons #menu_police_dpt div.construction_icons{
+background-position: 26% 63%;
+}
+#board_icons #menu_university div.construction_icons{
+background-position: 15% 63%;
+}
