@@ -19,11 +19,11 @@ Crafty.scene('Town', function(){
 	// mofifer pour params ArrayOrObject
 	this.isOccupied = function(ArrayOrObject){
 		var x,y,w,h;
-
+		//console.log(ArrayOrObject);
 		if (!Array.isArray(ArrayOrObject)){
 			x =  ArrayOrObject.x;
 			y =  ArrayOrObject.y;
-			w =  ArrayOrObject.h;
+			w =  ArrayOrObject.w;
 			h =  ArrayOrObject.h;
 		}
 		else {
@@ -35,6 +35,7 @@ Crafty.scene('Town', function(){
 			}
 		}
 		if(x>=0 && y>=0){
+			//console.log(x + " " +y+ " "+" "+w+" " +h )
 		if( h === undefined || w === undefined){
 			return this.occupied[x][y];
 		} else{
@@ -44,7 +45,7 @@ Crafty.scene('Town', function(){
 				j=0;
 				while ( !isOccupied && j < h && ((y+j) < this.occupied[i].length) ){
 					isOccupied |= this.occupied[x+i][y+j];
-					console.log(this.occupied[x+i][y+j]);
+			//		console.log(this.occupied[x+i][y+j]);
 					j++;
 				}
 				i++;
@@ -63,7 +64,7 @@ Crafty.scene('Town', function(){
 		if (!Array.isArray(ArrayOrObject)){
 			x =  ArrayOrObject.x;
 			y =  ArrayOrObject.y;
-			w =  ArrayOrObject.h;
+			w =  ArrayOrObject.w;
 			h =  ArrayOrObject.h;
 		}
 		else {
@@ -83,7 +84,7 @@ Crafty.scene('Town', function(){
 				j=0;
 				while (j < h && ((y+j) < this.occupied[i].length) ){
 					this.occupied[x+i][y+j] = occupied;
-					console.log(this.occupied[x+i][y+j]);
+					// console.log(this.occupied[x+i][y+j]);
 					j++;
 				}
 				i++;
@@ -135,7 +136,7 @@ Crafty.scene('Town', function(){
 	//on recupere les Entities
 	var getEntities = function(){
 		if(ISDEBUG){
-			console.log(Game.gameDatas.mapObjects.dataEntities);
+			// console.log(Game.gameDatas.mapObjects.dataEntities);
 			return Game.gameDatas.mapObjects.dataEntities;
 		}
 	};
@@ -147,7 +148,7 @@ Crafty.scene('Town', function(){
 
   	        	var entityC = dataEntities[entity];
 			// on crée l'entité
-			console.log(entityC);
+			// console.log(entityC);
            		craftyEntities[entityC.name] = Crafty.e(entityC.components).at([entityC.attr.x,entityC.attr.y,entityC.attr.w,entityC.attr.h]);
 			// on les ajoute à la map
 			console.log(craftyEntities[entityC.name].at());
@@ -191,38 +192,77 @@ console.log(hitData);
 
 console.log(comp);
                             })
-			    .bind("Click",function(){ 
+			    .bind("Click",function(){
 				this.toggleClick();
-				console.log(""+this.isClick());	
+				console.log(""+this.isClick());
 				this.display();
 				});
 
        		 }
 	}
     };
-
+	// bind sur les Create Enty venu depuis l'esterieur de crafty
+	// data type dataEntity
 	this.createExternalEntity= function(){
 		Crafty.bind("CreateEntity",function(data){
-			console.log("createEntitié scene");
-			createEntities(data);		
-		});	
-	}
+			//console.log(data);
+			for(var key in data){
+				var attr = this.getFirstPlace(data[key]);
+				if(attr){
+				//	console.log(data[key]);
+				//	console.log(attr);
+					data[key].attr=attr;
+					createEntities(data);
+				}
+			}
 
+		});
+	};
+	// trouve la premiere place disponible
+	// params dataiEntity
+	this.getFirstPlace= function(dataEntity){
+		var attr = {
+			x:0,
+			y:0},
+			isPlace=false;
+		// si pas de param on met la taille est la hauteur à 1
+		if(dataEntity == undefined){
+			attr.w=1;
+			attr.h=1;
+		}else{
+			attr.w=dataEntity.attr.w;
+			attr.h=dataEntity.attr.h;
+		}
+		// des qu'on trouve on sort
+		while(!isPlace && (attr.x+attr.w) < this.occupied.length){
+			//console.log(isPlace + " " + attr.x+ " " +attr.y);
+			attr.y=0;
+			while(!isPlace && (attr.y+attr.h) < this.occupied[attr.x].length){
+				isPlace = !this.isOccupied({x:attr.x,y:attr.y,w:attr.w,h:attr.h});
+				attr.y++;
+			}
+			attr.x++;
+		}
+
+		if(isPlace){
+			attr.x--;
+			attr.y--;
+			return attr;
+		}else {
+			return false;	}
+
+	}
 
 	console.log(Game);
 	console.log(typeof [10,10]);
-//	if(!this.isOccupied([10,10])){
-//		Crafty.e('House').at(10,10);
-//	}
 
 	this.generateMap();
 	var dataEntities = getEntities();
 	createEntities(dataEntities);
 	generateRandomEntities();
 	this.createExternalEntity();
-	Game.addCraftyEntity();
-
-	//Game.displayContextual();
+	Game.addMenuConstruction();
+	Game.startTriggers();
 
 });
 
@@ -235,9 +275,9 @@ Crafty.scene('Loading', function(){
 		.textFont({});
 
 	// Load our sprite map image
-	console.log(Game.gameDatas);
+	// console.log(Game.gameDatas);
 	Game.getData();
-	console.log(Game.gameDatas.mapObjects.sprites);
+	// console.log(Game.gameDatas.mapObjects.sprites);
 	Crafty.load({sprites:Game.gameDatas.mapObjects.sprites}, function(){
 		// Once the images are loaded...
 		Crafty.scene('Town');

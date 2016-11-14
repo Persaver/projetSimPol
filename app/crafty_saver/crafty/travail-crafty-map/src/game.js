@@ -44,19 +44,52 @@ Game = {
     // si ISDEBUG on prend les données du data.json
     // params Le nom des objets à recuperer si vide revoye tt les infos
 
-    getData: function() {
+    getData: function(keyObject) {
         var data = {};
         if (this.ISDEBUG) {
             var dataJson = spl_debugJson;
-            for (key in dataJson) {
-                this.gameDatas[key] = dataJson[key];
+            if (keyObject == undefined) {
+                for (key in dataJson) {
+                    console.log(dataJson[key]);
+                    this.gameDatas[key] = dataJson[key];
+                }
+            } else {
+
             }
+
         } else {
             // ici on fera l'appel a Ajax pour recuperer depuis le serveur
         }
 
 
     },
+
+    addMenuConstruction: function() {
+        var data = {};
+	var nb_case = 0;
+        data = Game.gameDatas["menuConstruction"];
+        console.log(data);
+        var div = document.getElementById("crafty-construction-liste");
+        var board = document.createElement('ul');
+        board.id = 'board_icons';
+        div.appendChild(board);
+
+        if (data != undefined) {
+            // On passe sur tout les element
+            //
+            for (var key in data) {
+                nb_case = nb_case + 1;
+		var newCase = document.createElement('li');
+		var newDiv = document.createElement('DIV');
+		newDiv.className += 'construction_icons';
+		newCase.appendChild(newDiv);
+                board.appendChild(newCase);
+                newCase.id="menu_"+key;
+                console.log(data[key].type);
+            }
+        }
+    },
+
 
     //affichage des information contextuelles
     //params object minimum   data: { message:"le message" }
@@ -89,32 +122,25 @@ Game = {
 
     addCraftyEntity: function(dataEntite) {
         console.log("create entite Game");
-        Crafty.trigger("CreateEntity", {
-            "house1": {
-                // type actuelement pas utile
-                "type": "fixed",
-                // les components pour l'entitée Crafty definit dans components.js
-                "components": "House",
-                // position et taile en tuile sur la map
-                "attr": {
-                    "x": 10,
-                    "y": 10,
-                    "w": 6,
-                    "h": 4
-                }
-
-            }
-        })
+        Crafty.trigger("CreateEntity", dataEntite);
     },
 
     //ajout des trigger
-    addTrigger: function() {
+    startTriggers: function() {
             // ajout du trigger sur les div class constrution
-            document.getElementById("crafty-construction-liste").querySelector(".construction").onclick = function() {
-                console.log("selected");
+            var constructions = document.getElementById("crafty-construction-liste").querySelectorAll(".construction");
+
+            for (var key in constructions) {
+                constructions[key].onclick = function(e) {
+                  var id =this.id;
+                  // recherche l'objet à la clef id
+                  //stoker ds qq chose
+                    console.log("click");
+
+                    Game.addCraftyEntity();
+                }
             };
 
         }
         // ajout du trigger sur les div class constrution
-
 }
