@@ -306,7 +306,7 @@ var spl_debugJson = {
         //exemple de data renvoyer par le serveur
         // le type du data
         "church": {
-            "type": "moveable",
+            type: "moveable",
             "components": "Church",
             //la hauteur et la largeur
             "attr": {

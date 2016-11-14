@@ -85,6 +85,7 @@ Game = {
 		newCase.appendChild(newDiv);
                 board.appendChild(newCase);
                 newCase.id="menu_"+key;
+                console.log(data[key].type);
             }
         }
     },
@@ -121,20 +122,7 @@ Game = {
 
     addCraftyEntity: function(dataEntite) {
         console.log("create entite Game");
-        Crafty.trigger("CreateEntity", {
-            "house1": {
-                // type actuelement pas utile
-                "type": "fixed",
-                // les components pour l'entitée Crafty definit dans components.js
-                "components": "House",
-                // taile en tuile sur la map
-                "attr": {
-                    "w": 6,
-                    "h": 4
-                }
-
-            }
-        })
+        Crafty.trigger("CreateEntity", dataEntite);
     },
 
     //ajout des trigger
@@ -144,7 +132,11 @@ Game = {
 
             for (var key in constructions) {
                 constructions[key].onclick = function(e) {
+                  var id =this.id;
+                  // recherche l'objet à la clef id
+                  //stoker ds qq chose
                     console.log("click");
+
                     Game.addCraftyEntity();
                 }
             };
