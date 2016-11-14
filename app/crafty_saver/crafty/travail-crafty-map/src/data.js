@@ -224,7 +224,7 @@ var spl_debugJson = {
                     "spr_house_4": [947, 113, 61, 82],
                     "spr_museum": [592, 210, 208, 125],
                     "spr_warehouse": [13, 545, 255, 217],
-                    "spr_desk": [0, 772, 44, 170],
+                    "spr_desk": [0, 772, 244, 170],
                     "spr_church": [880, 206, 122, 124],
                     "spr_restaurant": [934, 12, 81, 88],
                     "spr_night_club": [786, 17, 78, 80],
@@ -233,7 +233,7 @@ var spl_debugJson = {
                     "spr_farm": [275, 560, 206, 118],
                     "spr_rescue_tower": [612, 799, 106, 184],
                     "spr_circus": [736, 354, 178, 165],
-                    "spr_television": [0, 342, 148],
+                    "spr_television": [4,343,140,191],
                     "spr_entertainment_hall": [240, 386, 65, 164]
                 }
             },
@@ -372,7 +372,7 @@ var spl_debugJson = {
         },
         "temple_tower": {
           "type": "moveable",
-          "components": "Temple_tower",
+          "components": "Temple_Tower",
           "attr": {
               "w": 2,
               "h": 2
