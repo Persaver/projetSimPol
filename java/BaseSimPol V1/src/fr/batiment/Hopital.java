@@ -1,46 +1,48 @@
 package fr.batiment;
 
-import fr.indicateur.Budget;
+import java.util.ArrayList;
+import java.util.List;
+
+import fr.indicateur.Education;
 
 public class Hopital extends Batiment {
-	private static int sante;						// A definir
-
-	public Hopital() {
-		super();
-		this.nbSalarie = 70;
-		Budget.setNbSalaries(7);
-		this.nbCadre = 10;
-		Budget.setNbCadre(1);
+	private int pSoin;	// potentiel de soins prodigues par l'hopital
+	private static List<Hopital> hopitaux = new ArrayList<Hopital>();
+	private int indiceH;
+	
+	public Hopital (){
+		super(70, 10, 3, 2);
+		this.indiceH = hopitaux.size();
+		hopitaux.add(this);
+		this.pSoin = this.nbSalarie*(10+this.nbCadre/5)/100;
 	}
-
-	public Hopital(int niv) {
-		super();
-		this.nbSalarie = (int)(70*Math.pow(1.8, niv-1));
-		Budget.setNbSalaries(this.nbSalarie/10);
-		this.nbCadre = (int)(10*Math.pow(1.8, niv-1));
-		Budget.setNbCadre(this.nbCadre/10);
+	public Hopital (int niv){
+		this();
+		for (int i = 0; i<niv; i++)
+			this.ameliorer();
 	}
 	
-	public void Ameliore (){
-		int newSalarie = (int)(this.nbSalarie*0.8);
-		int newCadre = (int)(this.nbCadre*0.8);
-		if ((((this.nbCadre + newCadre)/10>(this.nbCadre)/10))){				// Pour garder une coherence dans les chiffres
-			Budget.setNbCadre((this.nbCadre+newCadre)/10-this.nbCadre/10);		// Les nouveaux postes de cares sont directement renseigner
-	//		System.out.println("nbCadres + " + newCadre/10);
-		}
-		this.nbCadre += newCadre;
-		if ((this.nbSalarie + newSalarie)/10>(this.nbSalarie)/10){
-			Budget.setNbSalaries((this.nbSalarie+newSalarie)/10-this.nbSalarie/10);
-	//		System.out.println("nbPoste + " + (newSalarie)/10);
-		}
-		this.nbSalarie += newSalarie;
+	public void ameliorer(){
+		super.ameliore(0.8, 0.8, 3, 2);
+		this.pSoin = this.nbSalarie*(10+this.nbCadre/5)/100;
 	}
 	
-	public void usure (){		// Regulierement, le batiment s'use
-		this.risque +=2;
+	public void detruire (){
+		super.detruire(this.indice);
+		hopitaux.remove(this.indiceH);
+		for (int i = this.indiceH; i < hopitaux.size(); i++)
+			hopitaux.get(i).indiceH --;
 	}
-
-	public static int getSante(){
-		return sante;
+	
+	public int soins (){
+		return this.pSoin*this.potentiel()/100*(300+Education.getEdSante())/500;	// N'est qu'a 60% si l'education est nulle
+	}
+	
+	public static int soinsTotal(){
+		int sT = 0;
+		for (int i = 0; i<hopitaux.size(); i++)
+			sT += hopitaux.get(i).soins();
+		return sT;
+			
 	}
 }

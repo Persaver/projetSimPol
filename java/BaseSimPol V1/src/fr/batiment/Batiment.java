@@ -6,28 +6,55 @@ import java.util.List;
 import fr.indicateur.Budget;
 import fr.indicateur.Population;
 
+
 public abstract class Batiment {
 	protected int nbCadre;				// Pour leur permettre d'evoluer, les nombres de poste seront multiplies par 10
 	protected int nbSalarie;
-	protected int modRisque;
-	protected int risque = 0;
-	protected static List<Batiment>construction = new ArrayList<Batiment>(); 
+	protected int risque = 0;			// Risque d'arriv�e d'accidents quotidien (pour 1000)
+	protected int modRisque;			// Sans entretien, les risques augmentent
+	protected int budgetAlloue;
+	protected static List<Batiment> constructions = new ArrayList<Batiment>();
+	protected int indice;
+	protected int attraction;
+	protected int postePourvu;
+//	protected int prixBatiment;
 	
+		// Constructeurs
 	public Batiment (){
-		construction.add(this);
+		this.indice = constructions.size();
+		constructions.add(this);
+	}
+	public Batiment(int baseS, int baseC, int baseR, int att){
+		this();
+		this.nbSalarie = baseS;
+		this.nbCadre = baseC;
+		this.modRisque = baseR;
+		this.attraction = att;
+		Population.modAttraction(att);
+		this.prisePostes();
 	}
 	
-	public Batiment (int niv){
+		// Fonction individuelles}
+	public void usure(){
+		this.risque += this.modRisque;
 	}
-
-	
-	public void detruire(){
+	public void modifierRisque(int mod){
+		this.risque += mod;
 	}
-	public void ameliorer(){
+	public void detruire(int indice){
+		constructions.remove(indice);	// Supprimer le batiment de la liste
+		Population.modAttraction(-this.attraction);
+		for (int i = indice; i<constructions.size(); i++)	// actualiser les indices des batiments qui suivent
+			constructions.get(i).indice --;
 	}
-
-	
-		// Fonction individuelles
+	public void ameliore (double factS, double factC, int modR, int att){
+		this.nbSalarie += (int)this.nbSalarie*factS;
+		this.nbCadre += (int)this.nbCadre*factC;
+		this.modRisque += modR;
+		this.attraction += att;
+		Population.modAttraction(att);
+		this.ajoutPoste();
+	}
 	public int getNbCadre() {
 		return nbCadre/10;
 	}
@@ -37,59 +64,129 @@ public abstract class Batiment {
 	public int getRisque(){
 		return this.risque;
 	}
-	public void modRisque(int mod){
-		this.risque -= mod;
-	}
-	public int coutPers(){
-		int p = this.nbCadre*Budget.getSalaireCadre()+
-				this.nbSalarie*Budget.getSalaireStandard();
-		return p;
+	public int potentiel(){		// Le budget influe directement sur les capacites du batiment a 30% du budget necessaire le batiment n'a plus de potentiel
+		int potentiel =  this.budgetAlloue*100/(this.nbSalarie/10*Budget.getSalaireStandard()+this.nbCadre/10*Budget.getSalaireCadre());
+		potentiel = (int)Math.max((potentiel*100-3000)/70., 0.);
+		return potentiel;
 	}	
-	public void usure (){			// Regulierement, le batiment s'use
-		this.risque += this.modRisque;
+	public void setBudget(int x){
+		this.budgetAlloue = x;
+	}	
+	public void setBudget(){
+		int salaireUnitaire = (this.nbSalarie/10*Budget.getSalaireStandard()+this.nbCadre/10*Budget.getSalaireCadre())/(this.nbSalarie/10+this.nbCadre/10);
+		this.budgetAlloue = salaireUnitaire*this.postePourvu;
+	}
+	public int getBudget(){
+		return this.budgetAlloue;
+	}
+	public void affichePotentiel(){
+		System.out.println(this.potentiel()+"%");
+	}
+	public int getAttractivite(){
+		return this.attraction;
+	}
+	public int retirerPersonnel(){
+		int nbEmploye = this.getNbSalarie()+this.getNbCadre();
+		int budgetMax = this.nbSalarie/10*Budget.getSalaireStandard()+this.nbCadre/10*Budget.getSalaireCadre();
+		if (budgetAlloue > budgetMax/nbEmploye){
+			this.budgetAlloue -= budgetMax/nbEmploye;
+			return 1;	// Une personne a bien ete viree
+		} else
+			return 0;	// Personne n'a ete vire
+	}
+	public int retirerPersonnel(int n){
+		boolean possible = true;
+		int verif;
+		while (n > 0 && possible){
+			verif = this.retirerPersonnel();
+			if (verif == 1)
+				n--;
+			else
+				possible = false;
+		}
+		return n;
+	}
+	public int getPostePourvu(){
+		return this.postePourvu;
+	}
+	public void prisePostes(){
+		int pEmbauche = Population.nbIndiv(Budget.getAgeTravail(), Budget.getAgeRetraite())-getPostesPourvus();
+		if (pEmbauche <= 0)
+			this.postePourvu = 0;
+		else{
+			if (pEmbauche > (this.nbSalarie+this.nbCadre)/10)
+				this.postePourvu = (this.nbSalarie+this.nbCadre)/10;
+			else
+				this.postePourvu = pEmbauche;
+		}
+	}
+	public void ajoutPoste(){
+		int pEmbauche = Population.nbIndiv(Budget.getAgeTravail(), Budget.getAgeRetraite())-getPostesPourvus();
+		if (pEmbauche > (this.nbSalarie+this.nbCadre)/10)
+			this.postePourvu = (this.nbSalarie+this.nbCadre)/10;
+		else
+			this.postePourvu += pEmbauche;
 	}
 	
-		// Fonctions Communes
-	public static void afficheList(){
-		for (int i = 0; i < construction.size(); i++){
-			System.out.println(construction.get(i));
-		}
+		// Fonction communes
+	public static void afficheListe(){
+		for (int i = 0; i<constructions.size();i++)
+			System.out.println(constructions.get(i));
 	}
-	public static int getNbSalaries(){
-		int nb = 0;
-		for (int i = 0; i < construction.size(); i++){
-			nb += construction.get(i).getNbSalarie();
-		}
-		return nb;
+	public static void usures(){			// Fonction quotidienne
+		for (int i = 0; i<constructions.size();i++)
+			constructions.get(i).usure();
 	}
 	public static int getNbCadres(){
-		int nb = 0;
-		for (int i = 0; i < construction.size(); i++){
-			nb += construction.get(i).getNbCadre();
-		}
-		return nb;
+		int nbC = 0;
+		for (int i = 0; i<constructions.size();i++)
+			nbC += constructions.get(i).getNbCadre();
+		return nbC;
+	}
+	public static int getNbSalaries(){
+		int nbS = 0;
+		for (int i = 0; i<constructions.size();i++)
+			nbS += constructions.get(i).getNbSalarie();
+		return nbS;
 	}
 	public static int getTotalRisque(){
 		int r = 0;
-		for (int i = 0; i < construction.size(); i++){
-			r += construction.get(i).getRisque();
-		}
+		for (int i = 0; i<constructions.size();i++)
+			r += constructions.get(i).getRisque();
 		return r;
 	}
-	public static void usures(){	// fonction qui fait s'user tous les batiments chaque jour
-		for (int i = 0; i < construction.size(); i++){
-			construction.get(i).usure();
+	public static int getNbActifs(){
+		return getNbSalaries()+getNbCadres();
+	}
+	public static int getAttractivites(){
+		int att = 0;
+		for (int i = 0; i<constructions.size();i++)
+			att += constructions.get(i).getAttractivite();
+		return att;
+	}
+	public static int getBudgets(){
+		int b= 0;
+		for (int i = 0; i<constructions.size();i++)
+			b += constructions.get(i).getBudget();
+		return b;
+	}
+	public static int getPostesPourvus(){
+		int p = 0;
+		for (int i = 0; i<constructions.size();i++)
+			p += constructions.get(i).getPostePourvu();
+		return p;
+	}
+	public static void effectifs(){
+		int total = Population.nbIndiv(Budget.getAgeTravail(), Budget.getAgeRetraite());
+		int effectif = getPostesPourvus();
+		int i = (int)Math.random()*constructions.size();
+		while(total < effectif){		// S'il y a plus de postes que d'employes, on supprime des postes pouvus
+			effectif -= constructions.get(i).retirerPersonnel();
+			i += ((int)Math.random()*10)%constructions.size();
 		}
 	}
-	public static void afficheEtat(){
-		for (int i = 0; i < construction.size(); i++){
-			System.out.println("Batiment de type " +construction.get(i).getClass() + " avec un risque d'accident de " + construction.get(i).getRisque() + "%");
-		}
-	}
-	public static int necessiteux (Population p){		// par jour?
-		int accident = (getTotalRisque()*p.nbIndiv(3, Budget.getAgeRetraite())/100)/construction.size();
-		int malades = p.nbIndiv(0, 129)/* *(100-Hygiene)*/ /85;
-		int necessiteux = accident + malades;
-		return necessiteux;
+	public static void sabotage(int amplitude){
+		int i = (int)Math.random()*constructions.size();
+		constructions.get(i).modifierRisque(amplitude);
 	}
 }

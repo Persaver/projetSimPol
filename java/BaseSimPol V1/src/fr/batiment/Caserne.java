@@ -1,24 +1,58 @@
 package fr.batiment;
 
-import fr.indicateur.Budget;
+import java.util.ArrayList;
+import java.util.List;
+
+import fr.indicateur.Education;
 
 public class Caserne extends Batiment {
-	public int entretien;		// Les pompiers ont la capacite de faire tenir les autres batiments debout
+	private int pEntretien;		// Potentiel d'entretien des batiments
+	private static List<Caserne> casernes = new ArrayList<Caserne>();
+	private int indiceCas;
 
 	public Caserne() {
-		this.nbSalarie = 60;
-		Budget.setNbSalaries(6);
-		this.nbCadre = 20;
-		Budget.setNbCadre(2);
+		super(60, 20, 0, 1);
+		this.pEntretien = 6;
+		this.indiceCas = casernes.size();
+		casernes.add(this);
 	}
 
 	public Caserne(int niv) {
-		super();
-		this.nbSalarie = (int)(60*Math.pow(1.3, niv-1));
-		Budget.setNbSalaries((this.nbSalarie)/10);
-		this.nbCadre = (int)(20*Math.pow(1.1, niv-1));
-		Budget.setNbCadre(this.nbCadre/10);
+		this();
+		for(int i = 0; i<niv; i++)
+			this.ameliorer();
+	}
+	
+	public void ameliorer(){
+		this.ameliore(0.3, 0.1, 0, 1);
+		this.pEntretien = ((10+this.nbCadre/3)*this.nbSalarie)/50;
 	}
 
+	public int getEntretien(){
+		return this.pEntretien;
+	}
 	
+		// Les employes vont effectuer des inspection.
+	public void entretien(){
+		int l = Batiment.constructions.size();
+		int e = this.pEntretien*this.potentiel()/100*(300+Education.getEdSecurite())/500;
+		int indice = (int)(Math.random()*l);
+		while (e>0){		// Si un batiment est bien endommage, les ouvriers vont se concentrer dessus
+			if (Batiment.constructions.get(indice).getRisque()>=10){
+				if (e>=10){
+					Batiment.constructions.get(indice).modifierRisque(10);
+					e -= 10;
+				} else {
+					Batiment.constructions.get(indice).modifierRisque(e);
+					e = 0;
+				}				// Des qu'ils verront des defauts, les ouvriers vont apporter des reparation
+			} else
+				if (Batiment.constructions.get(indice).getRisque()>0){
+				Batiment.constructions.get(indice).modifierRisque(1); // entre deux batiment, le deplacement leur prend du temps (et ça assure d'arruver a 'e=0'
+				e--;
+			} // Si tout va bien, on recommence jusqu'a ce qu'il soit l'heure d'arreter
+			indice = (indice+1)%l;
+			e--;
+		}
+	}
 }
