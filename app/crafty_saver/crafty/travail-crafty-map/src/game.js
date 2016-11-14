@@ -121,9 +121,9 @@ Game = {
     */
 
     addCraftyEntity: function(dataEntite) {
-      console.log(dataEntite);
-        console.log("create entite Game");
         Crafty.trigger("CreateEntity", dataEntite);
+        console.log("a");
+
     },
 
     //ajout des trigger
@@ -131,8 +131,9 @@ Game = {
             // ajout du trigger sur les div class constrution
             var constructions = document.getElementById("crafty-construction-liste").querySelectorAll("li");
             for (var key in constructions) {
+
                 constructions[key].onclick = function(e) {
-                  console.log(this);
+
                     // console.log("click");
                     // var id = constructions[key];
                     // console.log("test" + constructions[key]);
@@ -142,14 +143,9 @@ Game = {
                       var id =this.id;
                       var tableau = id.split('menu_');
                       id=tableau[1];
-                      console.log(id);
                       var entity = Game.gameDatas.menuConstruction[id];
-                      console.log(Game.gameDatas.menuConstruction[id]);
-
-                      // dataJson.[0].mapObjects;
-                      // tu suprimme
-                      console.log(entity);
                       Game.addCraftyEntity(entity);
+
 
                     //     //   // recherche l'objet à la clef id
                     //     //   //stoker ds qq chose

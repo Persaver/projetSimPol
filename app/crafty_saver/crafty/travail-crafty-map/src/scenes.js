@@ -207,8 +207,9 @@ console.log(comp);
 	this.createExternalEntity= function(){
 		Crafty.bind("CreateEntity",function(data){
 			console.log(data);
+
 			//console.log(data);
-			for(var key in data){
+
 				var attr = this.getFirstPlace(data);
 				if(attr){
 				//	console.log(data[key]);
@@ -217,7 +218,8 @@ console.log(comp);
 					var nData = {};
 					nData[data.components]=data;
 					createEntities(nData);
-				}
+					console.log("scene");
+				
 			}
 
 		});
