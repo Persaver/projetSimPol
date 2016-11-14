@@ -1,11 +1,128 @@
+*{
+  box-sizing:border-box;
+}
+ul{
+  padding-left:0;
+}
+
 #scene{
   margin-left:auto;
   margin-right:auto;
 }
 
 #container{
-  height: 600px;
-  width: 1200px;
+  width:70%;
+  display:inline-block;
+  min-height: 600px;
+  min-width: 800px;
   border: solid 5px black;
   margin:auto;
+}
+#crafty-aside{
+  position:relative;
+  float:left;
+  width:20%;
+  margin-left:5%;
+}
+
+
+#crafty-construction-liste{
+border: solid 5px white;
+height:600px;
+width: 100%;
+padding-left:10px;
+padding-right:10px;
+}
+
+#crafty-construction{
+/*background: url("../img/menu_icon.png") no-repeat;*/
+}
+
+#board_icons{
+  position:relative;
+  list-style-type:none;
+  width: 100%;
+  margin-bottom:10px;
+}
+
+#board_icons li{
+  float:left;
+  border: solid 1px black;
+  width: 50%;
+
+}
+
+#board_icons li div.construction_icons{
+  height:50px;
+  width: 50px;
+  background: url("../img/menu_icon.png") no-repeat;
+  margin-left:calc( 50% - 25px);
+}
+
+
+#board_icons #menu_church div.construction_icons{
+background-position: 64%  79%;
+}
+#board_icons #menu_museum div.construction_icons{
+background-position: 20% 10%;
+}
+
+#board_icons #menu_warehouse div.construction_icons{
+background-position: 47% 26%;
+}
+
+#board_icons #menu_desk div.construction_icons{
+background-position: 58% 26%;
+}
+#board_icons #menu_restaurant div.construction_icons{
+background-position: 4% 79%;
+}
+#board_icons #menu_night_club div.construction_icons{
+background-position: 20% 79%;
+}
+#board_icons #menu_temple div.construction_icons{
+background-position: 91% 79%;
+}
+#board_icons #menu_temple_tower div.construction_icons{
+background-position: 20% 74%;
+}
+#board_icons #menu_farm div.construction_icons{
+background-position: 58% 90%;
+}
+#board_icons #menu_rescue_tower div.construction_icons{
+background-position: 69% 0%;
+}
+
+#board_icons #menu_circus div.construction_icons{
+background-position: 42% 95%;
+}
+
+#board_icons #menu_television div.construction_icons{
+background-position: 58% 58%;
+}
+
+#board_icons #menu_entertainment_hall div.construction_icons{
+background-position: 42% 69%;
+}
+
+#board_icons #menu_military_place div.construction_icons{
+background-position: 31% 69%;
+}
+
+#board_icons #menu_military_tower div.construction_icons{
+background-position: 85% 74%;
+}
+
+#board_icons #menu_factory div.construction_icons{
+background-position: 91% 42%;
+}
+
+#board_icons #menu_hospital div.construction_icons{
+background-position: 37% 37%;
+}
+#board_icons #menu_police_dpt div.construction_icons{
+background-position: 26% 63%;
+}
+#board_icons #menu_university div.construction_icons{
+background-position: 15% 63%;
 }

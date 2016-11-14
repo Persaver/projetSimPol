@@ -1,8 +1,9 @@
 Crafty.scene('Town', function(){
 	// varibale pour tester sans serveur
+	//Rapport avec le crafty.scene de game.js ?????
 	var ISDEBUG = true;
 
-	var currentScene = this;	
+	var currentScene = this;
 	// A 2D array to keep track of all occupied tiles
 	this.occupied = [Game.map_grid.width];
 	// initialise la grille a false partout
@@ -12,28 +13,29 @@ Crafty.scene('Town', function(){
 			this.occupied[i][y] = false;
 		}
 	}
-	// test si une case est occupée 
-	// params x,y coord ; facultatif w,h nombre de case a tester =>  this.isOccupied(15,15) == this.isOccupied(15,15,1,1) 
+	// test si une case est occupée
+	// params x,y coord ; facultatif w,h nombre de case a tester =>  this.isOccupied(15,15) == this.isOccupied(15,15,1,1)
 	// return true si une case au moins est occupé
 	// mofifer pour params ArrayOrObject
 	this.isOccupied = function(ArrayOrObject){
 		var x,y,w,h;
-		
+		//console.log(ArrayOrObject);
 		if (!Array.isArray(ArrayOrObject)){
 			x =  ArrayOrObject.x;
 			y =  ArrayOrObject.y;
-			w =  ArrayOrObject.h;
+			w =  ArrayOrObject.w;
 			h =  ArrayOrObject.h;
 		}
 		else {
 			x = ArrayOrObject[0];
 			y = ArrayOrObject[1];
-			if (ArrayOrObject.lenght = 4){
+			if (ArrayOrObject.length == 4){
 				w =  ArrayOrObject[2];
 				h =  ArrayOrObject[3];
 			}
 		}
 		if(x>=0 && y>=0){
+			//console.log(x + " " +y+ " "+" "+w+" " +h )
 		if( h === undefined || w === undefined){
 			return this.occupied[x][y];
 		} else{
@@ -43,16 +45,16 @@ Crafty.scene('Town', function(){
 				j=0;
 				while ( !isOccupied && j < h && ((y+j) < this.occupied[i].length) ){
 					isOccupied |= this.occupied[x+i][y+j];
-					console.log(this.occupied[x+i][y+j]);
+			//		console.log(this.occupied[x+i][y+j]);
 					j++;
 				}
 				i++;
 			}
-			return !!isOccupied;		
+			return !!isOccupied;
 		}
 		}else{	return true;	}
 	}
-	
+
 	// passe a occupé les cases concernées
 	// params x,y les coord de la tuile Facultatif w,h nombre de case en largeur et hauteur
 	// Occupied metr
@@ -62,18 +64,18 @@ Crafty.scene('Town', function(){
 		if (!Array.isArray(ArrayOrObject)){
 			x =  ArrayOrObject.x;
 			y =  ArrayOrObject.y;
-			w =  ArrayOrObject.h;
+			w =  ArrayOrObject.w;
 			h =  ArrayOrObject.h;
 		}
 		else {
 			x = ArrayOrObject[0];
 			y = ArrayOrObject[1];
-			if (ArrayOrObject.lenght = 4){
+			if (ArrayOrObject.length == 4){
 				w =  ArrayOrObject[2];
 				h =  ArrayOrObject[3];
 			}
 		}
-		if(x>=0 && y>=0){ 
+		if(x>=0 && y>=0){
 		if( h === undefined && w == undefined){
 			this.occupied[x][y] = occupied;
 		} else{
@@ -82,12 +84,12 @@ Crafty.scene('Town', function(){
 				j=0;
 				while (j < h && ((y+j) < this.occupied[i].length) ){
 					this.occupied[x+i][y+j] = occupied;
-					console.log(this.occupied[x+i][y+j]);
+					// console.log(this.occupied[x+i][y+j]);
 					j++;
 				}
 				i++;
 			}
-				
+
 		}
 		}else{	return false;	}
 	}
@@ -109,7 +111,10 @@ Crafty.scene('Town', function(){
 					Crafty.e('Stone_Road').at([x,y]);
 					currentScene.setOccupied([x, y],true);
 
-				} 
+				}else if(x==Math.floor(Game.map_grid.width/4) || x==Math.floor(Game.map_grid.width/4) * 3 || y==Math.floor(Game.map_grid.height/4) || y==Math.floor(Game.map_grid.height/4)* 3){
+					Crafty.e('Stone_Road').at([x,y]);
+					currentScene.setOccupied([x, y],true);
+				}
 
 
 			}
@@ -128,22 +133,22 @@ Crafty.scene('Town', function(){
 		}
 	}
 	var craftyEntities =[];
-	//on recupere les Entities  
+	//on recupere les Entities
 	var getEntities = function(){
 		if(ISDEBUG){
-			console.log(Game.gameDatas.mapObjects.dataEntities);
+			// console.log(Game.gameDatas.mapObjects.dataEntities);
 			return Game.gameDatas.mapObjects.dataEntities;
 		}
-	};	
-	
-	
+	};
+
+
 	var createEntities = function(dataEntities) {
 		// pour chaque entité dans les data
   	   	for (var entity in dataEntities) {
 
   	        	var entityC = dataEntities[entity];
 			// on crée l'entité
-			console.log(entityC);
+			// console.log(entityC);
            		craftyEntities[entityC.name] = Crafty.e(entityC.components).at([entityC.attr.x,entityC.attr.y,entityC.attr.w,entityC.attr.h]);
 			// on les ajoute à la map
 			console.log(craftyEntities[entityC.name].at());
@@ -159,7 +164,7 @@ Crafty.scene('Town', function(){
 					console.log(this.oldPos);
 				//	console.log(Crafty.rectManager.overlap(this,this));
 				console.log(this);
-                            })
+                            	})
                             .bind("StopDrag", function() {
 				//ici on fera le test pour savoir si on peut poser
 				// si oui on enregistrera ca dans Game.gameDatas
@@ -167,57 +172,114 @@ Crafty.scene('Town', function(){
 					// ON LE PLACE GRACE AUX LONGEURS DE TUILE DE LA GRILLE
 					console.log(currentScene.isOccupied(this.at()));
 					if(currentScene.isOccupied(this.at())){
-						this.at(this.oldPos);	
+						this.at(this.oldPos);
 					}
 					else{
 						this.at(this.at());
 						this.oldPos = this.at();
 					}
-		
+
 					currentScene.setOccupied(this.at(),true);
 			//	console.log(this);
                             })
                             .bind("HitOn", function(hitData) {
                                 console.log("Collision with Solid entity occurred for the first time.");
-				
+
 console.log(hitData);
                             })
                             .bind("HitOff", function(comp) {
                                 console.log("Collision with Solid entity ended.");
 
 console.log(comp);
-                            });
+                            })
+			    .bind("Click",function(){
+				this.toggleClick();
+				console.log(""+this.isClick());
+				this.display();
+				});
 
        		 }
 	}
     };
+	// bind sur les Create Enty venu depuis l'esterieur de crafty
+	// data type dataEntity
+	this.createExternalEntity= function(){
+		Crafty.bind("CreateEntity",function(data){
+			//console.log(data);
+			for(var key in data){
+				var attr = this.getFirstPlace(data[key]);
+				if(attr){
+				//	console.log(data[key]);
+				//	console.log(attr);
+					data[key].attr=attr;
+					createEntities(data);
+				}
+			}
+
+		});
+	};
+	// trouve la premiere place disponible
+	// params dataiEntity
+	this.getFirstPlace= function(dataEntity){
+		var attr = {
+			x:0,
+			y:0},
+			isPlace=false;
+		// si pas de param on met la taille est la hauteur à 1
+		if(dataEntity == undefined){
+			attr.w=1;
+			attr.h=1;
+		}else{
+			attr.w=dataEntity.attr.w;
+			attr.h=dataEntity.attr.h;
+		}
+		// des qu'on trouve on sort
+		while(!isPlace && (attr.x+attr.w) < this.occupied.length){
+			//console.log(isPlace + " " + attr.x+ " " +attr.y);
+			attr.y=0;
+			while(!isPlace && (attr.y+attr.h) < this.occupied[attr.x].length){
+				isPlace = !this.isOccupied({x:attr.x,y:attr.y,w:attr.w,h:attr.h});
+				attr.y++;
+			}
+			attr.x++;
+		}
+
+		if(isPlace){
+			attr.x--;
+			attr.y--;
+			return attr;
+		}else {
+			return false;	}
+
+	}
+
 	console.log(Game);
 	console.log(typeof [10,10]);
-//	if(!this.isOccupied([10,10])){
-//		Crafty.e('House').at(10,10);
-//	}
-  
+
 	this.generateMap();
 	var dataEntities = getEntities();
 	createEntities(dataEntities);
 	generateRandomEntities();
+	this.createExternalEntity();
+	Game.addMenuConstruction();
+	Game.startTriggers();
+
 });
 
 Crafty.scene('Loading', function(){
 	// Draw some text for the player to see in case the file
 	//  takes a noticeable amount of time to load
 	Crafty.e('2D, DOM, Text')
-		.text('Loading; please wait...')
+		.text('Chargement en cours...')
 		.attr({ x: 0, y: Game.height()/2 - 24, w: Game.width() })
 		.textFont({});
 
 	// Load our sprite map image
-	console.log(Game.gameDatas);
+	// console.log(Game.gameDatas);
 	Game.getData();
-	console.log(Game.gameDatas.mapObjects.sprites);
+	// console.log(Game.gameDatas.mapObjects.sprites);
 	Crafty.load({sprites:Game.gameDatas.mapObjects.sprites}, function(){
 		// Once the images are loaded...
 		Crafty.scene('Town');
 	});
 });
-
