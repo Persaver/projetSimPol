@@ -151,9 +151,11 @@ Crafty.scene('Town', function(){
 			// on crée l'entité
 			// console.log(entityC);
            		craftyEntities[entityC.name] = Crafty.e(entityC.components).at([entityC.attr.x,entityC.attr.y,entityC.attr.w,entityC.attr.h]);
+			craftyEntities[entityC.name].setName(entity);
 			// on les ajoute à la map
 			console.log(craftyEntities[entityC.name].at());
 			currentScene.setOccupied(craftyEntities[entityC.name].at(),true);
+			
 		// si de type moveable on lui ajout le drag and drop
 			if(entityC.type == "moveable"){
 				craftyEntities[entityC.name].oldPos = craftyEntities[entityC.name].at();

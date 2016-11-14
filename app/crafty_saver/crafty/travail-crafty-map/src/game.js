@@ -95,12 +95,15 @@ Game = {
     //params object minimum   data: { message:"le message" }
 
     displayContextual: function(data, container) {
-
-        if (typeof container == "undefined") {
+	if (typeof container == "undefined") {
             container = document.getElementById("crafty-contex-content");
-        }
-        container.innerHTML = data.message;
-
+       	 }
+		for(key in data){
+		var row  = document.createElement('li');
+	
+        
+        	container.innerHTML = data.message;
+	}
     },
 
     //creation d'un element + ajout à crafty

@@ -113,6 +113,9 @@ Crafty.c('Clickable', {
     init: function() {
         this.requires('Actor,Mouse');
     },
+    entityName:"",
+    setName:function(name){this.entityName = name;},
+	getName:function(){return this.entityName;},
     isClick: function() {
         return this._isClick;
     },
@@ -133,8 +136,9 @@ Crafty.c('Contextual', {
     },
     display: function() {
         _message = {
-            message: this.attr
-        };
+        	message: this.at(),
+		id:this.getName()
+        	};
         Game.displayContextual(_message);
     }
 });
