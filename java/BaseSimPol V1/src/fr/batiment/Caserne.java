@@ -16,18 +16,21 @@ public class Caserne extends Batiment {
 		this.indiceCas = casernes.size();
 		casernes.add(this);
 	}
-
 	public Caserne(int niv) {
 		this();
 		for(int i = 0; i<niv; i++)
 			this.ameliorer();
 	}
-	
 	public void ameliorer(){
 		this.ameliore(0.3, 0.1, 0, 1);
 		this.pEntretien = ((10+this.nbCadre/3)*this.nbSalarie)/50;
 	}
-
+	public void detruire(){
+		super.detruire(this.indice);
+		casernes.remove(this.indiceCas);
+		for (int i = this.indice; i < casernes.size(); i++)
+			casernes.get(i).indiceCas --;
+	}
 	public int getEntretien(){
 		return this.pEntretien;
 	}

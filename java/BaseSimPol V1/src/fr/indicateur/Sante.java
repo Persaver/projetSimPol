@@ -69,4 +69,44 @@ public class Sante {
 		nbMalades -= (int)(Math.random()*hygiene*nbMalades/1000);		// parmi les malades entre 0 et 10% guerissent tout seuls en fonctio de l'hygiene
 		nbAccidents -= (int)(Math.random()*hygiene*nbAccidents/1000);	// idem pour les maladroits
 	}
+
+	public static int getHygiene() {
+		return hygiene;
+	}
+
+	public static void setHygiene(int hygiene) {
+		Sante.hygiene = hygiene;
+	}
+
+	public static int getNbMalades() {
+		return nbMalades;
+	}
+
+	public static void setNbMalades(int nbMalades) {
+		Sante.nbMalades = nbMalades;
+	}
+
+	public static int getNbAccidents() {
+		return nbAccidents;
+	}
+
+	public static void setNbAccidents(int nbAccidents) {
+		Sante.nbAccidents = nbAccidents;
+	}
+
+	public static int getSoins() {
+		return soins;
+	}
+
+	public static void setSoins(int soins) {
+		Sante.soins = soins;
+	}
+
+	public static int getEchecs() {
+		return echecs;
+	}
+
+	public static void setEchecs(int echecs) {
+		Sante.echecs = echecs;
+	}
 }
