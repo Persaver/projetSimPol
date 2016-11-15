@@ -6,6 +6,7 @@ import java.util.List;
 import fr.indicateur.Education;
 
 public class Caserne extends Batiment {
+	
 	private int pEntretien;		// Potentiel d'entretien des batiments
 	private static List<Caserne> casernes = new ArrayList<Caserne>();
 	private int indiceCas;
