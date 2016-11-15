@@ -4,24 +4,16 @@ public abstract class Stadium extends Batiment {
 	public int capacite;		//Elt qui influera sur l'attractivite et la satisfaction du bas peuple
 	
 	public Stadium() {
-		super();
-		this.nbSalarie = 40;
-		this.nbCadre = 10;
-		this.capacite = 15000;
-		this.modRisque = 3;
+		super(40, 10, 3, 5);
 	}
 
 	public Stadium(int niv) {
-		super();
-		this.nbSalarie = (int)(40*Math.pow(1.8, niv-1));
-		this.nbCadre = (int)(30*Math.pow(2, niv-1));
-		this.capacite = (int)(15000*Math.pow(1.75, niv-1));
-		this.modRisque = 3*niv;
+		this();
+		for (int i = 0; i< niv; i++)
+			this.ameliore();
 	}
-	public void Ameliore (){
-		this.nbSalarie += (int)(this.nbSalarie*0.75);
-		this.nbCadre += (int)(this.nbCadre*0.8);
+	public void ameliore (){
+		super.ameliore(0.75, 0.8, 3, 6);
 		this.capacite = this.capacite*175/100;
-		this.modRisque += 3;
 	}
 }

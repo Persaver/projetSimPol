@@ -98,11 +98,12 @@ var CraftyMap = (function() {
         for (var entity in dataEntities) {
             var entityC = dataEntities[entity];
 	    console.log(entityC);
+      console.log("map2.js");
             craftyEntities[entityC.name] = Crafty.e(entityC.components).attr(scaleEntity(entityC.attr,5));
 		var inMap = Crafty.map.insert(craftyEntities[entityC.name]);
 		if(entityC.type == "moveable"){
 		    console.log(craftyEntities[entityC.name]);
-		
+
 			craftyEntities[entityC.name]
 			    .bind("StartDrag", function() {
                                 console.log("START1" + this.x + " " + this.y);

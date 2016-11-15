@@ -152,6 +152,7 @@ var CraftyMap = (function() {
                 var entityC = dataEntities[entity];
 
                 craftyEntities[entityC.name] = Crafty.e(entityC.components).attr(scaleEntity(entityC.attr, 5));
+                console.log("map.js");
 
                 // if(entityC.type == 'moveable') {
                 //     craftyEntities[entityC.name]

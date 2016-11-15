@@ -224,7 +224,7 @@ var spl_debugJson = {
                     "spr_house_4": [947, 113, 61, 82],
                     "spr_museum": [592, 210, 208, 125],
                     "spr_warehouse": [13, 545, 255, 217],
-                    "spr_desk": [0, 772, 44, 170],
+                    "spr_desk": [0, 772, 244, 170],
                     "spr_church": [880, 206, 122, 124],
                     "spr_restaurant": [934, 12, 81, 88],
                     "spr_night_club": [786, 17, 78, 80],
@@ -233,7 +233,7 @@ var spl_debugJson = {
                     "spr_farm": [275, 560, 206, 118],
                     "spr_rescue_tower": [612, 799, 106, 184],
                     "spr_circus": [736, 354, 178, 165],
-                    "spr_television": [0, 342, 148],
+                    "spr_television": [4,343,140,191],
                     "spr_entertainment_hall": [240, 386, 65, 164]
                 }
             },
@@ -306,7 +306,7 @@ var spl_debugJson = {
         //exemple de data renvoyer par le serveur
         // le type du data
         "church": {
-            type: "moveable",
+            "type": "moveable",
             "components": "Church",
             //la hauteur et la largeur
             "attr": {
@@ -362,20 +362,128 @@ var spl_debugJson = {
             }
         },
         //L'image est prise à la source sur "../img/menu_icon.png" et les coordonnées de chaque logo sont fixées en CSS
-        "restaurant": {},
-        "night_club": {},
-        "temple": {},
-        "temple_tower": {},
-        "farm": {},
-        "rescue_tower": {},
-        "circus": {},
-        "television": {},
-        "entertainment_hall": {},
-        "military_place": {},
-        "military_tower": {},
-        "factory": {},
-        "hospital": {},
-        "police_dpt": {},
-        "university": {}
+        "restaurant": {
+          "type": "moveable",
+          "components": "Restaurant",
+          "attr": {
+              "w": 2,
+              "h": 2
+          }
+        },
+        "temple_tower": {
+          "type": "moveable",
+          "components": "Temple_Tower",
+          "attr": {
+              "w": 2,
+              "h": 2
+          }
+        },
+        "farm": {
+          "type": "moveable",
+          "components": "Farm",
+          "attr": {
+              "w": 2,
+              "h": 2
+          }
+        },
+        "rescue_tower": {
+          "type": "moveable",
+          "components": "Rescue_Tower",
+          "attr": {
+              "w": 2,
+              "h": 2
+          }
+        },
+        // "night_club": {
+        //   "type": "moveable"
+        //   "components": "Night_club"
+        // },
+        // "temple": {
+        //   "type": "moveable"
+        //   "components": "Temple"
+        // },
+
+
+        "circus": {
+          "type": "moveable",
+          "components": "Circus",
+          "attr": {
+              "w": 2,
+              "h": 2
+          }
+        },
+        "television": {
+          "type": "moveable",
+          "components": "Television",
+          "attr": {
+              "w": 2,
+              "h": 2
+          }
+        },
+        "entertainment_hall": {
+          "type": "moveable",
+          "components": "Entertainment_Hall",
+          "attr": {
+              "w": 2,
+              "h": 2
+            }
+
+
+
+        },
+        "military_place": {
+          "type": "moveable",
+          "components": "Military_Place",
+          "attr": {
+              "w": 2,
+              "h": 2
+            }
+          },
+
+
+        "military_tower": {
+          "type": "moveable",
+          "components": "Military_Tower",
+          "attr": {
+              "w": 2,
+              "h": 2
+            }
+        },
+        "factory": {
+          "type": "moveable",
+          "components": "Factory",
+          "attr": {
+              "w": 2,
+              "h": 2
+            }
+        },
+        "hospital": {
+          "type": "moveable",
+          "components": "Hospital",
+          "attr": {
+              "w": 2,
+              "h": 2
+            }
+
+        },
+        "police_dpt": {
+          "type": "moveable",
+          "components": "Police_Dpt",
+          "attr": {
+              "w": 2,
+              "h": 2
+            }
+
+        },
+        "university": {
+          "type": "moveable",
+          "components": "University",
+          "attr": {
+              "x": 31,
+              "y": 16,
+              "w": 3,
+              "h": 4
+          }
+        }
     }
 };

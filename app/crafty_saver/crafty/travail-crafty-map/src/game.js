@@ -66,7 +66,7 @@ Game = {
 
     addMenuConstruction: function() {
         var data = {};
-	var nb_case = 0;
+        var nb_case = 0;
         data = Game.gameDatas["menuConstruction"];
         console.log(data);
         var div = document.getElementById("crafty-construction-liste");
@@ -79,12 +79,12 @@ Game = {
             //
             for (var key in data) {
                 nb_case = nb_case + 1;
-		var newCase = document.createElement('li');
-		var newDiv = document.createElement('DIV');
-		newDiv.className += 'construction_icons';
-		newCase.appendChild(newDiv);
+                var newCase = document.createElement('li');
+                var newDiv = document.createElement('DIV');
+                newDiv.className += 'construction_icons';
+                newCase.appendChild(newDiv);
                 board.appendChild(newCase);
-                newCase.id="menu_"+key;
+                newCase.id = "menu_" + key;
                 console.log(data[key].type);
             }
         }
@@ -95,12 +95,15 @@ Game = {
     //params object minimum   data: { message:"le message" }
 
     displayContextual: function(data, container) {
-
-        if (typeof container == "undefined") {
+	if (typeof container == "undefined") {
             container = document.getElementById("crafty-contex-content");
-        }
-        container.innerHTML = data.message;
-
+       	 }
+		for(key in data){
+		var row  = document.createElement('li');
+	
+        
+        	container.innerHTML = data.message;
+	}
     },
 
     //creation d'un element + ajout à crafty
@@ -121,23 +124,39 @@ Game = {
     */
 
     addCraftyEntity: function(dataEntite) {
-        console.log("create entite Game");
         Crafty.trigger("CreateEntity", dataEntite);
+        console.log("a");
+
     },
 
     //ajout des trigger
     startTriggers: function() {
             // ajout du trigger sur les div class constrution
-            var constructions = document.getElementById("crafty-construction-liste").querySelectorAll(".construction");
-
+            var constructions = document.getElementById("crafty-construction-liste").querySelectorAll("li");
             for (var key in constructions) {
-                constructions[key].onclick = function(e) {
-                  var id =this.id;
-                  // recherche l'objet à la clef id
-                  //stoker ds qq chose
-                    console.log("click");
 
-                    Game.addCraftyEntity();
+                constructions[key].onclick = function(e) {
+
+                    // console.log("click");
+                    // var id = constructions[key];
+                    // console.log("test" + constructions[key]);
+                    // console.log("test" + id);
+                    //
+                      //console.log(id);
+                      var id =this.id;
+                      var tableau = id.split('menu_');
+                      id=tableau[1];
+                      var entity = Game.gameDatas.menuConstruction[id];
+                      Game.addCraftyEntity(entity);
+
+
+                    //     //   // recherche l'objet à la clef id
+                    //     //   //stoker ds qq chose
+                    //     //     console.log("click");
+                    //     //     console.log(constructions[key]);
+                    //     //     console.log(key);
+                    //     //
+                    //     //     Game.addCraftyEntity();
                 }
             };
 
