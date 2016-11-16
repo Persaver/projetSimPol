@@ -13,6 +13,12 @@ var spl_debugJson = {
                     "y": 1,
                     "w": 6,
                     "h": 2
+                },
+
+                "informations":{
+                "nb_salarie":1,
+                "nb_cadre":1,
+
                 }
             },
             "museum": {
@@ -23,6 +29,11 @@ var spl_debugJson = {
                     "y": "11",
                     "w": "4",
                     "h": "4"
+                },
+                "informations":{
+                "nb_salarie":1,
+                "nb_cadre":1,
+
                 }
             },
             "warehouse": {
