@@ -95,16 +95,54 @@ Game = {
     //params object minimum   data: { message:"le message" }
 
     displayContextual: function(data, container) {
-	if (typeof container == "undefined") {
-            container = document.getElementById("crafty-contex-content");
-       	 }
-		for(key in data){
-		var row  = document.createElement('li');
-	
-        
-        	container.innerHTML = data.message;
-	}
+        var id;
+
+        if (typeof container == "undefined") {
+          container = document.getElementById("crafty-contex-content");
+        }
+        container.innerHTML="";
+        var newListe=document.createElement('ul');
+        container.appendChild(newListe);
+        if (data.id != undefined) {
+            id = data.id.toLowerCase();
+        }
+
+
+
+        if (Game.gameDatas.mapObjects.dataEntities[id] != undefined && Game.gameDatas.mapObjects.dataEntities[id].informations != undefined) {
+            var informations = Game.gameDatas.mapObjects.dataEntities[id].informations;
+
+
+
+            for (key in informations) {
+                console.log(key + "  " +informations[key]);
+
+                //container = document.getElementById("crafty-contex-content");
+                var newPuce = document.createElement('li');
+                newListe.appendChild(newPuce);
+                var newP= document.createElement('p');
+                newP.className ="itemKey";
+                //newP.id="indicateur";
+                newP.innerHTML=key;
+                newPuce.appendChild(newP);
+                var newP2= document.createElement('p');
+                newP2.className ="itemValue";
+                //newP2.id="valeur_indicateur";
+                newP2.innerHTML=informations[key];
+                newPuce.appendChild(newP2);
+
+
+
+
+            }
+
+        }
+        //container.innerHTML = data.message;
+
+
     },
+
+
 
     //creation d'un element + ajout à crafty
     //params type dataEntite
@@ -125,7 +163,7 @@ Game = {
 
     addCraftyEntity: function(dataEntite) {
         Crafty.trigger("CreateEntity", dataEntite);
-        console.log("a");
+
 
     },
 
@@ -142,12 +180,12 @@ Game = {
                     // console.log("test" + constructions[key]);
                     // console.log("test" + id);
                     //
-                      //console.log(id);
-                      var id =this.id;
-                      var tableau = id.split('menu_');
-                      id=tableau[1];
-                      var entity = Game.gameDatas.menuConstruction[id];
-                      Game.addCraftyEntity(entity);
+                    //console.log(id);
+                    var id = this.id;
+                    var tableau = id.split('menu_');
+                    id = tableau[1];
+                    var entity = Game.gameDatas.menuConstruction[id];
+                    Game.addCraftyEntity(entity);
 
 
                     //     //   // recherche l'objet à la clef id
