@@ -98,10 +98,11 @@ Game = {
         var id;
 
         if (typeof container == "undefined") {
-            container = document.getElementById("crafty-contex-content");
-            var newListe=document.createElement('ul');
-            container.appendChild(newListe);
+          container = document.getElementById("crafty-contex-content");
         }
+        container.innerHTML="";
+        var newListe=document.createElement('ul');
+        container.appendChild(newListe);
         if (data.id != undefined) {
             id = data.id.toLowerCase();
         }
