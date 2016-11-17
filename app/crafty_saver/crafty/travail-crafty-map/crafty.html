@@ -21,38 +21,11 @@
     <script>
         window.addEventListener('load', Game.start);
     </script>
-    <style type="text/css" media="screen">
-        body {
-            background: black;
-            text-align: center;
-            color: #DDD;
-            font-family: Arial;
-        }
-
-        .controls {
-            color: #BBB;
-        }
-
-        #cr-stage {
-            margin: 20px auto 0;
-        }
-
-        .bottom {
-            font-size: 12px;
-            color: #888;
-            margin-top: 50px;
-        }
-
-        .bottom a {
-            color: #AAA;
-        }
-    </style>
 </head>
 
 <body>
-    <h2>SIMPOL</h2>
-
-
+  <div id="crafty-wrapper">
+    <div id="crafty-container">
     <div id="container">
         <section id="cr-stage"></section>
     </div>
@@ -62,22 +35,25 @@
         </header>
         <div id="crafty-construction">
             <header>
-
+  		<h3>Buildings</h3>
             </header>
-            <div id="crafty-construction-liste">
-              <h1>Buildings</h1>
+            <div id="crafty-construction-liste" class="list-wrapper" >  
+            
 
             </div>
         </div>
+	<div class="clear"></div>
         <div id="crafty-contex">
-            <!-- <header>titre info</header> -->
-            <div id="crafty-contex-content">
+		<header><h3>Information</h3></header>
+            <div id="crafty-contex-content" class="list-wrapper" >
 
             </div>
         </div>
-    </aside>
+    </aside><div class="clear"></div>
 
+  </div><div class="clear"></div>
 
+  </div>
 </body>
 
 </html>
