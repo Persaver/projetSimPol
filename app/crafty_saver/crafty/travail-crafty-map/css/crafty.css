@@ -134,3 +134,30 @@ ul {
 #board_icons #menu_university div.construction_icons {
     background-position: 15% 63%;
 }
+
+
+
+#crafty-contex-content ul li {
+list-style-type: none;
+
+}
+
+
+#crafty-contex-content ul li p{
+display:inline-block;
+width:50%;
+margin:auto;
+
+}
+#crafty-contex-content ul li p.itemKey{
+  position:relative;
+  font-style: italic;
+
+}
+#crafty-contex-content ul li p.itemKey::after{
+  position:absolute;
+  font-style:normal;
+  right:0;
+  content: ":";
+
+}

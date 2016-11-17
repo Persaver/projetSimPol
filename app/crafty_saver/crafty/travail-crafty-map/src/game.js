@@ -120,11 +120,13 @@ Game = {
                 var newPuce = document.createElement('li');
                 newListe.appendChild(newPuce);
                 var newP= document.createElement('p');
-                newP.id="indicateur";
+                newP.className ="itemKey";
+                //newP.id="indicateur";
                 newP.innerHTML=key;
                 newPuce.appendChild(newP);
                 var newP2= document.createElement('p');
-                newP2.id="valeur_indicateur";
+                newP2.className ="itemValue";
+                //newP2.id="valeur_indicateur";
                 newP2.innerHTML=informations[key];
                 newPuce.appendChild(newP2);
 
