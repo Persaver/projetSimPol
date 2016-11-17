@@ -16,6 +16,7 @@ var spl_debugJson = {
                 },
 
                 "informations":{
+                "nom": "maison" ,
                 "nb_salarie":1,
                 "nb_cadre":1,
 
@@ -31,6 +32,7 @@ var spl_debugJson = {
                     "h": "4"
                 },
                 "informations":{
+                "nom"  : "Museum",
                 "nb_salarie":1,
                 "nb_cadre":1,
 

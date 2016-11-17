@@ -96,24 +96,45 @@ Game = {
 
     displayContextual: function(data, container) {
         var id;
-        console.log("aaaa");
+
         if (typeof container == "undefined") {
             container = document.getElementById("crafty-contex-content");
+            var newListe=document.createElement('ul');
+            container.appendChild(newListe);
         }
         if (data.id != undefined) {
             id = data.id.toLowerCase();
         }
 
 
+
         if (Game.gameDatas.mapObjects.dataEntities[id] != undefined && Game.gameDatas.mapObjects.dataEntities[id].informations != undefined) {
             var informations = Game.gameDatas.mapObjects.dataEntities[id].informations;
 
+
+
             for (key in informations) {
-                console.log(key + " " +informations[key]);
+                console.log(key + "  " +informations[key]);
+
+                //container = document.getElementById("crafty-contex-content");
+                var newPuce = document.createElement('li');
+                newListe.appendChild(newPuce);
+                var newP= document.createElement('p');
+                newP.id="indicateur";
+                newP.innerHTML=key;
+                newPuce.appendChild(newP);
+                var newP2= document.createElement('p');
+                newP2.id="valeur_indicateur";
+                newP2.innerHTML=informations[key];
+                newPuce.appendChild(newP2);
+
+
+
+
             }
 
         }
-        container.innerHTML = data.message;
+        //container.innerHTML = data.message;
 
 
     },
