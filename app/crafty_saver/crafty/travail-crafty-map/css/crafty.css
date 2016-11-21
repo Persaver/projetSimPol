@@ -9,18 +9,20 @@ ul {
 	clear:both;
 }
 #crafty-wrapper{
+	position:relative;
 	width:100%;
-	max-height:800px
+	max-height:800px;
+	padding-left:10px;
+	padding-right:10px;
 }
 #crafty-container {
     margin-left: auto;
     margin-right: auto;
+    height:640px;
 }
 #container {
     width: 80%;
     display: inline-block;
-    min-height: 600px;
-    min-width: 800px;
     margin: auto;
 }
 
@@ -29,6 +31,7 @@ ul {
     float: left;
     width: 20%;
     min-width:150px;
+    height:100%;
     
 }
 #crafty-aside header {
@@ -36,23 +39,24 @@ ul {
 	padding-right:10px;
 }
 #crafty-aside header h2, #crafty-aside header h3{
+	height:20px;
 	text-align:center;
 }
 #crafty-aside .list-wrapper{
-	overflow-y:scroll;
+    overflow-y:auto;
     width: 100%;
     padding-left: 10px;
     padding-right: 10px;
+    height:calc( 100% - 20px );	
+}
 
-}
-#crafty-construction-liste {
-    max-height:70%;
-}
 
 #crafty-construction {
-    /*background: url("../img/menu_icon.png") no-repeat;*/
+    height:70%;
 }
+#crafty-construction-liste {
 
+}
 #board_icons {
     position: relative;
     list-style-type: none;

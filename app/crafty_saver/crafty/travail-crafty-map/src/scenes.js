@@ -271,7 +271,8 @@ console.log(comp);
 	this.createExternalEntity();
 	Game.addMenuConstruction();
 	Game.startTriggers();
-
+	Crafty.viewport.scale(22);
+	Crafty.viewport.mouselook(true)
 });
 
 Crafty.scene('Loading', function(){
@@ -279,7 +280,7 @@ Crafty.scene('Loading', function(){
 	//  takes a noticeable amount of time to load
 	Crafty.e('2D, DOM, Text')
 		.text('Chargement en cours...')
-		.attr({ x: 0, y: Game.height()/2 - 24, w: Game.width() })
+		.attr({ x: Game.width()/3, y: Game.height()/2 - 24, w: Game.width() })
 		.textFont({});
 
 	// Load our sprite map image

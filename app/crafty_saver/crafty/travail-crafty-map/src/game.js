@@ -10,8 +10,8 @@ Game = {
 
     //On définit ici la taille de la grille en unité tuile
     map_grid: {
-        width: 40,
-        height: 40,
+        width: 160,
+        height: 160,
         //On définit ici en Px la taille d'une tuile
         tile: {
             width: 16,
@@ -35,6 +35,7 @@ Game = {
         //Attention, selon la documention, il est necessaire de passer une fonction
         //en plus du nom de la scène
         Crafty.init(Game.width(), Game.height());
+	Crafty.viewport.init(640,640);
         Crafty.background('rgb(249, 223, 125)');
         Crafty.scene('Loading');
         // on recupere les données

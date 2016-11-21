@@ -147,7 +147,15 @@ Crafty.c('Moveable', {
         this.requires('Contextual,Collision,Draggable');
     },
 });
+Crafty.c('Removable',{
+	init: function(){
+		this.requires('Contextual');
+	},
+	remove:function() {
+		
+	}
 
+});
 Crafty.c('House', {
     init: function() {
         this.requires('Clickable, spr_house_1');
