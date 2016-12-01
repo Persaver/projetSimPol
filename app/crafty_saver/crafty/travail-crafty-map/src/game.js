@@ -165,12 +165,26 @@ Game = {
     addCraftyEntity: function(dataEntite) {
         Crafty.trigger("CreateEntity", dataEntite);
     },
-    zoom_in:function() {
 
+
+
+    zoom:function() {
         var zoom_inBtn = document.getElementById("zoom_in");
+        var zoom_outBtn = document.getElementById("zoom_out");
+
+        var echelle=0;
+
         zoom_inBtn.onclick = function() {
-        console.log("Vous m'avez cliqué !");
+        echelle--;
+        console.log(echelle);
         };
+
+        zoom_outBtn.onclick = function() {
+        echelle++;
+        console.log(echelle);
+        };
+
+
     },
 
     //ajout des trigger

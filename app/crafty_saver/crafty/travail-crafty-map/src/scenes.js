@@ -278,7 +278,7 @@ console.log(comp);
 	Game.startTriggers();
 	Crafty.viewport.scale(1);
 	Crafty.viewport.mouselook(true);
-	Game.zoom_in();
+	Game.zoom();
 });
 
 Crafty.scene('Loading', function(){
