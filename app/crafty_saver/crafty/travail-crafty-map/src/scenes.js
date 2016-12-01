@@ -264,6 +264,11 @@ console.log(comp);
 	console.log(Game);
 	console.log(typeof [10,10]);
 
+
+
+
+
+
 	this.generateMap();
 	var dataEntities = getEntities();
 	createEntities(dataEntities);
@@ -272,7 +277,8 @@ console.log(comp);
 	Game.addMenuConstruction();
 	Game.startTriggers();
 	Crafty.viewport.scale(1);
-	Crafty.viewport.mouselook(true)
+	Crafty.viewport.mouselook(true);
+	Game.zoom_in();
 });
 
 Crafty.scene('Loading', function(){

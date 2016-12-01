@@ -164,8 +164,13 @@ Game = {
 
     addCraftyEntity: function(dataEntite) {
         Crafty.trigger("CreateEntity", dataEntite);
+    },
+    zoom_in:function() {
 
-
+        var zoom_inBtn = document.getElementById("zoom_in");
+        zoom_inBtn.onclick = function() {
+        console.log("Vous m'avez cliqué !");
+        };
     },
 
     //ajout des trigger
@@ -201,4 +206,7 @@ Game = {
 
         }
         // ajout du trigger sur les div class constrution
+
+
+
 }
