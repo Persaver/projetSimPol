@@ -271,7 +271,7 @@ console.log(comp);
 	this.createExternalEntity();
 	Game.addMenuConstruction();
 	Game.startTriggers();
-	Crafty.viewport.scale(22);
+	Crafty.viewport.scale(1);
 	Crafty.viewport.mouselook(true)
 });
 
