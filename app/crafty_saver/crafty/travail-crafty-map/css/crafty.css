@@ -14,16 +14,16 @@ ul {
 	max-height:800px;
 	padding-left:10px;
 	padding-right:10px;
-  z-index: 1;
+
 }
 #crafty-container {
     margin-left: auto;
     margin-right: auto;
     height:640px;
-    z-index:2;
+
 }
 #container {
-    z-index:1;
+
     width: 80%;
     display: inline-block;
     margin: auto;
