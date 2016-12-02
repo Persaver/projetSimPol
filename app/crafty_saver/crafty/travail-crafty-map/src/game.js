@@ -116,31 +116,44 @@ Game = {
 
 
             for (key in informations) {
-                console.log(key + "  " + informations[key]);
+                //valeur
+                var a=key;
+                //label
+                var b=informations[key];
+                var label=new Array();
+                label[0]="nb_salarie++";
+                label[0][0]="nombre de salariés++";
+                label[1]="nb_cadre";
+                label[1][1]="nombre de cadres";
 
+                for(var i=0;i<=label[i].length;i++){
+                  console.log(b+"for");
+                  if(b==label[i]){
+                      console.log(b);
+                      b=label[i][i];
+                      console.log(b);
+                      break;
+                  }
+                }
+                //console.log(a + "  " + b);
                 //container = document.getElementById("crafty-contex-content");
                 var newPuce = document.createElement('li');
                 newListe.appendChild(newPuce);
                 var newP = document.createElement('p');
                 newP.className = "itemKey";
-                //newP.id="indicateur";
-                newP.innerHTML = key;
+                newP.id="indicateur";
+                newP.innerHTML = a;
+
                 newPuce.appendChild(newP);
                 var newP2 = document.createElement('p');
                 newP2.className = "itemValue";
                 //newP2.id="valeur_indicateur";
-                newP2.innerHTML = informations[key];
+                newP2.innerHTML = b;
                 newPuce.appendChild(newP2);
 
-
-
-
             }
-
         }
         //container.innerHTML = data.message;
-
-
     },
 
 
