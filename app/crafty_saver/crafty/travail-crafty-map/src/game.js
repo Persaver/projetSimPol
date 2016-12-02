@@ -174,21 +174,21 @@ Game = {
         var zoom_outBtn = document.getElementById("zoom_out");
         //Le zoom min est de 1 & le zoom max est de 3
         var echelle = 1;
-        zoom_inBtn.onclick = function() {
-            if (echelle >= 1 && echelle < 3) {
-                echelle++;
-            } else if (echelle == 3) {
-                echelle = 3;
+        var maxScale = 3;
+        var minScale = 0.5;
+        var pas= 0.5;
+        zoom_outBtn.onclick = function() {
+            if (echelle > minScale && echelle <= maxScale) {
+              console.log("test");
+                echelle-=pas;
             }
             callback(echelle);
             console.log(echelle);
         };
 
-        zoom_outBtn.onclick = function() {
-            if (echelle == 3 || echelle == 2) {
-                echelle--;
-            } else if (echelle == 1) {
-                echelle = 1;
+        zoom_inBtn.onclick = function() {
+            if (echelle>=minScale && echelle<maxScale ) {
+                echelle+=pas;
             }
             callback(echelle);
             console.log(echelle);
