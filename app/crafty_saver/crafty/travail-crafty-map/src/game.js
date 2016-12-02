@@ -35,7 +35,7 @@ Game = {
         //Attention, selon la documention, il est necessaire de passer une fonction
         //en plus du nom de la scène
         Crafty.init(Game.width(), Game.height());
-	Crafty.viewport.init(640,640);
+        Crafty.viewport.init(640, 640);
         Crafty.background('rgb(249, 223, 125)');
         Crafty.scene('Loading');
         // on recupere les données
@@ -99,10 +99,10 @@ Game = {
         var id;
 
         if (typeof container == "undefined") {
-          container = document.getElementById("crafty-contex-content");
+            container = document.getElementById("crafty-contex-content");
         }
-        container.innerHTML="";
-        var newListe=document.createElement('ul');
+        container.innerHTML = "";
+        var newListe = document.createElement('ul');
         container.appendChild(newListe);
         if (data.id != undefined) {
             id = data.id.toLowerCase();
@@ -116,20 +116,20 @@ Game = {
 
 
             for (key in informations) {
-                console.log(key + "  " +informations[key]);
+                console.log(key + "  " + informations[key]);
 
                 //container = document.getElementById("crafty-contex-content");
                 var newPuce = document.createElement('li');
                 newListe.appendChild(newPuce);
-                var newP= document.createElement('p');
-                newP.className ="itemKey";
+                var newP = document.createElement('p');
+                newP.className = "itemKey";
                 //newP.id="indicateur";
-                newP.innerHTML=key;
+                newP.innerHTML = key;
                 newPuce.appendChild(newP);
-                var newP2= document.createElement('p');
-                newP2.className ="itemValue";
+                var newP2 = document.createElement('p');
+                newP2.className = "itemValue";
                 //newP2.id="valeur_indicateur";
-                newP2.innerHTML=informations[key];
+                newP2.innerHTML = informations[key];
                 newPuce.appendChild(newP2);
 
 
@@ -168,21 +168,32 @@ Game = {
 
 
 
-    zoom:function() {
+
+    zoom: function(callback) {
         var zoom_inBtn = document.getElementById("zoom_in");
         var zoom_outBtn = document.getElementById("zoom_out");
-
-        var echelle=0;
-
+        //Le zoom min est de 1 & le zoom max est de 3
+        var echelle = 1;
         zoom_inBtn.onclick = function() {
-        echelle--;
-        console.log(echelle);
+            if (echelle >= 1 && echelle < 3) {
+                echelle++;
+            } else if (echelle == 3) {
+                echelle = 3;
+            }
+            callback(echelle);
+            console.log(echelle);
         };
 
         zoom_outBtn.onclick = function() {
-        echelle++;
-        console.log(echelle);
+            if (echelle == 3 || echelle == 2) {
+                echelle--;
+            } else if (echelle == 1) {
+                echelle = 1;
+            }
+            callback(echelle);
+            console.log(echelle);
         };
+
 
 
     },

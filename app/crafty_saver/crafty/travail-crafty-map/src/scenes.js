@@ -266,7 +266,10 @@ console.log(comp);
 
 
 
-
+	this.setViewPort = function(value){
+		console.log("callback");
+		Crafty.viewport.scale(value);
+	};
 
 
 	this.generateMap();
@@ -276,9 +279,11 @@ console.log(comp);
 	this.createExternalEntity();
 	Game.addMenuConstruction();
 	Game.startTriggers();
-	Crafty.viewport.scale(1);
+	//this.setViewPort(4);
+	//Crafty.viewport.scale(1);
 	Crafty.viewport.mouselook(true);
-	Game.zoom();
+
+	Game.zoom(this.setViewPort);
 });
 
 Crafty.scene('Loading', function(){
