@@ -116,54 +116,37 @@ Game = {
 
 
             for (key in informations) {
-<<<<<<< Updated upstream
-                //valeur
-                var a=key;
                 //label
+                var a=key;
+                //valeur
                 var b=informations[key];
                 var label=new Array();
-                label[0]="nb_salarie++";
-                label[0][0]="nombre de salariés++";
-                label[1]="nb_cadre";
-                label[1][1]="nombre de cadres";
+                label[0]="nb_salarie";
+                label[1]="nombre de salariés";
+                label[2]="nb_cadre";
+                label[3]="nombre de cadres";
 
-                for(var i=0;i<=label[i].length;i++){
-                  console.log(b+"for");
-                  if(b==label[i]){
-                      console.log(b);
-                      b=label[i][i];
-                      console.log(b);
+                for(var i=0;i<=label.length;i++){
+                    if(a==label[i]){
+                      a=label[i+1];
+                      console.log(a);
+                      console.log(i);
                       break;
                   }
                 }
-                //console.log(a + "  " + b);
-                //container = document.getElementById("crafty-contex-content");
-                var newPuce = document.createElement('li');
-                newListe.appendChild(newPuce);
-                var newP = document.createElement('p');
-                newP.className = "itemKey";
-                newP.id="indicateur";
-                newP.innerHTML = a;
 
-=======
-                console.log(key + "  " +informations[key]);
 
-                //dans ton switch
-
-                //..informations[key].label = traduction
-
-                //container = document.getElementById("crafty-contex-content");
                 var newPuce = document.createElement('li');
                 newListe.appendChild(newPuce);
                 var newP= document.createElement('p');
                 newP.className ="itemKey";
-                //newP.id="indicateur";
-                newP.innerHTML=label;
->>>>>>> Stashed changes
+                newP.id="indicateur";
+                newP.innerHTML=a;
+
                 newPuce.appendChild(newP);
                 var newP2 = document.createElement('p');
                 newP2.className = "itemValue";
-                //newP2.id="valeur_indicateur";
+                newP2.id="valeur_indicateur";
                 newP2.innerHTML = b;
                 newPuce.appendChild(newP2);
 
