@@ -143,7 +143,7 @@ Crafty.scene('Town', function(){
 
 
 	var createEntities = function(dataEntities) {
-		console.log(dataEntities);
+		// console.log(dataEntities);
 		// pour chaque entité dans les data
   	   	for (var entity in dataEntities) {
 
@@ -162,16 +162,16 @@ Crafty.scene('Town', function(){
 				craftyEntities[entityC.name]
 				    .bind("StartDrag", function() {
 					//ici on fera le test pour savoir si on peut poser
-                        	        console.log("START1" + this.x + " " + this.y + " at " + this.at().x+ " " + this.at().y);
+                        	        // console.log("START1" + this.x + " " + this.y + " at " + this.at().x+ " " + this.at().y);
 					currentScene.setOccupied(this.oldPos,false);
-					console.log(this.oldPos);
+					// console.log(this.oldPos);
 				//	console.log(Crafty.rectManager.overlap(this,this));
-				console.log(this);
+				// console.log(this);
                             	})
                             .bind("StopDrag", function() {
 				//ici on fera le test pour savoir si on peut poser
 				// si oui on enregistrera ca dans Game.gameDatas
-                                console.log("STOP1" + this.x + " " + this.y);
+                                // console.log("STOP1" + this.x + " " + this.y);
 					// ON LE PLACE GRACE AUX LONGEURS DE TUILE DE LA GRILLE
 					console.log(currentScene.isOccupied(this.at()));
 					if(currentScene.isOccupied(this.at())){
@@ -197,7 +197,7 @@ console.log(comp);
                             })
 			    .bind("Click",function(){
 				this.toggleClick();
-				console.log(""+this.isClick());
+				// console.log(""+this.isClick());
 				this.display();
 				});
 
@@ -261,8 +261,8 @@ console.log(comp);
 
 	}
 
-	console.log(Game);
-	console.log(typeof [10,10]);
+
+
 
 
 

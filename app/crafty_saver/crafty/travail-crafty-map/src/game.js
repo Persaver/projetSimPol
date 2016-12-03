@@ -116,6 +116,7 @@ Game = {
 
 
             for (key in informations) {
+<<<<<<< Updated upstream
                 //valeur
                 var a=key;
                 //label
@@ -144,6 +145,21 @@ Game = {
                 newP.id="indicateur";
                 newP.innerHTML = a;
 
+=======
+                console.log(key + "  " +informations[key]);
+
+                //dans ton switch
+
+                //..informations[key].label = traduction
+
+                //container = document.getElementById("crafty-contex-content");
+                var newPuce = document.createElement('li');
+                newListe.appendChild(newPuce);
+                var newP= document.createElement('p');
+                newP.className ="itemKey";
+                //newP.id="indicateur";
+                newP.innerHTML=label;
+>>>>>>> Stashed changes
                 newPuce.appendChild(newP);
                 var newP2 = document.createElement('p');
                 newP2.className = "itemValue";
