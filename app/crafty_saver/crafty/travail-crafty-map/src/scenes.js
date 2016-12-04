@@ -1,7 +1,7 @@
 Crafty.scene('Town', function(){
 	// varibale pour tester sans serveur
 	//Rapport avec le crafty.scene de game.js ?????
-	var ISDEBUG = true;
+	var ISDEBUG = false;
 
 	var currentScene = this;
 	// A 2D array to keep track of all occupied tiles
@@ -36,22 +36,22 @@ Crafty.scene('Town', function(){
 		}
 		if(x>=0 && y>=0){
 			//console.log(x + " " +y+ " "+" "+w+" " +h )
-		if( h === undefined || w === undefined){
-			return this.occupied[x][y];
-		} else{
-			var isOccupied = false;
-			var i=0,j;
-			while (!isOccupied && i < w && ((x+i) < this.occupied.length )){
-				j=0;
-				while ( !isOccupied && j < h && ((y+j) < this.occupied[i].length) ){
-					isOccupied |= this.occupied[x+i][y+j];
-			//		console.log(this.occupied[x+i][y+j]);
-					j++;
+			if( h === undefined || w === undefined){
+				return this.occupied[x][y];
+			} else{
+				var isOccupied = false;
+				var i=0,j;
+				while (!isOccupied && i < w && ((x+i) < this.occupied.length )){
+					j=0;
+					while ( !isOccupied && j < h && ((y+j) < this.occupied[i].length) ){
+						isOccupied |= this.occupied[x+i][y+j];
+						//		console.log(this.occupied[x+i][y+j]);
+						j++;
+					}
+					i++;
 				}
-				i++;
+				return !!isOccupied;
 			}
-			return !!isOccupied;
-		}
 		}else{	return true;	}
 	}
 
@@ -76,21 +76,21 @@ Crafty.scene('Town', function(){
 			}
 		}
 		if(x>=0 && y>=0){
-		if( h === undefined && w == undefined){
-			this.occupied[x][y] = occupied;
-		} else{
-			var i=0,j;
-			while (i < w && ((x+i) < this.occupied.length )){
-				j=0;
-				while (j < h && ((y+j) < this.occupied[i].length) ){
-					this.occupied[x+i][y+j] = occupied;
-					// console.log(this.occupied[x+i][y+j]);
-					j++;
+			if( h === undefined && w == undefined){
+				this.occupied[x][y] = occupied;
+			} else{
+				var i=0,j;
+				while (i < w && ((x+i) < this.occupied.length )){
+					j=0;
+					while (j < h && ((y+j) < this.occupied[i].length) ){
+						this.occupied[x+i][y+j] = occupied;
+						// console.log(this.occupied[x+i][y+j]);
+						j++;
+					}
+					i++;
 				}
-				i++;
-			}
 
-		}
+			}
 		}else{	return false;	}
 	}
 
@@ -123,7 +123,7 @@ Crafty.scene('Town', function(){
 	var generateRandomEntities = function(){
 		for (var x = 0; x < Game.map_grid.width; x++) {
 			for (var y = 0; y < Game.map_grid.height; y++) {
-					  if (Math.random() < 0.06 && !currentScene.isOccupied([x, y])) {
+				if (Math.random() < 0.06 && !currentScene.isOccupied([x, y])) {
 					var grass_or_rock = (Math.random() > 0.3) ? 'Grass' : 'Rock';
 					Crafty.e(grass_or_rock).at([x, y]);
 
@@ -137,41 +137,41 @@ Crafty.scene('Town', function(){
 	var getEntities = function(){
 		if(ISDEBUG){
 			// console.log(Game.gameDatas.mapObjects.dataEntities);
-			return Game.gameDatas.mapObjects.dataEntities;
+			return Game.gameDatas.mapObjects;
 		}
 	};
 
 
 	var createEntities = function(dataEntities) {
-		// console.log(dataEntities);
+		 console.log(dataEntities);
 		// pour chaque entité dans les data
-  	   	for (var entity in dataEntities) {
+		for (var entity in dataEntities) {
 
-  	        	var entityC = dataEntities[entity];
+			var entityC = dataEntities[entity];
 			// on crée l'entité
-			// console.log(entityC);
-           		craftyEntities[entityC.name] = Crafty.e(entityC.components).at([entityC.attr.x,entityC.attr.y,entityC.attr.w,entityC.attr.h]);
+			 console.log(entity);
+			craftyEntities[entityC.name] = Crafty.e(entityC.components).at([entityC.attr.x,entityC.attr.y,entityC.attr.w,entityC.attr.h]);
 			craftyEntities[entityC.name].setName(entity);
 			// on les ajoute à la map
 			//console.log(craftyEntities[entityC.name].at());
 			currentScene.setOccupied(craftyEntities[entityC.name].at(),true);
 
-		// si de type moveable on lui ajout le drag and drop
+			// si de type moveable on lui ajout le drag and drop
 			if(entityC.type == "moveable"){
 				craftyEntities[entityC.name].oldPos = craftyEntities[entityC.name].at();
 				craftyEntities[entityC.name]
-				    .bind("StartDrag", function() {
+				.bind("StartDrag", function() {
 					//ici on fera le test pour savoir si on peut poser
-                        	        // console.log("START1" + this.x + " " + this.y + " at " + this.at().x+ " " + this.at().y);
+					// console.log("START1" + this.x + " " + this.y + " at " + this.at().x+ " " + this.at().y);
 					currentScene.setOccupied(this.oldPos,false);
 					// console.log(this.oldPos);
-				//	console.log(Crafty.rectManager.overlap(this,this));
-				// console.log(this);
-                            	})
-                            .bind("StopDrag", function() {
-				//ici on fera le test pour savoir si on peut poser
-				// si oui on enregistrera ca dans Game.gameDatas
-                                // console.log("STOP1" + this.x + " " + this.y);
+					//	console.log(Crafty.rectManager.overlap(this,this));
+					// console.log(this);
+				})
+				.bind("StopDrag", function() {
+					//ici on fera le test pour savoir si on peut poser
+					// si oui on enregistrera ca dans Game.gameDatas
+					// console.log("STOP1" + this.x + " " + this.y);
 					// ON LE PLACE GRACE AUX LONGEURS DE TUILE DE LA GRILLE
 					console.log(currentScene.isOccupied(this.at()));
 					if(currentScene.isOccupied(this.at())){
@@ -183,27 +183,27 @@ Crafty.scene('Town', function(){
 					}
 
 					currentScene.setOccupied(this.at(),true);
-			//	console.log(this);
-                            })
-                            .bind("HitOn", function(hitData) {
-                                console.log("Collision with Solid entity occurred for the first time.");
+					//	console.log(this);
+				})
+				.bind("HitOn", function(hitData) {
+					console.log("Collision with Solid entity occurred for the first time.");
 
-console.log(hitData);
-                            })
-                            .bind("HitOff", function(comp) {
-                                console.log("Collision with Solid entity ended.");
+					console.log(hitData);
+				})
+				.bind("HitOff", function(comp) {
+					console.log("Collision with Solid entity ended.");
 
-console.log(comp);
-                            })
-			    .bind("Click",function(){
-				this.toggleClick();
-				// console.log(""+this.isClick());
-				this.display();
+					console.log(comp);
+				})
+				.bind("Click",function(){
+					this.toggleClick();
+					// console.log(""+this.isClick());
+					this.display();
 				});
 
-       		 }
-	}
-    };
+			}
+		}
+	};
 	// bind sur les Create Enty venu depuis l'esterieur de crafty
 	// data type dataEntity
 	this.createExternalEntity= function(){
@@ -212,14 +212,14 @@ console.log(comp);
 
 
 
-				var attr = this.getFirstPlace(data);
-				if(attr){
+			var attr = this.getFirstPlace(data);
+			if(attr){
 				//	console.log(data[key]);
 				//	console.log(attr);
-					data.attr=attr;
-					var nData = {};
-					nData[data.components]=data;
-					createEntities(nData);
+				data.attr=attr;
+				var nData = {};
+				nData[data.components]=data;
+				createEntities(nData);
 
 			}
 
@@ -230,9 +230,9 @@ console.log(comp);
 	this.getFirstPlace= function(dataEntity){
 		console.log(dataEntity);
 		var attr = {
-			x:0,
-			y:0},
-			isPlace=false;
+				x:0,
+				y:0},
+				isPlace=false;
 		// si pas de param on met la taille est la hauteur à 1
 		if(dataEntity == undefined){
 			attr.w=1;
@@ -274,10 +274,10 @@ console.log(comp);
 
 	this.generateMap();
 	var dataEntities = getEntities();
-	createEntities(dataEntities);
 	generateRandomEntities();
 	this.createExternalEntity();
 	Game.addMenuConstruction();
+	createEntities(Game.gameDatas.mapObjects);
 	Game.startTriggers();
 	//this.setViewPort(4);
 	//Crafty.viewport.scale(1);
@@ -290,9 +290,9 @@ Crafty.scene('Loading', function(){
 	// Draw some text for the player to see in case the file
 	//  takes a noticeable amount of time to load
 	Crafty.e('2D, DOM, Text')
-		.text('Chargement en cours...')
-		.attr({ x: Game.width()/3, y: Game.height()/2 - 24, w: Game.width() })
-		.textFont({});
+	.text('Chargement en cours...')
+	.attr({ x: Game.width()/3, y: Game.height()/2 - 24, w: Game.width() })
+	.textFont({});
 
 	// Load our sprite map image
 	// console.log(Game.gameDatas);
