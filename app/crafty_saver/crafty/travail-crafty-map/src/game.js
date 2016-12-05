@@ -123,10 +123,16 @@ Game = {
                 console.log(Game.gameDatas.mapObjects.dataEntities[id]);
                 var b=informations[key];
                 var label=new Array();
-                label[0]="nb_salarie";
+                label[0]="nbsalarie";
                 label[1]="nombre de salariés";
-                label[2]="nb_cadre";
+                label[2]="nbcadre";
                 label[3]="nombre de cadres";
+                label[4]="attractivite";
+                label[5]="attractivité";
+                label[6]="postePourvu";
+                label[7]="postes pourvus";
+                label[8]="specificite";
+                label[9]="spécificité";
 
                 for(var i=0;i<=label.length;i++){
                     if(a==label[i]){
