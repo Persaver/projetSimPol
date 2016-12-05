@@ -107,7 +107,7 @@ Game = {
         if (data.id != undefined) {
             id = data.id.toLowerCase();
         }
-
+        console.log(data);
 
 
         if (Game.gameDatas.mapObjects.dataEntities[id] != undefined && Game.gameDatas.mapObjects.dataEntities[id].informations != undefined) {
@@ -119,6 +119,8 @@ Game = {
                 //label
                 var a=key;
                 //valeur
+                console.log(informations);
+                console.log(Game.gameDatas.mapObjects.dataEntities[id]);
                 var b=informations[key];
                 var label=new Array();
                 label[0]="nb_salarie";
@@ -151,11 +153,34 @@ Game = {
                 newPuce.appendChild(newP2);
 
             }
+
+            }
+            var newPuce = document.createElement('li');
+            newListe.appendChild(newPuce);
+            var newP= document.createElement('p');
+            newP.className ="itemKey";
+            newP.id="delete";
+            newP.innerHTML="supprimer";
+
+            newPuce.appendChild(newP);
+            var newP2 = document.createElement('p');
+            newP2.className = "itemValue";
+            newP2.id="deleteFlag";
+            newP2.innerHTML = "X";
+            newPuce.appendChild(newP2);
+            newPuce.onclick=function(){
+              console.log(data);
+              Game.removeCraftyEntity(data.item);
         }
         //container.innerHTML = data.message;
     },
 
-
+    clearContextual:function(container){
+      if (typeof container == "undefined") {
+          container = document.getElementById("crafty-contex-content");
+      }
+      container.innerHTML = "";
+    },
 
     //creation d'un element + ajout à crafty
     //params type dataEntite
@@ -177,9 +202,13 @@ Game = {
     addCraftyEntity: function(dataEntite) {
         Crafty.trigger("CreateEntity", dataEntite);
     },
+    removeCraftyEntity: function(dataEntite) {
+      console.log(dataEntite);
+        // ici on fera l'ajax
 
-
-
+        //on lance l'appel a crafty
+        Crafty.trigger("RemoveEntity", dataEntite);
+    },
 
     zoom: function(callback) {
         var zoom_inBtn = document.getElementById("zoom_in");

@@ -125,7 +125,13 @@ Crafty.scene('Town', function(){
 			for (var y = 0; y < Game.map_grid.height; y++) {
 					  if (Math.random() < 0.06 && !currentScene.isOccupied([x, y])) {
 					var grass_or_rock = (Math.random() > 0.3) ? 'Grass' : 'Rock';
-					Crafty.e(grass_or_rock).at([x, y]);
+					Crafty.e(grass_or_rock)
+						.at([x, y])
+						.bind("Click",function(){
+										this.toggleClick();
+										// console.log(""+this.isClick());
+										this.display();
+										});;
 
 					currentScene.setOccupied([x, y],true);
 				}
@@ -143,15 +149,19 @@ Crafty.scene('Town', function(){
 
 
 	var createEntities = function(dataEntities) {
+		var name = null;
 		// console.log(dataEntities);
 		// pour chaque entité dans les data
   	   	for (var entity in dataEntities) {
 
   	        	var entityC = dataEntities[entity];
 			// on crée l'entité
-			// console.log(entityC);
-           		craftyEntities[entityC.name] = Crafty.e(entityC.components).at([entityC.attr.x,entityC.attr.y,entityC.attr.w,entityC.attr.h]);
-			craftyEntities[entityC.name].setName(entity);
+			console.log(entityC);
+			console.log(entityC.name);
+			name ="" + entityC.components + entityC.attr.x + entityC.attr.y;
+			entityC.name = name;
+           		craftyEntities[name] = Crafty.e(entityC.components).at([entityC.attr.x,entityC.attr.y,entityC.attr.w,entityC.attr.h]);
+			craftyEntities[name].setName(entity);
 			// on les ajoute à la map
 			//console.log(craftyEntities[entityC.name].at());
 			currentScene.setOccupied(craftyEntities[entityC.name].at(),true);
@@ -220,8 +230,20 @@ console.log(comp);
 					var nData = {};
 					nData[data.components]=data;
 					createEntities(nData);
+					Crafty.viewport.centerOn(attr,1000);
 
 			}
+
+		});
+	};
+	// bind sur RemoveEntity
+	// lance la function du components
+	this.removeEntity= function(){
+		Crafty.bind("RemoveEntity",function(data){
+			console.log(data);
+			currentScene.setOccupied(data.at(),false);
+			data.removeEntity();
+			Game.clearContextual();
 
 		});
 	};
@@ -261,11 +283,6 @@ console.log(comp);
 
 	}
 
-
-
-
-
-
 	this.setViewPort = function(value){
 		console.log("callback");
 		Crafty.viewport.scale(value);
@@ -284,6 +301,8 @@ console.log(comp);
 	Crafty.viewport.mouselook(true);
 
 	Game.zoom(this.setViewPort);
+	// tigerr remove entity
+	this.removeEntity();
 });
 
 Crafty.scene('Loading', function(){
