@@ -180,7 +180,6 @@ Game = {
         }
         //container.innerHTML = data.message;
     },
-
     clearContextual:function(container){
       if (typeof container == "undefined") {
           container = document.getElementById("crafty-contex-content");
@@ -219,6 +218,7 @@ Game = {
     zoom: function(callback) {
         var zoom_inBtn = document.getElementById("zoom_in");
         var zoom_outBtn = document.getElementById("zoom_out");
+
         //Le zoom min est de 1 & le zoom max est de 3
         var echelle = 1;
         var maxScale = 3;
@@ -226,11 +226,9 @@ Game = {
         var pas= 0.5;
         zoom_outBtn.onclick = function() {
             if (echelle > minScale && echelle <= maxScale) {
-              console.log("test");
                 echelle-=pas;
             }
             callback(echelle);
-            console.log(echelle);
         };
 
         zoom_inBtn.onclick = function() {
@@ -238,13 +236,14 @@ Game = {
                 echelle+=pas;
             }
             callback(echelle);
-            console.log(echelle);
         };
-
-
-
     },
-
+    centerViewPort:function(callback){
+      var zoom_center = document.getElementById("zoom_out");
+      zoom_center.onclick = function() {
+        callback();
+      };
+    },
     //ajout des trigger
     startTriggers: function() {
             // ajout du trigger sur les div class constrution

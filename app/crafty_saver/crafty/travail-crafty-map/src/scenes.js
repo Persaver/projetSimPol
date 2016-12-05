@@ -4,6 +4,8 @@ Crafty.scene('Town', function(){
 	var ISDEBUG = true;
 
 	var currentScene = this;
+
+	var lastCenter = {};
 	// A 2D array to keep track of all occupied tiles
 	this.occupied = [Game.map_grid.width];
 	// initialise la grille a false partout
@@ -168,6 +170,7 @@ Crafty.scene('Town', function(){
 
 		// si de type moveable on lui ajout le drag and drop
 			if(entityC.type == "moveable"){
+				lastCenter = craftyEntities[entityC.name].at();
 				craftyEntities[entityC.name].oldPos = craftyEntities[entityC.name].at();
 				craftyEntities[entityC.name]
 				    .bind("StartDrag", function() {
@@ -288,6 +291,10 @@ console.log(comp);
 		Crafty.viewport.scale(value);
 	};
 
+	this.centerViewPort = function(){
+		console.log("callback");
+		Crafty.viewport.centerOn(lastCenter,1000);
+	};
 
 	this.generateMap();
 	var dataEntities = getEntities();
@@ -301,6 +308,7 @@ console.log(comp);
 	Crafty.viewport.mouselook(true);
 
 	Game.zoom(this.setViewPort);
+	Game.centerViewPort(this.centerViewPort);
 	// tigerr remove entity
 	this.removeEntity();
 });
