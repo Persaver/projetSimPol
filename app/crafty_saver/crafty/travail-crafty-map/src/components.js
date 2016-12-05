@@ -81,17 +81,7 @@ Crafty.c('Actor', {
     },
 });
 
-Crafty.c('Tree', {
-    init: function() {
-        this.requires('Actor,spr_grass');
-    },
-});
 
-Crafty.c('Grass', {
-    init: function() {
-        this.requires('Actor, spr_grass');
-    },
-});
 Crafty.c('Road', {
     init: function() {
         this.requires('Actor');
@@ -101,12 +91,6 @@ Crafty.c('Stone_Road', {
     init: function() {
         this.requires('Road,spr_stone_road');
     }
-});
-
-Crafty.c('Rock', {
-    init: function() {
-        this.requires('Actor, spr_stone_block');
-    },
 });
 Crafty.c('Clickable', {
     _isClick: false,
@@ -137,9 +121,11 @@ Crafty.c('Contextual', {
     display: function() {
         _message = {
         	message: this.at(),
-		id:this.getName()
+		        id:this.getName(),
+            item:this
         	};
         Game.displayContextual(_message);
+        console.log(_message);
     }
 });
 Crafty.c('Moveable', {
@@ -147,112 +133,136 @@ Crafty.c('Moveable', {
         this.requires('Contextual,Collision,Draggable');
     },
 });
-Crafty.c('Removable',{
+Crafty.c('Removabletype',{
 	init: function(){
 		this.requires('Contextual');
 	},
-	remove:function() {
-		
+	removeEntity:function() {
+    console.log(this);
+
+    this.destroy();
 	}
 
 });
+Crafty.c('Removable',{
+	init: function(){
+		this.requires('Removabletype,Moveable');
+	},
+
+});
+Crafty.c('Tree', {
+    init: function() {
+        this.requires('Removabletype,spr_grass');
+    },
+});
+
+Crafty.c('Grass', {
+    init: function() {
+        this.requires('Removabletype, spr_grass');
+    },
+});
+Crafty.c('Rock', {
+    init: function() {
+        this.requires('Removabletype, spr_stone_block');
+    },
+});
 Crafty.c('House', {
     init: function() {
-        this.requires('Clickable, spr_house_1');
+        this.requires('Moveable, spr_house_1');
     },
 });
 Crafty.c('Warehouse', {
     init: function() {
-        this.requires('Moveable,spr_warehouse');
+        this.requires('Removable,spr_warehouse');
     },
 });
 Crafty.c('Desk', {
     init: function() {
-        this.requires('Moveable,spr_desk');
+        this.requires('Removable,spr_desk');
     },
 });
 Crafty.c('Museum', {
     init: function() {
-        this.requires('Moveable,spr_museum');
+        this.requires('Removable,spr_museum');
     },
 });
 Crafty.c('Church', {
     init: function() {
-        this.requires('Moveable,spr_church');
+        this.requires('Removable,spr_church');
     },
 });
 Crafty.c('Restaurant', {
     init: function() {
-        this.requires('Moveable,spr_restaurant');
+        this.requires('Removable,spr_restaurant');
     },
 });
 Crafty.c('Night_Club', {
     init: function() {
-        this.requires('Moveable,spr_night_club');
+        this.requires('Removable,spr_night_club');
     },
 });
 Crafty.c('Temple', {
     init: function() {
-        this.requires('Moveable,spr_temple');
+        this.requires('Removable,spr_temple');
     },
 });
 Crafty.c('Temple_Tower', {
     init: function() {
-        this.requires('Moveable,spr_temple_tower');
+        this.requires('Removable,spr_temple_tower');
     },
 });
 Crafty.c('Farm', {
     init: function() {
-        this.requires('Moveable,spr_farm');
+        this.requires('Removable,spr_farm');
     },
 });
 Crafty.c('Rescue_Tower', {
     init: function() {
-        this.requires('Moveable,spr_rescue_tower');
+        this.requires('Removable,spr_rescue_tower');
     },
 });
 Crafty.c('Circus', {
     init: function() {
-        this.requires('Moveable,spr_circus');
+        this.requires('Removable,spr_circus');
     },
 });
 Crafty.c('Television', {
     init: function() {
-        this.requires('Moveable,spr_television');
+        this.requires('Removable,spr_television');
     },
 });
 Crafty.c('Entertainment_Hall', {
     init: function() {
-        this.requires('Moveable,spr_entertainment_hall');
+        this.requires('Removable,spr_entertainment_hall');
     },
 });
 Crafty.c('Military_Place', {
     init: function() {
-        this.requires('Moveable,spr_military_place');
+        this.requires('Removable,spr_military_place');
     },
 });
 Crafty.c('Military_Tower', {
     init: function() {
-        this.requires('Moveable,spr_military_tower');
+        this.requires('Removable,spr_military_tower');
     },
 });
 Crafty.c('Factory', {
     init: function() {
-        this.requires('Moveable,spr_factory');
+        this.requires('Removable,spr_factory');
     },
 });
 Crafty.c('Hospital', {
     init: function() {
-        this.requires('Moveable,spr_hospital');
+        this.requires('Removable,spr_hospital');
     },
 });
 Crafty.c('Police_Dpt', {
     init: function() {
-        this.requires('Moveable,spr_police_dpt');
+        this.requires('Removable,spr_police_dpt');
     },
 });
 Crafty.c('University', {
     init: function() {
-        this.requires('Moveable,spr_university');
+        this.requires('Removable,spr_university');
     }
 });

@@ -188,7 +188,7 @@ margin:auto;
 
 #zoom{
 height: 55px;
-width: 100px;
+width: 143px;
 border: 2px solid black;
 position: absolute;
 right: -5px;
@@ -197,6 +197,9 @@ background-color: white;
 z-index: 11;
 padding:5px;
 }
+
+
+
 
 #zoom img{
 display:inline;

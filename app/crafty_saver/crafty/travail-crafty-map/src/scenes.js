@@ -4,6 +4,8 @@ Crafty.scene('Town', function(){
 	var ISDEBUG = false;
 
 	var currentScene = this;
+
+	var lastCenter = {};
 	// A 2D array to keep track of all occupied tiles
 	this.occupied = [Game.map_grid.width];
 	// initialise la grille a false partout
@@ -125,7 +127,13 @@ Crafty.scene('Town', function(){
 			for (var y = 0; y < Game.map_grid.height; y++) {
 				if (Math.random() < 0.06 && !currentScene.isOccupied([x, y])) {
 					var grass_or_rock = (Math.random() > 0.3) ? 'Grass' : 'Rock';
-					Crafty.e(grass_or_rock).at([x, y]);
+					Crafty.e(grass_or_rock)
+						.at([x, y])
+						.bind("Click",function(){
+										this.toggleClick();
+										// console.log(""+this.isClick());
+										this.display();
+										});;
 
 					currentScene.setOccupied([x, y],true);
 				}
@@ -143,21 +151,30 @@ Crafty.scene('Town', function(){
 
 
 	var createEntities = function(dataEntities) {
+
 		 console.log(dataEntities);
+
+		var name = null;
+		// console.log(dataEntities);
+
 		// pour chaque entité dans les data
 		for (var entity in dataEntities) {
 
 			var entityC = dataEntities[entity];
 			// on crée l'entité
-			 console.log(entity);
-			craftyEntities[entityC.name] = Crafty.e(entityC.components).at([entityC.attr.x,entityC.attr.y,entityC.attr.w,entityC.attr.h]);
-			craftyEntities[entityC.name].setName(entity);
+			console.log(entityC);
+			console.log(entityC.name);
+			name ="" + entityC.components + entityC.attr.x + entityC.attr.y;
+			entityC.name = name;
+           		craftyEntities[name] = Crafty.e(entityC.components).at([entityC.attr.x,entityC.attr.y,entityC.attr.w,entityC.attr.h]);
+			craftyEntities[name].setName(entity);
 			// on les ajoute à la map
 			//console.log(craftyEntities[entityC.name].at());
 			currentScene.setOccupied(craftyEntities[entityC.name].at(),true);
 
 			// si de type moveable on lui ajout le drag and drop
 			if(entityC.type == "moveable"){
+				lastCenter = craftyEntities[entityC.name].at();
 				craftyEntities[entityC.name].oldPos = craftyEntities[entityC.name].at();
 				craftyEntities[entityC.name]
 				.bind("StartDrag", function() {
@@ -216,12 +233,23 @@ Crafty.scene('Town', function(){
 			if(attr){
 				//	console.log(data[key]);
 				//	console.log(attr);
-				data.attr=attr;
-				var nData = {};
-				nData[data.components]=data;
-				createEntities(nData);
-
+					data.attr=attr;
+					var nData = {};
+					nData[data.components]=data;
+					createEntities(nData);
+					Crafty.viewport.centerOn(attr,1000);
 			}
+
+		});
+	};
+	// bind sur RemoveEntity
+	// lance la function du components
+	this.removeEntity= function(){
+		Crafty.bind("RemoveEntity",function(data){
+			console.log(data);
+			currentScene.setOccupied(data.at(),false);
+			data.removeEntity();
+			Game.clearContextual();
 
 		});
 	};
@@ -261,16 +289,15 @@ Crafty.scene('Town', function(){
 
 	}
 
-
-
-
-
-
 	this.setViewPort = function(value){
 		console.log("callback");
 		Crafty.viewport.scale(value);
 	};
 
+	this.centerViewPort = function(){
+		console.log("callback");
+		Crafty.viewport.centerOn(lastCenter,1000);
+	};
 
 	this.generateMap();
 	var dataEntities = getEntities();
@@ -284,6 +311,9 @@ Crafty.scene('Town', function(){
 	Crafty.viewport.mouselook(true);
 
 	Game.zoom(this.setViewPort);
+	Game.centerViewPort(this.centerViewPort);
+	// tigerr remove entity
+	this.removeEntity();
 });
 
 Crafty.scene('Loading', function(){
