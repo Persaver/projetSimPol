@@ -239,7 +239,7 @@ Game = {
         };
     },
     centerViewPort:function(callback){
-      var zoom_center = document.getElementById("zoom_out");
+      var zoom_center = document.getElementById("recentrage");
       zoom_center.onclick = function() {
         callback();
       };
