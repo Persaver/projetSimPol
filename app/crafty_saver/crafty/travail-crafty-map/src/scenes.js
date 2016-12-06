@@ -298,7 +298,7 @@ Crafty.scene('Town', function(){
 		console.log("callback");
 		Crafty.viewport.centerOn(lastCenter,1000);
 	};
-
+	Game.getData();
 	this.generateMap();
 	var dataEntities = getEntities();
 	generateRandomEntities();
@@ -326,10 +326,10 @@ Crafty.scene('Loading', function(){
 
 	// Load our sprite map image
 	// console.log(Game.gameDatas);
-	Game.getData();
+	
 	// console.log(Game.gameDatas.mapObjects.sprites);
-	Crafty.load({sprites:Game.gameDatas.mapObjects.sprites}, function(){
-		// Once the images are loaded...
-		Crafty.scene('Town');
-	});
+//	Crafty.load({sprites:Game.gameDatas.mapObjects.sprites}, function(){
+//		// Once the images are loaded...
+//		Crafty.scene('Town');
+//	});
 });
