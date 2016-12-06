@@ -1,0 +1,39 @@
+body {
+
+  padding-top: 10px;
+
+}
+
+[class*="col-"], footer {
+
+
+  border: 2px solid black;
+
+  border-radius: 6px;
+
+  line-height: 40px;
+
+  text-align: center;
+
+}
+.container{
+	margin:auto;
+}
+#left{
+	background-color:#33ffd1;
+	height:800px;
+}
+#map{
+	background-color:white;
+	height:800px;
+}
+#right{
+	background-color:#ffe633;
+	height:800px;
+}
+
+#bottom{
+	background-color:#e27f17;
+	height:100px;
+}
+}

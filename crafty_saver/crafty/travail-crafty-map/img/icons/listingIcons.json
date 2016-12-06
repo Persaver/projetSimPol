@@ -1,0 +1,25 @@
+{
+"buildingIcons":[
+
+        {"name":"emergency",
+        "url":"icons/emergency.png"
+      },
+        {"name":"hopital",
+        "url":"icons/hopital.png"
+      },
+        {"name":"maison",
+        "url":"icons/maison.png"
+      },
+        {"name":"musee",
+        "url":"icons/musee.png"
+      },
+        {"name":"pompier",
+        "url":"icons/pompier.png"
+      },
+        {"name":"salle de sport",
+        "url":"icons/salleDeSport.png"
+        }
+
+        ]
+
+}
