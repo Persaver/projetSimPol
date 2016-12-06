@@ -19,10 +19,10 @@
 		<div id="crafty-container">
 			<div id="container">
 				<section id="cr-stage">
-			          <div id="zoom">
-          <img id="recentrage" src="img/cercle_centre.jpg">
-          <img id="zoom_in" src="img/zoom_in.jpg">
-          <img id="zoom_out" src="img/zoom_out.jpg">
+					<div id="zoom">
+						<img id="recentrage" src="img/cercle_centre.jpg"> 
+						<img id="zoom_in" src="img/zoom_in.jpg"> 
+						<img id="zoom_out" src="img/zoom_out.jpg">
 					</div>
 				</section>
 
@@ -49,18 +49,18 @@
 		<div class="clear"></div>
 
 	</div>
-<script src="./crafty.js"></script>
-<!-- les données pour le debug -->
-<script src="src/data.js"></script>
-<!-- les données par ajax -->
-<script src="src/ajax.js"></script>
-<!-- gere la logique du jeux et les données -->
-<script src="src/game.js"></script>
-<!-- les composants que l'on crée pour crafty -->
-<script src="src/components.js"></script>
-<!-- gestion de la carte et l'affichage des enchainements de scenes -->
-<script src="src/scenes.js"></script>
-<script>
+	<script src="./crafty.js"></script>
+	<!-- les données pour le debug -->
+	<script src="src/data.js"></script>
+	<!-- les données par ajax -->
+	<script src="src/ajax.js"></script>
+	<!-- gere la logique du jeux et les données -->
+	<script src="src/game.js"></script>
+	<!-- les composants que l'on crée pour crafty -->
+	<script src="src/components.js"></script>
+	<!-- gestion de la carte et l'affichage des enchainements de scenes -->
+	<script src="src/scenes.js"></script>
+	<script>
         window.addEventListener('load', Game.start);
       /*  */  Ajax.ajax('/backupconstructions',function(data){console.log(data)});
     </script>
